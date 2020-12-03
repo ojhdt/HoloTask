@@ -20,7 +20,7 @@
 
 安装 Github Destop，clone **develop** 分支到本地；熟悉拉取与提交操作。
 
-![确保在develop分支上操作](/RDADME/1.png)
+![确保在develop分支上操作](/README/1.png)
 
 ## 参考材料
 
@@ -53,4 +53,7 @@
 - 乱序
 - 读音播放，翻译，例句展示
 
+### 问卷
+
+- 无广告
 
