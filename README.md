@@ -44,7 +44,9 @@
 
 ![Push](/README/6.png)
 
+6. 在每次尝试提交更改前，优先点击 **Fetch origin** 拉取其他协作者的更改到本地，再 commit 自己所做的新更改。
 
+![Fetch](/README/7.png)
 
 
 
