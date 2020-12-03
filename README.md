@@ -20,7 +20,27 @@
 
 安装 Github Destop，clone **develop** 分支到本地；熟悉拉取与提交操作。
 
+操作：
+
+1. 点击 File -> Clone repository
+
+![Clone仓库](/README/2.png)
+
+2. 选择正确的仓库，选择恰当的本地路径
+
+![配置](/README/3.png)
+
+3. 更改默认分支为**develop**
+
 ![确保在develop分支上操作](/README/1.png)
+
+4. 仓库成功克隆到本地，可做出更改
+
+![本地](/README/4.png)
+
+5. 做出更改后，在视窗可进行确认。首先左下角填写注释（必填），点击**commit to develop**，再点击右上角的Git Push。
+
+
 
 ## 参考材料
 
