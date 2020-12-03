@@ -40,6 +40,12 @@
 
 5. 做出更改后，在视窗可进行确认。首先左下角填写注释（必填），点击**commit to develop**，再点击右上角的Git Push。
 
+![commit](/README/5.png)
+
+![Push](/README/6.png)
+
+
+
 
 
 ## 参考材料
