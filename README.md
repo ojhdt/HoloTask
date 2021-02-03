@@ -24,11 +24,15 @@
 **如何进行版本回退（重要）**
 即把项目退回到上一次提交的状态，舍弃上一次提交之后自己进行的所有操作。
 
-1. 进入`History`选项页。
+1. 忽略当前所有改动。全选，`Discard changes`。
+
+![忽略改动](/README/10.png)
+
+2. 进入`History`选项页。
 
 ![进入history](/README/8.png)
 
-2. 选择需要回退的版本，点击`Revert this commit`。
+3. 选择需要回退的版本，点击`Revert this commit`。
 
 ![回退](/README/9.png)
 
