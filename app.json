@@ -7,13 +7,17 @@
     "pages/logs/logs"
   ],
   "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
+    "backgroundColor": "@BgColor",
+    "backgroundTextStyle":"@BgTxtStyle",
+    "navigationBarBackgroundColor": "@navBgColor",
     "navigationBarTitleText": "Test",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle":"@navTxtStyle"
   },
   "tabBar":{
+    "color": "@tabFontColor",
     "selectedColor": "#07c160",
+    "backgroundColor": "@tabBgColor",
+    "borderStyle": "@tabBorderStyle",
     "list":[{
       "pagePath": "pages/index/index",
       "text": "主页",
@@ -32,5 +36,7 @@
     }]
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "darkmode": true,
+  "themeLocation": "theme.json"
 }
