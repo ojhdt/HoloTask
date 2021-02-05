@@ -10,7 +10,7 @@
     "backgroundColor": "@BgColor",
     "backgroundTextStyle":"@BgTxtStyle",
     "navigationBarBackgroundColor": "@navBgColor",
-    "navigationBarTitleText": "Test",
+    "navigationBarTitleText": "HoloTask",
     "navigationBarTextStyle":"@navTxtStyle"
   },
   "tabBar":{

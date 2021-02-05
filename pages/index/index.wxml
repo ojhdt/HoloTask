@@ -1,2 +1,26 @@
 <!--index.wxml-->
-<text>pages/index/index.wxml</text>
+<view class="container">
+  <view>
+    <text>概览</text>
+    <view>
+      <view>
+        <text>{{dying}}</text>
+        <text>即将到期</text>
+      </view>
+      <view>
+        <text>{{finished}}</text>
+        <text>已完成</text>
+      </view>
+      <view>
+        <text>{{unfinished}}</text>
+        <text>未完成</text>
+      </view>
+    </view>
+  </view>
+  <view>
+    <text>任务</text>
+  </view>
+  <view wx:for="{{db.user1}}">
+    {{item.title}}{{item.dld}}{{item.dlt}}
+  </view>
+</view>
