@@ -3,13 +3,33 @@
     "pages/index/index",
     "pages/details/details",
     "pages/history/history",
+    "pages/account/account",
     "pages/logs/logs"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarTitleText": "Test",
     "navigationBarTextStyle":"black"
+  },
+  "tabBar":{
+    "selectedColor": "#07c160",
+    "list":[{
+      "pagePath": "pages/index/index",
+      "text": "主页",
+      "iconPath": "/source/icon/tabbar/home-o.png",
+      "selectedIconPath": "/source/icon/tabbar/home.png"
+    },{
+      "pagePath": "pages/history/history",
+      "text": "历史",
+      "iconPath": "/source/icon/tabbar/archive-o.png",
+      "selectedIconPath": "/source/icon/tabbar/archive.png"
+    },{
+      "pagePath": "pages/account/account",
+      "text": "账户",
+      "iconPath": "/source/icon/tabbar/person-o.png",
+      "selectedIconPath": "/source/icon/tabbar/person.png"
+    }]
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
