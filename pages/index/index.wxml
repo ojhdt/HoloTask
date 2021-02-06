@@ -11,28 +11,44 @@
   </block>
   <!-- 已登录 -->
   <block wx:if="{{login}}">
-    <view>
-      <text>概览</text>
+    <view id="home">
       <view>
-        <view>
-          <text>{{dying}}</text>
-          <text>即将到期</text>
-        </view>
-        <view>
-          <text>{{finished}}</text>
-          <text>已完成</text>
-        </view>
-        <view>
-          <text>{{unfinished}}</text>
-          <text>未完成</text>
+        <view id="blank"></view>
+        <text class="heading">概览</text>
+        <view id="gl">
+          <view class="gle">
+            <text id="gl_dying">{{dying}}</text>
+            <text>即将到期</text>
+          </view>
+          <view class="gle">
+            <text id="gl_finished">{{finished}}</text>
+            <text>已完成</text>
+          </view>
+          <view class="gle">
+            <text id="gl_unfinished">{{unfinished}}</text>
+            <text>未完成</text>
+          </view>
         </view>
       </view>
-    </view>
-    <view>
-      <text>任务</text>
-      <view wx:for="{{db.user1}}" wx:key="index">
-      {{item.title}}-{{item.admin}}-{{item.time}}-{{item.timelast}}-{{item.unit}}
-    </view>
+      <view>
+        <text class="heading">任务</text>
+        <view class="rw" wx:for="{{db.user1}}" wx:key="index">
+          <view class="rw_1">
+            <text>{{item.title}}</text>
+            <view>
+              <text>{{item.timelast}}</text>
+              <text class="rw_1_u">{{item.unit}}</text>
+            </view>
+          </view>
+          <view class="rw_2">
+            <text>{{item.time}}  {{item.admin}}</text>
+            <!-- 加按钮 -->
+          </view>
+        </view>
+        <view id="home_line">
+          <text>---我是有底线的---</text>
+        </view>
+      </view>
     </view>
   </block>
 </view>
