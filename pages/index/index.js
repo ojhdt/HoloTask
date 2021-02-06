@@ -5,9 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // dying: null,
-    // finished: null,
-    // unfinished: null,
+    login: true,
     db:{
       user1:[{
         title: "C语言程序设计",
@@ -29,12 +27,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if(this.data.login)
     this.onPullDownRefresh()
     //设置变量值
     this.setData({
-      dying: 1,
-      finished: 2,
-      unfinished: 3
+
     })
   },
 
@@ -76,7 +73,7 @@ Page({
     this.data.db.user1.forEach((element,index) => {
       let timestamp = element.timestamp;
       let timelast = (element.timestamp - (new Date).getTime())/1000;
-      console.log(timelast);
+      // console.log(timelast);
       if(element.finished == true) finished++;
       else unfinished++;
       if(timelast < 172800)

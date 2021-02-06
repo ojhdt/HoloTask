@@ -1,26 +1,38 @@
 <!--index.wxml-->
 <view class="container">
-  <view>
-    <text>概览</text>
+  <!-- 未登录 -->
+  <block wx:if="{{!login}}">
+    <view id="login">
+      <image src="/source/main.png" mode="widthFix"></image>
+      <text id="login_bold">欢迎</text>
+      <text id="login_text">HoloTask 是一款简洁的任务管理工具，支持云端同步，群组管理，任务提醒等功能，可应用于班级管理，自我约束等多种场合。\n\n授权 HoloTask 使用您的个人信息以开始使用。</text>
+      <button class="login_btn" hover-class="h_login_btn" bindtap="login">开始使用</button>
+    </view>
+  </block>
+  <!-- 已登录 -->
+  <block wx:if="{{login}}">
     <view>
+      <text>概览</text>
       <view>
-        <text>{{dying}}</text>
-        <text>即将到期</text>
-      </view>
-      <view>
-        <text>{{finished}}</text>
-        <text>已完成</text>
-      </view>
-      <view>
-        <text>{{unfinished}}</text>
-        <text>未完成</text>
+        <view>
+          <text>{{dying}}</text>
+          <text>即将到期</text>
+        </view>
+        <view>
+          <text>{{finished}}</text>
+          <text>已完成</text>
+        </view>
+        <view>
+          <text>{{unfinished}}</text>
+          <text>未完成</text>
+        </view>
       </view>
     </view>
-  </view>
-  <view>
-    <text>任务</text>
-  </view>
-  <view wx:for="{{db.user1}}" wx:key="index">
-    {{item.title}}-{{item.admin}}-{{item.time}}-{{item.timelast}}-{{item.unit}}
-  </view>
+    <view>
+      <text>任务</text>
+      <view wx:for="{{db.user1}}" wx:key="index">
+      {{item.title}}-{{item.admin}}-{{item.time}}-{{item.timelast}}-{{item.unit}}
+    </view>
+    </view>
+  </block>
 </view>

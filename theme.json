@@ -6,7 +6,7 @@
     "BgColor": "#ffffff",
     "BgTxtStyle": "dark",
     "tabFontColor": "#666666",
-    "tabBorderStyle": "black"
+    "tabBorderStyle": "white"
   },
   "dark":{
     "navBgColor": "#232c3d",
@@ -15,6 +15,6 @@
     "BgColor": "#1f2535",
     "BgTxtStyle": "light",
     "tabFontColor": "#666666",
-    "tabBorderStyle": "white"
+    "tabBorderStyle": "black"
   }
 }

@@ -5,7 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    user:{
+      name: "Ojhdt",
+      description: "在开发者工具中上传部署云函数后"
+    }
   },
 
   /**
