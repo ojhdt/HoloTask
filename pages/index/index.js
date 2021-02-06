@@ -16,12 +16,12 @@ Page({
         title: "高等数学",
         admin: "翁文",
         timestamp: 1612584395579,
-        finished: true,
+        finished: false,
       },{
         title: "思想道德修养与法律基础",
         admin: "甘培聪",
         timestamp: 1612948723579,
-        finished: false,
+        finished: true,
       },{
         title: "计算机科学技术导论",
         admin: "杨欢",
@@ -83,61 +83,87 @@ Page({
     // var time = util.formatTime(new Date());
     // console.log((new Date).getTime());
     let finished = 0, unfinished = 0, dying = 0;
+    //排序
+    var array_u = [];
+    var array_f = [];
+    this.data.db.user1.forEach((value,index,array) => {
+      if(value.finished) array_f.push(value);
+      else array_u.push(value);
+    });
+    array_u.sort((a,b) => {
+      return a.timestamp - b.timestamp;
+    })
+    array_f.sort((a,b) => {
+      return a.timestamp - b.timestamp;
+    })
+    this.setData({"db.user1" : array_u.concat(array_f)});
     this.data.db.user1.forEach((element,index) => {
       let timestamp = element.timestamp;
       let timelast = (element.timestamp - (new Date).getTime())/1000;
-      // console.log(timelast);
-      if(element.finished == true) finished++;
-      else unfinished++;
-      if(timelast < 172800 && timelast > 0)
-      {
-        //如果少于两天，执行
-        dying++;
-      }
-      if(timelast >= 86400)
-      {
-        //如果多于一天
-        let str1 = 'db.user1['+index+'].timelast';
-        let str2 = 'db.user1['+index+'].unit';
-        this.setData({
-          [str1]: Math.round(timelast/86400),
-          [str2]: "天"
-        })
-      }
-      else if(timelast < 86400 && timelast > 3600)
-      {
-        //如果少于一天但多于1小时
-        let str1 = 'db.user1['+index+'].timelast';
-        let str2 = 'db.user1['+index+'].unit';
-        this.setData({
-          [str1]: Math.round(timelast/3600),
-          [str2]: "时"
-        })
-      }
-      else if(timelast <= 3600 && timelast >= 0)
-      {
-        //如果少于1小时但未过期
-        let str1 = 'db.user1['+index+'].timelast';
-        let str2 = 'db.user1['+index+'].unit';
-        this.setData({
-          [str1]: Math.round(timelast/60),
-          [str2]: "分"
-        })
-      }
-      else
-      {
-        //如果已过期
-        let str1 = 'db.user1['+index+'].timelast';
-        let str2 = 'db.user1['+index+'].unit';
-        this.setData({
-          [str1]: '',
-          [str2]: "已过期"
-        })
-      }
+      //写入时间字符串
       let str = 'db.user1['+index+'].time';
       this.setData({
         [str]: util.formatTime(new Date(timestamp))
       })
+      //读取完成数及未完成数
+      if(element.finished)
+      {
+        finished++;
+        let str2 = 'db.user1['+index+'].unit';
+        this.setData({
+          [str2]: "已完成"
+        })
+      }
+      else
+      {
+        unfinished++;
+        //计算剩余时间
+        if(timelast < 172800 && timelast > 0)
+        {
+          //如果少于两天，执行
+          dying++;
+        }
+        if(timelast >= 86400)
+        {
+          //如果多于一天
+          let str1 = 'db.user1['+index+'].timelast';
+          let str2 = 'db.user1['+index+'].unit';
+          this.setData({
+            [str1]: Math.round(timelast/86400),
+            [str2]: "天"
+          })
+        }
+        else if(timelast < 86400 && timelast > 3600)
+        {
+          //如果少于一天但多于1小时
+          let str1 = 'db.user1['+index+'].timelast';
+          let str2 = 'db.user1['+index+'].unit';
+          this.setData({
+            [str1]: Math.round(timelast/3600),
+            [str2]: "时"
+          })
+        }
+        else if(timelast <= 3600 && timelast >= 0)
+        {
+          //如果少于1小时但未过期
+          let str1 = 'db.user1['+index+'].timelast';
+          let str2 = 'db.user1['+index+'].unit';
+          this.setData({
+            [str1]: Math.round(timelast/60),
+            [str2]: "分"
+          })
+        }
+        else
+        {
+          //如果已过期
+          let str1 = 'db.user1['+index+'].timelast';
+          let str2 = 'db.user1['+index+'].unit';
+          this.setData({
+            [str1]: '',
+            [str2]: "已过期"
+          })
+        }
+      }
     });
     this.setData({
       finished:finished,

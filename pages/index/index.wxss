@@ -96,7 +96,7 @@ page{
   display: flex;
   flex-direction: column;
   background-color: #ddd;
-  margin: 30rpx 0;
+  margin: 40rpx 0;
   padding: 40rpx 50rpx;
   border-radius: 1rem;
   box-shadow: 6rpx 6rpx 8rpx #bbb;
@@ -134,6 +134,7 @@ page{
 
 #home_line{
   display: flex;
+  height: 170rpx;
   justify-content: center;
   align-items: center;
   font-size: 0.9rem;
