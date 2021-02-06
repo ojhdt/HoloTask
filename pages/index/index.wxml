@@ -34,7 +34,7 @@
         <text class="heading">任务</text>
         <view class="rw" wx:for="{{db.user1}}" wx:key="index">
           <view class="rw_1">
-            <text>{{item.title}}</text>
+            <text class="rw_1_t">{{item.title}}</text>
             <view>
               <text>{{item.timelast}}</text>
               <text class="rw_1_u">{{item.unit}}</text>

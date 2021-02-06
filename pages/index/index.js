@@ -10,15 +10,28 @@ Page({
       user1:[{
         title: "C语言程序设计",
         admin: "冼广铭",
-        id: "#001",
         timestamp: 1613574395579,
         finished: false,
       },{
-        title: "数学",
+        title: "高等数学",
         admin: "翁文",
-        id: "#002",
         timestamp: 1612584395579,
         finished: true,
+      },{
+        title: "思想道德修养与法律基础",
+        admin: "甘培聪",
+        timestamp: 1612948723579,
+        finished: false,
+      },{
+        title: "计算机科学技术导论",
+        admin: "杨欢",
+        timestamp: 1612639135126,
+        finished: false,
+      },{
+        title: "基础英语",
+        admin: "郭珊珊",
+        timestamp: 1612728437602,
+        finished: false,
       }]
     }
   },
@@ -76,7 +89,7 @@ Page({
       // console.log(timelast);
       if(element.finished == true) finished++;
       else unfinished++;
-      if(timelast < 172800)
+      if(timelast < 172800 && timelast > 0)
       {
         //如果少于两天，执行
         dying++;
