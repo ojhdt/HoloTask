@@ -20,7 +20,7 @@
   <view>
     <text>任务</text>
   </view>
-  <view wx:for="{{db.user1}}">
-    {{item.title}}{{item.dld}}{{item.dlt}}
+  <view wx:for="{{db.user1}}" wx:key="index">
+    {{item.title}}-{{item.admin}}-{{item.time}}-{{item.timelast}}-{{item.unit}}
   </view>
 </view>

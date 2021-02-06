@@ -4,11 +4,12 @@ App({
     //获取夜间模式
     wx.getSystemInfo({
       success: (res) => {
-        var is_dark = res.theme
+        this.globalData.is_dark = res.theme;
       },
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    is_dark: "light"
   }
 })
