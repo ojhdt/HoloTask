@@ -3,14 +3,41 @@
     "pages/index/index",
     "pages/details/details",
     "pages/history/history",
+    "pages/account/account",
+    "pages/modify/modify",
     "pages/logs/logs"
   ],
   "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle":"black"
+    "backgroundColor": "@BgColor",
+    "backgroundTextStyle":"@BgTxtStyle",
+    "navigationBarBackgroundColor": "@navBgColor",
+    "navigationBarTitleText": "HoloTask",
+    "navigationBarTextStyle":"@navTxtStyle"
+  },
+  "tabBar":{
+    "color": "@tabFontColor",
+    "selectedColor": "#07c160",
+    "backgroundColor": "@tabBgColor",
+    "borderStyle": "@tabBorderStyle",
+    "list":[{
+      "pagePath": "pages/index/index",
+      "text": "主页",
+      "iconPath": "/source/icon/tabbar/home-o.png",
+      "selectedIconPath": "/source/icon/tabbar/home.png"
+    },{
+      "pagePath": "pages/history/history",
+      "text": "历史",
+      "iconPath": "/source/icon/tabbar/archive-o.png",
+      "selectedIconPath": "/source/icon/tabbar/archive.png"
+    },{
+      "pagePath": "pages/account/account",
+      "text": "账户",
+      "iconPath": "/source/icon/tabbar/person-o.png",
+      "selectedIconPath": "/source/icon/tabbar/person.png"
+    }]
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "darkmode": true,
+  "themeLocation": "theme.json"
 }

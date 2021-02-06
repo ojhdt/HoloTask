@@ -1,1 +1,189 @@
 /**index.wxss**/
+/* 正常模式下应用的样式 */
+page{
+  background: #f1f1f1;
+}
+
+#blank{
+  height: 50rpx;
+}
+
+/* 欢迎页样式 */
+#login{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#login image{
+  width: 300rpx;
+}
+
+#login_bold{
+  font-size: 1.5rem;
+  margin: 50rpx;
+}
+
+#login_text{
+  width:500rpx;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.login_btn{
+  font-size: 0.9rem;
+  background-color: #bcddb0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1.2rem;
+  margin: 100rpx;
+}
+
+.h_login_btn{
+  transform: scale(0.9,0.9);
+}
+/* 列表页样式 */
+
+#home{
+  margin: 0 50rpx;
+}
+
+.heading{
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+#gl{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #ddd;
+  margin: 30rpx 0;
+  border-radius: 1rem;
+  box-shadow: 6rpx 6rpx 8rpx #bbb;
+}
+
+.gle{
+  width: 150rpx;
+  display: flex;
+  /* background-color: red; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 50rpx 0;
+}
+
+#gl_dying{
+  font-size: 2rem;
+  color: #e57373;
+}
+
+#gl_finished{
+  font-size: 2rem;
+  color: #56a36c;
+}
+
+#gl_unfinished{
+  font-size: 2rem;
+  color: #666;
+}
+
+.rw{
+  display: flex;
+  flex-direction: column;
+  background-color: #ddd;
+  margin: 30rpx 0;
+  padding: 40rpx 50rpx;
+  border-radius: 1rem;
+  box-shadow: 6rpx 6rpx 8rpx #bbb;
+}
+
+.rw_1{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.4rem;
+}
+
+.rw_1_u{
+  font-size: 1rem;
+}
+
+.rw_2{
+  display: flex;
+  flex-direction: row;
+  font-size: 0.9rem;
+  color: #666;
+  margin: 20rpx 0 0 0;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#home_line{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* 暗黑模式下应用的样式 */
+@media (prefers-color-scheme: dark) {
+  page{
+    background: #1f2535;
+  }
+
+  .bold{
+    color: white;
+  }
+
+  #login_text{
+    color: #f1f1f1;
+  }
+
+  .login_btn{
+    background-color:#56a36c;
+    color: white;
+  }
+
+  #heading{
+    color: white;
+  }
+
+  #gl{
+    background-color: #444;
+    color: white;
+    box-shadow: 6rpx 6rpx 8rpx #222;
+  }
+
+  /* #gl_dying{
+    color: #f8dadf;
+  } */
+
+  /* #gl_finished{
+    color: #bcddb0;
+  } */
+
+  #gl_unfinished{
+    color: white;
+  }
+
+  .rw{
+    background-color: #444;
+    color: white;
+    box-shadow: 6rpx 6rpx 8rpx #222;
+  }
+
+  .rw_2{
+    color: #ccc;
+  }
+
+  #home_line{
+    color: #ccc
+  }
+}
