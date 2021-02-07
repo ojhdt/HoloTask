@@ -1,2 +1,77 @@
-<!--pages/account/account.wxml-->
-<text>pages/account/account.wxml</text>
+<view id="fixed">
+  <view id="header" style="background-image: url({{imgUrl}})">
+    <view id="head">
+      <view id="motto_container">
+        <text id="motto">{{hitokoto}}</text>
+        <text id="motto_subtitle">--{{from}}</text>
+      </view>
+      <image class="icon" bindtap="setting" src="/source/icon/account/settings-white-24dp.svg"></image>
+    </view>
+    <view id="user">
+      <image src="/source/img/account/avatar.png"></image>
+      <view>
+        <text id="name">{{user.name}}</text>
+        <text id="description">{{user.description}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="container">
+  <view id="footer">
+    <view id="bar">
+      <view></view>
+    </view>
+    <view id="content">
+      <scroll-view scroll-x="true" enable-flex="true" id="scroll">
+        <view class="scroll_item">
+          <view class="scroll_card">
+            <image class="icon" src="/source/icon/account/settings-black-24dp.svg"></image>
+            <text>按钮</text>
+          </view>
+        </view>
+        <view class="scroll_item">
+          <view class="scroll_card">
+            <image class="icon" src="/source/icon/account/settings-black-24dp.svg"></image>
+            <text>按钮</text>
+          </view>
+        </view>
+        <view class="scroll_item">
+          <view class="scroll_card">
+            <image class="icon" src="/source/icon/account/settings-black-24dp.svg"></image>
+            <text>按钮</text>
+          </view>
+        </view>
+        <view class="scroll_item">
+          <view class="scroll_card">
+            <image class="icon" src="/source/icon/account/settings-black-24dp.svg"></image>
+            <text>按钮</text>
+          </view>
+        </view>
+      </scroll-view>
+      <view id="setting_container">
+        <text class="heading">设置</text>
+        <view class="setting_box">
+          <image class="icon" src="/source/icon/account/settings-black-24dp.svg"></image>
+          <view class="text">
+            <text class="title">标题</text>
+            <text class="subtitle">内容</text>
+          </view>
+        </view>
+        <view class="setting_box">
+          <image class="icon" src="/source/icon/account/settings-black-24dp.svg"></image>
+          <view class="text">
+            <text class="title">标题</text>
+            <text class="subtitle">内容</text>
+          </view>
+        </view>
+        <view class="setting_box">
+          <image class="icon" src="/source/icon/account/settings-black-24dp.svg"></image>
+          <view class="text">
+            <text class="title">标题</text>
+            <text class="subtitle">内容</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

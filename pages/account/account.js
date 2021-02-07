@@ -7,22 +7,50 @@ Page({
   data: {
     user:{
       name: "Ojhdt",
-      description: "在开发者工具中上传部署云函数后"
-    }
+      description: "个性签名",
+    },
+    hitokoto: "From small beginnings comes great things.",
+    from: "Winston Churchill"
+  },
+
+  getImage: function(){
+    wx.cloud.getTempFileURL({
+      fileList: ["cloud://holotask-1gb3a2qhe28a3262.686f-holotask-1gb3a2qhe28a3262-1304966310/image/account/sajad-nori-i4lvriR96Ek-unsplash.jpg"],
+      success: res => {
+        this.setData({
+          imgUrl: res.fileList[0].tempFileURL
+        })
+      }
+    })
+  },
+
+  getMoto: function(){
+    wx.request({
+      url: 'https://v1.hitokoto.cn/?c=k&encode=json&max_length=30',
+      method: 'GET',
+      dataType: 'json',
+      success: res => {
+        this.setData({
+          hitokoto: res.data.hitokoto,
+          from: res.data.from
+        })
+        console.log(res.data);
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getImage();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    //this.getMoto();
   },
 
   /**
