@@ -53,7 +53,6 @@ page{
 
 .heading{
   font-size: 1.4rem;
-  font-weight: 500;
 }
 
 #gl{
@@ -61,10 +60,11 @@ page{
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  background-color: #ddd;
+  /* background-color: #ddd; */
+  background-image: linear-gradient(to bottom right, #e9e9e9, #ccc);
   margin: 30rpx 0;
-  border-radius: 1rem;
-  box-shadow: 6rpx 6rpx 8rpx #bbb;
+  border-radius: 0.5rem;
+  /* box-shadow: 0 0 20rpx 1rpx #bbb; */
 }
 
 .gle{
@@ -95,11 +95,12 @@ page{
 .rw{
   display: flex;
   flex-direction: column;
-  background-color: #ddd;
+  /* background-color: #ddd; */
+  background-image: linear-gradient(to bottom right, #e9e9e9, #ccc);
   margin: 40rpx 0;
   padding: 40rpx 50rpx;
-  border-radius: 1rem;
-  box-shadow: 6rpx 6rpx 8rpx #bbb;
+  border-radius: 0.5rem;
+  /* box-shadow: 0 0 8rpx #bbb; */
 }
 
 .rw_1{
@@ -125,7 +126,7 @@ page{
 .rw_2{
   display: flex;
   flex-direction: row;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #666;
   margin: 20rpx 0 0 0;
   justify-content: space-between;
@@ -137,7 +138,7 @@ page{
   height: 170rpx;
   justify-content: center;
   align-items: center;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #666;
 }
 
@@ -165,9 +166,9 @@ page{
   }
 
   #gl{
-    background-color: #444;
+    background-image: linear-gradient(to bottom right, #333, #444);
     color: white;
-    box-shadow: 6rpx 6rpx 8rpx #222;
+    /* box-shadow: 6rpx 6rpx 8rpx #222; */
   }
 
   /* #gl_dying{
@@ -183,9 +184,9 @@ page{
   }
 
   .rw{
-    background-color: #444;
+    background-image: linear-gradient(to bottom right, #333, #444);
     color: white;
-    box-shadow: 6rpx 6rpx 8rpx #222;
+    /* box-shadow: 6rpx 6rpx 8rpx #222; */
   }
 
   .rw_2{

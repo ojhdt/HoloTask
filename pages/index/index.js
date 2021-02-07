@@ -85,10 +85,15 @@ Page({
     let finished = 0, unfinished = 0, dying = 0;
     //排序
     var array_u = [];
+    var array_g = [];
     var array_f = [];
     this.data.db.user1.forEach((value,index,array) => {
       if(value.finished) array_f.push(value);
-      else array_u.push(value);
+      else
+      {
+        if(value.timestamp - (new Date).getTime() < 0) array_g.push(value);
+        else array_u.push(value);
+      }
     });
     array_u.sort((a,b) => {
       return a.timestamp - b.timestamp;
@@ -96,10 +101,14 @@ Page({
     array_f.sort((a,b) => {
       return a.timestamp - b.timestamp;
     })
-    this.setData({"db.user1" : array_u.concat(array_f)});
+    array_g.sort((a,b) => {
+      return a.timestamp - b.timestamp;
+    })
+    this.setData({"db.user1" : (array_u.concat(array_g)).concat(array_f)});
     this.data.db.user1.forEach((element,index) => {
       let timestamp = element.timestamp;
       let timelast = (element.timestamp - (new Date).getTime())/1000;
+      // console.log(timelast);
       //写入时间字符串
       let str = 'db.user1['+index+'].time';
       this.setData({
