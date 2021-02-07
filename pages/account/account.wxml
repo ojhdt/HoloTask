@@ -22,28 +22,28 @@
       <view></view>
     </view>
     <view id="content">
-      <scroll-view scroll-x="true" enable-flex="true" id="scroll">
+      <scroll-view scroll-x="true" enable-flex="true" enhanced="true" show-scrollbar="false" id="scroll">
         <view class="scroll_item">
           <view class="scroll_card">
-            <image class="icon" src="/source/icon/account/settings-black-24dp.svg"></image>
+            <image class="icon" src="/source/icon/account/settings-gray-24dp.svg"></image>
             <text>按钮</text>
           </view>
         </view>
         <view class="scroll_item">
           <view class="scroll_card">
-            <image class="icon" src="/source/icon/account/settings-black-24dp.svg"></image>
+            <image class="icon" src="/source/icon/account/settings-gray-24dp.svg"></image>
             <text>按钮</text>
           </view>
         </view>
         <view class="scroll_item">
           <view class="scroll_card">
-            <image class="icon" src="/source/icon/account/settings-black-24dp.svg"></image>
+            <image class="icon" src="/source/icon/account/settings-gray-24dp.svg"></image>
             <text>按钮</text>
           </view>
         </view>
         <view class="scroll_item">
           <view class="scroll_card">
-            <image class="icon" src="/source/icon/account/settings-black-24dp.svg"></image>
+            <image class="icon" src="/source/icon/account/settings-gray-24dp.svg"></image>
             <text>按钮</text>
           </view>
         </view>
@@ -51,21 +51,21 @@
       <view id="setting_container">
         <text class="heading">设置</text>
         <view class="setting_box">
-          <image class="icon" src="/source/icon/account/settings-black-24dp.svg"></image>
+          <image class="icon" src="/source/icon/account/settings-gray-24dp.svg"></image>
           <view class="text">
             <text class="title">标题</text>
             <text class="subtitle">内容</text>
           </view>
         </view>
         <view class="setting_box">
-          <image class="icon" src="/source/icon/account/settings-black-24dp.svg"></image>
+          <image class="icon" src="/source/icon/account/settings-gray-24dp.svg"></image>
           <view class="text">
             <text class="title">标题</text>
             <text class="subtitle">内容</text>
           </view>
         </view>
         <view class="setting_box">
-          <image class="icon" src="/source/icon/account/settings-black-24dp.svg"></image>
+          <image class="icon" src="/source/icon/account/settings-gray-24dp.svg"></image>
           <view class="text">
             <text class="title">标题</text>
             <text class="subtitle">内容</text>

@@ -88,10 +88,6 @@ page{
   width: 100%;
 }
 
-#footer{
-
-}
-
 #bar{
   height: 70rpx;
   border-radius: 1rem 1rem 0 0;
@@ -110,7 +106,7 @@ page{
 }
 
 #content{
-  padding: 0 30rpx;
+  padding: 0 30rpx 50rpx 30rpx;
   background: #f1f1f1;
 }
 
@@ -155,7 +151,7 @@ page{
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 50rpx 0;
+  margin: 50rpx 0 0 0;
 }
 
 .text{
@@ -178,5 +174,36 @@ page{
   page{
     background: #1f2535;
   }
+
+  #bar{
+    background: #1d1f25;
+  }
+
+  #bar > view{
+    background: #ccc;
+  }
+
+  #content{
+    background: #1d1f25;
+  }
+
+  .scroll_card{
+    background: #444;
+    box-shadow: 0rpx 0rpx 0rpx #000;
+    color: white;
+  }
+
+  .heading{
+    color: white;
+  }
+
+  .setting_box{
+    color: white;
+  }
+
+  .subtitle{
+    color: #ccc;
+  }
+
   /* DarkMode 下的样式 end */
 }
