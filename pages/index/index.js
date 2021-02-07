@@ -83,6 +83,13 @@ Page({
     // var time = util.formatTime(new Date());
     // console.log((new Date).getTime());
     let finished = 0, unfinished = 0, dying = 0;
+    //获取夜间模式
+    let is_dark = false;
+    wx.getSystemInfo({
+      success: (res) => {
+        if(res.theme == "dark") is_dark = true;
+      }
+    })
     //排序
     var array_u = [];
     var array_g = [];
@@ -118,10 +125,22 @@ Page({
       if(element.finished)
       {
         finished++;
+        let str1 = 'db.user1['+index+'].color';
         let str2 = 'db.user1['+index+'].unit';
-        this.setData({
-          [str2]: "已完成"
-        })
+        if(is_dark)
+        {
+          this.setData({
+            [str1]: "background-image: linear-gradient(to bottom right, #43a047, #66bb6a)",
+            [str2]: "已完成"
+          })
+        }
+        else
+        {
+          this.setData({
+            [str1]: "background-image: linear-gradient(to bottom right, #98E165, #74ce34)",
+            [str2]: "已完成"
+          })
+        }
       }
       else
       {
@@ -131,6 +150,19 @@ Page({
         {
           //如果少于两天，执行
           dying++;
+          let str1 = 'db.user1['+index+'].color';
+          if(is_dark)
+          {
+            this.setData({
+              [str1]: "background-image: linear-gradient(to bottom right, #e53935, #ef5350)"
+            })
+          }
+          else
+          {
+            this.setData({
+              [str1]: "background-image: linear-gradient(to bottom right, #ff8a80, #ff5252)"
+            })
+          }
         }
         if(timelast >= 86400)
         {
@@ -167,6 +199,19 @@ Page({
           //如果已过期
           let str1 = 'db.user1['+index+'].timelast';
           let str2 = 'db.user1['+index+'].unit';
+          let str3 = 'db.user1['+index+'].textcolor';
+          if(is_dark)
+          {
+            this.setData({
+              [str3]: "color: #666"
+            })
+          }
+          else
+          {
+            this.setData({
+              [str3]: "color: #999"
+            })
+          }
           this.setData({
             [str1]: '',
             [str2]: "已过期"

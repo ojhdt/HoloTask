@@ -79,12 +79,12 @@ page{
 
 #gl_dying{
   font-size: 2rem;
-  color: #e57373;
+  color: #ff5252;
 }
 
 #gl_finished{
   font-size: 2rem;
-  color: #56a36c;
+  color: #74ce34;
 }
 
 #gl_unfinished{
@@ -171,13 +171,13 @@ page{
     /* box-shadow: 6rpx 6rpx 8rpx #222; */
   }
 
-  /* #gl_dying{
-    color: #f8dadf;
-  } */
+  #gl_dying{
+    color: #ef5350;
+  }
 
-  /* #gl_finished{
-    color: #bcddb0;
-  } */
+  #gl_finished{
+    color: #66bb6a;
+  }
 
   #gl_unfinished{
     color: white;

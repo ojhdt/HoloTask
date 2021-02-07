@@ -32,18 +32,22 @@
       </view>
       <view>
         <text class="heading">任务</text>
-        <view class="rw" wx:for="{{db.user1}}" wx:key="index">
-          <view class="rw_1">
-            <text class="rw_1_t">{{item.title}}</text>
-            <view>
-              <text>{{item.timelast}}</text>
-              <text class="rw_1_u">{{item.unit}}</text>
+        <view wx:for="{{db.user1}}" wx:key="index">
+
+          <view class="rw" style="{{item.color}}">
+            <view class="rw_1" style="{{item.textcolor}}">
+              <text class="rw_1_t">{{item.title}}</text>
+              <view>
+                <text>{{item.timelast}}</text>
+                <text class="rw_1_u">{{item.unit}}</text>
+              </view>
+            </view>
+            <view class="rw_2" style="{{item.textcolor}}">
+              <text>{{item.time}}  {{item.admin}}</text>
+              <!-- 加按钮 -->
             </view>
           </view>
-          <view class="rw_2">
-            <text>{{item.time}}  {{item.admin}}</text>
-            <!-- 加按钮 -->
-          </view>
+
         </view>
         <view id="home_line">
           <text>---我是有底线的---</text>
