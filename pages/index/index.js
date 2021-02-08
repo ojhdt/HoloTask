@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    login: false,
+    login: true,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     db:{
       user1:[{
@@ -43,7 +43,7 @@ Page({
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
-        login: true
+        login: true,
       })
     } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
@@ -252,6 +252,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          this.setData({
+            login: true
+          })
+        }
+        else{
+          this.setData({
+            login: false
+          })
+        }
+      }
+    })
     this.refreshUserInfo()
     //已授权自动更新
     if(this.data.login)
