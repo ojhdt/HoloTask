@@ -82,8 +82,13 @@ page{
   font-size: 0.8rem;
 }
 
-#footer{
+#scroller{
+  height: 100%;
   position: absolute;
+}
+
+#footer{
+  position: relative;
   top: 900rpx;
   width: 100%;
 }

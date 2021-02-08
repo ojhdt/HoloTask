@@ -12,7 +12,7 @@ Page({
     motto: "From small beginnings comes great things.",
     motto_from: "Winston Churchill",
     imgUrl: "",
-    hitokoto: true,
+    hitokoto: false,
     bing: true
   },
 
@@ -27,7 +27,6 @@ Page({
           this.setData({
             imgUrl: url
           })
-          console.log(res);
         }
       })
     }
@@ -38,6 +37,9 @@ Page({
           this.setData({
             imgUrl: res.fileList[0].tempFileURL
           })
+        },
+        fail: res => {
+          console.log("Failed to request img.")
         }
       })
     }
@@ -60,14 +62,51 @@ Page({
     }
   },
 
-  // animation: function(){
-  //   this.animate('#head', [
-  //     {opacity: 1.0},
-  //     {opacity: 0.0},
-  //   ], 2000, {
-  //     scrollSource: 
-  //   })
-  // },
+  animation: function(){
+    this.animate('#motto_container', [{
+      opacity: 1.0,
+      offset: 0
+    },{
+      opacity: 0.0,
+      offset: 1
+    },], 2000, {
+      scrollSource: '#scroller',
+      timeRange: 2000,
+      startScrollOffset: 50,
+      endScrollOffset: 280
+    })
+
+    this.animate('#header', [{
+      height: '100%',
+    },{
+      height: '120%',
+    },], 2000, {
+      scrollSource: '#scroller',
+      timeRange: 2000,
+      startScrollOffset: 0,
+      endScrollOffset: 280
+    })
+    
+    this.animate('#motto_setting', [{
+      opacity: 1.0,
+      transform: 'rotate(0deg)',
+      offset: 0
+    },{
+      opacity: 1.0,
+      transform: 'rotate(32deg)',
+      offset: .18
+    },{
+      opacity: 0.0,
+      transform: 'rotate(180deg)',
+      offset: 1
+    },], 2000, {
+      scrollSource: '#scroller',
+      timeRange: 2000,
+      startScrollOffset: 0,
+      endScrollOffset: 280
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -75,6 +114,7 @@ Page({
   onLoad: function (options) {
     this.getImage();
     this.getMoto();
+    this.animation();
   },
 
   /**
