@@ -8,9 +8,9 @@
       <image class="icon" id="motto_setting" bindtap="setting" src="/source/icon/account/settings-white-24dp.svg"></image>
     </view>
     <view id="user">
-      <image src="/source/img/account/avatar.png"></image>
+      <image src="{{avatarUrl}}"></image>
       <view>
-        <text id="name">{{user.name}}</text>
+        <text id="name">{{nickName}}</text>
         <text id="description">{{user.description}}</text>
       </view>
     </view>
@@ -67,7 +67,7 @@
         <view class="setting_box">
           <image class="icon" src="/source/icon/account/settings-gray-24dp.svg"></image>
           <view class="text">
-            <text class="title">回报问题</text>
+            <text class="title">反馈问题</text>
             <text class="subtitle">Bug或功能建议</text>
           </view>
         </view>
