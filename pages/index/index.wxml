@@ -6,7 +6,8 @@
       <image src="/source/main.png" mode="widthFix"></image>
       <text id="login_bold">欢迎</text>
       <text id="login_text">HoloTask 是一款简洁的任务管理工具，支持云端同步，群组管理，任务提醒等功能，可应用于班级管理，自我约束等多种场合。\n\n授权 HoloTask 使用您的个人信息以开始使用。</text>
-      <button class="login_btn" hover-class="h_login_btn" bindtap="login">开始使用</button>
+      <button wx:if="{{canIUse}}" class="login_btn" hover-class="h_login_btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo" bindtap="loading">开始使用</button>
+      <text wx:if="{{!canIUse}}" class="login_err">请更新微信版本</text>
     </view>
   </block>
   <!-- 已登录 -->
@@ -32,18 +33,22 @@
       </view>
       <view>
         <text class="heading">任务</text>
-        <view class="rw" wx:for="{{db.user1}}" wx:key="index">
-          <view class="rw_1">
-            <text>{{item.title}}</text>
-            <view>
-              <text>{{item.timelast}}</text>
-              <text class="rw_1_u">{{item.unit}}</text>
+        <view wx:for="{{db.user1}}" wx:key="index">
+
+          <view class="rw" style="{{item.color}}">
+            <view class="rw_1" style="{{item.textcolor}}">
+              <text class="rw_1_t">{{item.title}}</text>
+              <view>
+                <text>{{item.timelast}}</text>
+                <text class="rw_1_u">{{item.unit}}</text>
+              </view>
+            </view>
+            <view class="rw_2" style="{{item.textcolor}}">
+              <text>{{item.time}}  {{item.admin}}</text>
+              <!-- 加按钮 -->
             </view>
           </view>
-          <view class="rw_2">
-            <text>{{item.time}}  {{item.admin}}</text>
-            <!-- 加按钮 -->
-          </view>
+
         </view>
         <view id="home_line">
           <text>---我是有底线的---</text>

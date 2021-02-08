@@ -41,7 +41,7 @@
   },
   "compileType": "miniprogram",
   "libVersion": "2.14.1",
-  "appid": "wx010def3e9a75edcb",
+  "appid": "wxe3dbdde5783f0401",
   "projectname": "miniprogram",
   "debugOptions": {
     "hidedInDevtools": []
@@ -51,23 +51,23 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
+    "plugin": {
       "list": []
     },
     "game": {
-      "list": []
-    },
-    "plugin": {
       "list": []
     },
     "gamePlugin": {
       "list": []
     },
     "miniprogram": {
-      "list": []
+      "list": [
+        {
+          "name": "pages/account/account",
+          "pathName": "pages/account/account",
+          "scene": null
+        }
+      ]
     }
   }
 }

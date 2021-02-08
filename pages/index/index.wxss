@@ -1,7 +1,7 @@
 /**index.wxss**/
 /* 正常模式下应用的样式 */
 page{
-  background: #f1f1f1;
+  background: #fff;
 }
 
 #blank{
@@ -40,11 +40,19 @@ page{
   align-items: center;
   border-radius: 1.2rem;
   margin: 100rpx;
+  box-shadow: 5rpx 5rpx 20rpx #ddd;
+  transition: transform 0.1s ease-in-out;
 }
 
 .h_login_btn{
   transform: scale(0.9,0.9);
 }
+
+.login_err{
+  margin: 100rpx;
+  font-weight: bold;
+}
+
 /* 列表页样式 */
 
 #home{
@@ -53,7 +61,6 @@ page{
 
 .heading{
   font-size: 1.4rem;
-  font-weight: 500;
 }
 
 #gl{
@@ -61,10 +68,11 @@ page{
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  background-color: #ddd;
+  /* background-color: #ddd; */
+  background-image: linear-gradient(to bottom right, #e9e9e9, #ccc);
   margin: 30rpx 0;
-  border-radius: 1rem;
-  box-shadow: 6rpx 6rpx 8rpx #bbb;
+  border-radius: 0.5rem;
+  /* box-shadow: 0 0 20rpx 1rpx #bbb; */
 }
 
 .gle{
@@ -79,12 +87,12 @@ page{
 
 #gl_dying{
   font-size: 2rem;
-  color: #e57373;
+  color: #ff5252;
 }
 
 #gl_finished{
   font-size: 2rem;
-  color: #56a36c;
+  color: #74ce34;
 }
 
 #gl_unfinished{
@@ -95,11 +103,12 @@ page{
 .rw{
   display: flex;
   flex-direction: column;
-  background-color: #ddd;
-  margin: 30rpx 0;
+  /* background-color: #ddd; */
+  background-image: linear-gradient(to bottom right, #e9e9e9, #ccc);
+  margin: 40rpx 0;
   padding: 40rpx 50rpx;
-  border-radius: 1rem;
-  box-shadow: 6rpx 6rpx 8rpx #bbb;
+  border-radius: 0.5rem;
+  /* box-shadow: 0 0 8rpx #bbb; */
 }
 
 .rw_1{
@@ -110,6 +119,14 @@ page{
   font-size: 1.4rem;
 }
 
+.rw_1_t{
+  /* background-color: red; */
+  width: 450rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .rw_1_u{
   font-size: 1rem;
 }
@@ -117,7 +134,7 @@ page{
 .rw_2{
   display: flex;
   flex-direction: row;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #666;
   margin: 20rpx 0 0 0;
   justify-content: space-between;
@@ -126,9 +143,10 @@ page{
 
 #home_line{
   display: flex;
+  height: 170rpx;
   justify-content: center;
   align-items: center;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #666;
 }
 
@@ -149,6 +167,11 @@ page{
   .login_btn{
     background-color:#56a36c;
     color: white;
+    box-shadow: 0 0 0 #ddd;
+  }
+
+  .login_err{
+    color: white;
   }
 
   #heading{
@@ -156,27 +179,27 @@ page{
   }
 
   #gl{
-    background-color: #444;
+    background-image: linear-gradient(to bottom right, #333, #444);
     color: white;
-    box-shadow: 6rpx 6rpx 8rpx #222;
+    /* box-shadow: 6rpx 6rpx 8rpx #222; */
   }
 
-  /* #gl_dying{
-    color: #f8dadf;
-  } */
+  #gl_dying{
+    color: #ef5350;
+  }
 
-  /* #gl_finished{
-    color: #bcddb0;
-  } */
+  #gl_finished{
+    color: #66bb6a;
+  }
 
   #gl_unfinished{
     color: white;
   }
 
   .rw{
-    background-color: #444;
+    background-image: linear-gradient(to bottom right, #333, #444);
     color: white;
-    box-shadow: 6rpx 6rpx 8rpx #222;
+    /* box-shadow: 6rpx 6rpx 8rpx #222; */
   }
 
   .rw_2{
