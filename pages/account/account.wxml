@@ -26,25 +26,25 @@
         <view class="scroll_item">
           <view class="scroll_card">
             <image class="icon" src="/source/icon/account/settings-gray-24dp.svg"></image>
-            <text>按钮</text>
+            <text>加入群组</text>
           </view>
         </view>
         <view class="scroll_item">
           <view class="scroll_card">
             <image class="icon" src="/source/icon/account/settings-gray-24dp.svg"></image>
-            <text>按钮</text>
+            <text>任务发布</text>
           </view>
         </view>
         <view class="scroll_item">
           <view class="scroll_card">
             <image class="icon" src="/source/icon/account/settings-gray-24dp.svg"></image>
-            <text>按钮</text>
+            <text>群组管理</text>
           </view>
         </view>
         <view class="scroll_item">
           <view class="scroll_card">
             <image class="icon" src="/source/icon/account/settings-gray-24dp.svg"></image>
-            <text>按钮</text>
+            <text>统计数据</text>
           </view>
         </view>
       </scroll-view>
@@ -53,8 +53,8 @@
         <view class="setting_box">
           <image class="icon" src="/source/icon/account/settings-gray-24dp.svg"></image>
           <view class="text">
-            <text class="title">标题</text>
-            <text class="subtitle">内容</text>
+            <text class="title">外观</text>
+            <text class="subtitle">主题与图标</text>
           </view>
         </view>
         <view class="setting_box">
@@ -67,15 +67,15 @@
         <view class="setting_box">
           <image class="icon" src="/source/icon/account/settings-gray-24dp.svg"></image>
           <view class="text">
-            <text class="title">标题</text>
-            <text class="subtitle">内容</text>
+            <text class="title">回报问题</text>
+            <text class="subtitle">Bug或功能建议</text>
           </view>
         </view>
         <view class="setting_box">
           <image class="icon" src="/source/icon/account/settings-gray-24dp.svg"></image>
           <view class="text">
-            <text class="title">标题</text>
-            <text class="subtitle">内容</text>
+            <text class="title">关于</text>
+            <text class="subtitle">HoloTask信息</text>
           </view>
         </view>
       </view>
