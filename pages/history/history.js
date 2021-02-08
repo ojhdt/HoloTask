@@ -5,7 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    historylist:[{
+      id:0,
+      title:"数学aeuf",
+      time:"2021/2/1",
+      teacher:"方振辉"
+    },
+    {
+      id:1,
+      title:"数学",
+      time:"2021/2/4",
+      teacher:"曾文钰"
+    }]
   },
 
   /**
