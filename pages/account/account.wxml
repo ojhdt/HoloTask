@@ -2,8 +2,8 @@
   <view id="header" style="background-image: url({{imgUrl}})">
     <view id="head">
       <view id="motto_container">
-        <text id="motto">{{hitokoto}}</text>
-        <text id="motto_subtitle">--{{from}}</text>
+        <text id="motto">{{motto}}</text>
+        <text id="motto_subtitle">--{{motto_from}}</text>
       </view>
       <image class="icon" bindtap="setting" src="/source/icon/account/settings-white-24dp.svg"></image>
     </view>

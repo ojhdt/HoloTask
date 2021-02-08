@@ -9,41 +9,72 @@ Page({
       name: "Ojhdt",
       description: "个性签名",
     },
-    hitokoto: "From small beginnings comes great things.",
-    from: "Winston Churchill"
+    motto: "From small beginnings comes great things.",
+    motto_from: "Winston Churchill",
+    imgUrl: "",
+    hitokoto: true,
+    bing: true
   },
 
   getImage: function(){
-    wx.cloud.getTempFileURL({
-      fileList: ["cloud://holotask-1gb3a2qhe28a3262.686f-holotask-1gb3a2qhe28a3262-1304966310/image/account/sajad-nori-i4lvriR96Ek-unsplash.jpg"],
-      success: res => {
-        this.setData({
-          imgUrl: res.fileList[0].tempFileURL
-        })
-      }
-    })
+    if(this.data.bing){
+      wx.request({
+        url: 'https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1',
+        method: 'GET',
+        dataType: 'json',
+        success: res => {
+          let url = 'https://s.cn.bing.net/' + res.data.images[0].url;
+          this.setData({
+            imgUrl: url
+          })
+          console.log(res);
+        }
+      })
+    }
+    else{
+      wx.cloud.getTempFileURL({
+        fileList: ["cloud://holotask-1gb3a2qhe28a3262.686f-holotask-1gb3a2qhe28a3262-1304966310/image/account/sajad-nori-i4lvriR96Ek-unsplash.jpg"],
+        success: res => {
+          this.setData({
+            imgUrl: res.fileList[0].tempFileURL
+          })
+        }
+      })
+    }
   },
 
   getMoto: function(){
-    wx.request({
-      url: 'https://v1.hitokoto.cn/?c=k&encode=json&max_length=30',
-      method: 'GET',
-      dataType: 'json',
-      success: res => {
-        this.setData({
-          hitokoto: res.data.hitokoto,
-          from: res.data.from
-        })
-        console.log(res.data);
-      }
-    })
+    if(this.data.hitokoto){
+      wx.request({
+        url: 'https://v1.hitokoto.cn/?c=a&c=b&c=c&c=d&c=i&encode=json&max_length=30',
+        method: 'GET',
+        dataType: 'json',
+        success: res => {
+          this.setData({
+            motto: res.data.hitokoto,
+            motto_from: res.data.from
+          })
+          // console.log(res.data);
+        }
+      })
+    }
   },
+
+  // animation: function(){
+  //   this.animate('#head', [
+  //     {opacity: 1.0},
+  //     {opacity: 0.0},
+  //   ], 2000, {
+  //     scrollSource: 
+  //   })
+  // },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.getImage();
+    this.getMoto();
   },
 
   /**
