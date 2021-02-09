@@ -1,21 +1,58 @@
-// pages/history/history.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    historynumber:'3',
     historylist:[{
+      id:0,
+      title:"C语言程序",
+      time:"2021/2/1",
+      teacher:"方振辉",
+      testtime:"2021/2/9"
+    },
+    {
+      id:0,
+      title:"C语言程序",
+      time:"2021/2/1",
+      teacher:"方振辉",
+      testtime:"2021/2/9"
+    },
+    {
       id:0,
       title:"数学aeuf",
       time:"2021/2/1",
-      teacher:"方振辉"
+      teacher:"方振辉",
+      testtime:"2021/2/9"
+    },
+    {
+      id:0,
+      title:"数学aeuf",
+      time:"2021/2/1",
+      teacher:"方振辉",
+      testtime:"2021/2/9"
+    },
+    {
+      id:0,
+      title:"C语言程序设置",
+      time:"2021/2/1",
+      teacher:"方振辉",
+      testtime:"2021/2/9"
+    },
+    {
+      id:0,
+      title:"C语言程序设10274",
+      time:"2021/2/1",
+      teacher:"方振辉",
+      testtime:"2021/2/9"
     },
     {
       id:1,
       title:"数学",
       time:"2021/2/4",
-      teacher:"曾文钰"
+      teacher:"曾文钰",
+      testtime:"2021/2/19"
     }]
   },
 
