@@ -1,21 +1,22 @@
-<!--pages/details/details.wxml-->
 <view >
     <view class="divide">
-        <view class="head" > 数学</view>
-        <button ><view class="buttom">已完成</view></button></view>
-    
+        <view class="head" >{{title}}</view>
+        <button class="sssunfinished" wx:if="{{!sssfinished}}">未完成</button>
+         <button class="sssfinished" wx:if="{{sssfinished}}">已完成</button>
+        <!--<button class="unfinished" ws:if="{{!finished}}">已过期</button>--></view> 
     <view class="divide">
         <view class="date">发布日期
-            <view class="time">2020/12/12 12:00</view></view>
+            <view class="time">{{timestamp-b}}</view></view>
         <view class="date">截止日期
-            <view class="time">2021/2/5 12:00</view></view>
+            <view class="time">{{timestamp-e}}</view></view>
     </view>
     <view class="divide">
         <view class="date">剩余时间
             <view class="time">1天12小时</view></view>
         <view class="date">发布者
-            <view class="time">方振辉</view></view>
+            <view class="time">{{admin}}</view></view>
     </view>
 </view>
 <view class="hr"></view>
 <view class="k">具体内容</view>
+<view >{{content}}</view>
