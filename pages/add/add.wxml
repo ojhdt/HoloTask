@@ -1,0 +1,24 @@
+<!--pages/add/add.wxml-->
+<view class="container">
+  <view class="heading">
+    <text class="heading">发布任务</text>
+  </view>
+  <view class="list">
+    <view class="input">
+      <view class="image">
+        <image class="icon" src="/source/icon/add/article-gray-24dp.svg"></image>
+      </view>
+      <view class="text">
+        <!-- <view class="block"></view> -->
+        <view class="main" style="{{main}}">
+          <text class="placeholder" style="{{placeholder}}">标题</text>
+          <input class="input_area" type="text" bindfocus="focus" bindinput="input" bindblur="blur" maxlength="30"></input>
+        </view>
+        <view class="sub">
+          <text>任务标题</text>
+          <text>{{number}}/30</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

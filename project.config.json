@@ -1,4 +1,5 @@
 {
+  "cloudfunctionRoot": "cloud/",
   "description": "项目配置文件",
   "packOptions": {
     "ignore": []
@@ -50,6 +51,7 @@
   "isGameTourist": false,
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {
     "plugin": {
       "list": []
@@ -69,8 +71,8 @@
           "scene": null
         },
         {
-          "name": "pages/details/details",
-          "pathName": "pages/details/details",
+          "name": "pages/add/add",
+          "pathName": "pages/add/add",
           "scene": null
         }
       ]

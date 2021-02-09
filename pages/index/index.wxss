@@ -54,6 +54,30 @@ page{
 }
 
 /* 列表页样式 */
+.add_btn{
+  position: fixed;
+  right: 30rpx;
+  bottom: 20rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  background: #07c160;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5rpx 5rpx 20rpx #666666;
+  /* transition: background-color 0.1s ease; */
+}
+
+.h_add_btn{
+  background: #43a047;
+}
+
+.add_btn image{
+  width: 50rpx;
+  height: 50rpx;
+  display: block;
+}
 
 #home{
   margin: 0 50rpx;
@@ -172,6 +196,10 @@ page{
 
   .login_err{
     color: white;
+  }
+
+  .add_btn{
+    box-shadow: 0rpx 0rpx 0rpx #000; 
   }
 
   #heading{

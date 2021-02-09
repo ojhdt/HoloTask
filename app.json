@@ -5,6 +5,7 @@
     "pages/history/history",
     "pages/account/account",
     "pages/modify/modify",
+    "pages/add/add",
     "pages/logs/logs"
   ],
   "window":{

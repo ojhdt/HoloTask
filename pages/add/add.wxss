@@ -1,0 +1,79 @@
+/* pages/add/add.wxss */
+page {
+  background: #fff;
+}
+
+.container {
+  margin: 0 50rpx;
+}
+
+.heading {
+  font-size: 1.4rem;
+  margin: 50rpx 0;
+}
+
+.input {
+  display: flex;
+  flex-direction: row;
+  height: 130rpx;
+}
+
+.image {
+  display: flex;
+  margin: 0 30rpx 0 0;
+  align-items: center;
+}
+
+.icon {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.text {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main {
+  height: 3rem;
+  border-bottom: 1.5px solid #444;
+  transition: border .3s;
+}
+
+/* .i_main {
+  border-bottom: 1.5px solid #07c160;
+} */
+
+.input_area {
+  width: 100%;
+}
+
+.placeholder{
+  position: relative;
+  top: 37rpx;
+  color: #666;
+  transition: font-size,color,top, .3s;
+}
+
+/* .i_placeholder{
+  position: relative;
+  font-size: 0.7rem;
+  color: #07c160;
+} */
+
+.sub {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: .7rem;
+  color: #666;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  page {
+    background: #1f2535;
+  }
+}
