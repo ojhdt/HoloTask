@@ -10,13 +10,31 @@
       </view>
       <view class="text">
         <!-- <view class="block"></view> -->
-        <view class="main" style="{{main}}">
-          <text class="placeholder" style="{{placeholder}}">标题</text>
-          <input class="input_area" type="text" bindfocus="focus" bindinput="input" bindblur="blur" maxlength="30"></input>
+        <view class="main" style="{{input[0].main}}">
+          <text class="placeholder" style="{{input[0].placeholder}}">标题</text>
+          <input data-id="0" class="input_area" type="text" bindfocus="focus" bindinput="input" bindblur="blur"
+            maxlength="15"></input>
         </view>
         <view class="sub">
           <text>任务标题</text>
-          <text>{{number}}/30</text>
+          <text>{{input[0].number}}/15</text>
+        </view>
+      </view>
+    </view>
+    <view class="input">
+      <view class="image">
+        <image class="icon" src="/source/icon/add/article-gray-24dp.svg"></image>
+      </view>
+      <view class="text">
+        <!-- <view class="block"></view> -->
+        <view class="main" style="{{input[1].main}}">
+          <text class="placeholder" style="{{input[1].placeholder}}">标题</text>
+          <input data-id="1" class="input_area" type="text" bindfocus="focus" bindinput="input" bindblur="blur"
+            maxlength="15"></input>
+        </view>
+        <view class="sub">
+          <text>任务标题</text>
+          <text>{{input[1].number}}/15</text>
         </view>
       </view>
     </view>

@@ -5,27 +5,45 @@ Page({
    * 页面的初始数据
    */
   data: {
-    main: "main",
-    placeholder: "placeholder",
-    number: 0
+    input: [{
+      main: "main",
+      placeholder: "placeholder",
+      number: 0
+    }, {
+      main: "main",
+      placeholder: "placeholder",
+      number: 0
+    }, {
+      main: "main",
+      placeholder: "placeholder",
+      number: 0
+    }],
   },
   input: function (e) {
+    let id = e.currentTarget.dataset.id
+    let str = "input[" + id + "].number"
     this.setData({
-      number: e.detail.cursor
+      [str] : e.detail.cursor
     })
   },
   focus: function (e) {
+    let id = e.currentTarget.dataset.id
+    let str1 = "input[" + id + "].main"
+    let str2 = "input[" + id + "].placeholder"
     this.setData({
-      main: "border-bottom: 1.5px solid #07c160;",
-      placeholder: "font-size:0.7rem;color:#07c160;top:0rpx;",
+      [str1]: "border-bottom: 1.5px solid #07c160;",
+      [str2]: "font-size:0.7rem;color:#07c160;top:0rpx;",
     })
   },
 
   blur: function (e) {
+    let id = e.currentTarget.dataset.id
+    let str1 = "input[" + id + "].main"
+    let str2 = "input[" + id + "].placeholder"
     if (e.detail.value == "")
       this.setData({
-        main: "border-bottom: 1.5px solid #444;",
-        placeholder: "top:37rpx;color:#666;font-size:1rem"
+        [str1]: "border-bottom: 1.5px solid #444;",
+        [str2]: "top:37rpx;color:#666;font-size:1rem"
       })
   },
 
