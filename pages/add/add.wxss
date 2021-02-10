@@ -9,7 +9,37 @@ page {
 
 .heading {
   font-size: 1.4rem;
-  margin: 50rpx 0;
+  margin: 30rpx 0 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: row;
+}
+
+#button1{
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+  background: rgba(0, 0, 0, 0);
+}
+
+#button2{
+  padding: 0;
+  margin: 0 0 0 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+  background: rgba(0, 0, 0, 0);
 }
 
 .component {
@@ -102,6 +132,10 @@ page {
   margin: 20rpx 0;
 }
 
+.textarea{
+  margin-bottom: 40rpx;
+}
+
 .textarea_main {
   border-bottom: 1.5px solid #444;
   transition: border .3s;
@@ -115,6 +149,10 @@ page {
   transition: font-size .3s,color .3s,top .3s;
 }
 
+.subtitle{
+  font-size: .7rem;
+  color: #666;
+}
 
 @media (prefers-color-scheme: dark) {
   page {

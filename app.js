@@ -1,6 +1,18 @@
 //app.js
 App({
   onLaunch: function () {
+    //初始化云开发
+    wx.cloud.init({
+      env: "holotask-1gb3a2qhe28a3262"
+    })
+    //获取openid
+    wx.cloud.callFunction({
+      name: 'getOpenid',
+      complete: res => {
+        this.globalData.openid = res.result.openid
+        this.globalData.appid = res.result.appid
+      }
+    })
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -24,16 +36,14 @@ App({
     //获取夜间模式
     wx.getSystemInfo({
       success: (res) => {
-        this.globalData.is_dark = res.theme;
+        this.globalData.theme = res.theme;
       }
-    })
-    //初始化云开发
-    wx.cloud.init({
-      env: "holotask-1gb3a2qhe28a3262"
     })
   },
   globalData: {
     userInfo: null,
-    is_dark: null
+    theme: null,
+    openid: null,
+    appid: null
   }
 })
