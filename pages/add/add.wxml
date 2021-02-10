@@ -4,9 +4,9 @@
     <text class="heading">发布任务</text>
   </view>
   <view class="list">
-    <view class="input">
+    <view class="component">
       <view class="image">
-        <image class="icon" src="/source/icon/add/article-gray-24dp.svg"></image>
+        <image class="icon" src="/source/icon/add/assignment-gray-24dp.svg"></image>
       </view>
       <view class="text">
         <!-- <view class="block"></view> -->
@@ -21,21 +21,87 @@
         </view>
       </view>
     </view>
-    <view class="input">
+    <view class="component">
       <view class="image">
-        <image class="icon" src="/source/icon/add/article-gray-24dp.svg"></image>
+        <image class="icon" src="/source/icon/add/group-gray-24dp.svg"></image>
+      </view>
+      <view class="text">
+        <!-- <view class="block"></view> -->
+        <view class="main" style="{{picker[1].main}}">
+          <text class="placeholder" style="{{picker[1].placeholder}}">对象</text>
+          <picker data-id="1" class="picker_area" mode="time" bindchange="change" style="{{picker[1].opacity}}">
+            {{picker[1].value}}</picker>
+        </view>
+        <view class="sub">
+          <text>任务的对象</text>
+          <!-- <text>{{input[0].number}}/15</text> -->
+        </view>
+      </view>
+    </view>
+    <view class="component">
+      <view class="image">
+        <image class="icon" src="/source/icon/add/account_circle-gray-24dp.svg"></image>
       </view>
       <view class="text">
         <!-- <view class="block"></view> -->
         <view class="main" style="{{input[1].main}}">
-          <text class="placeholder" style="{{input[1].placeholder}}">标题</text>
+          <text class="placeholder" style="{{input[1].placeholder}}">发布者</text>
           <input data-id="1" class="input_area" type="text" bindfocus="focus" bindinput="input" bindblur="blur"
-            maxlength="15"></input>
+            maxlength="10"></input>
         </view>
         <view class="sub">
-          <text>任务标题</text>
-          <text>{{input[1].number}}/15</text>
+          <text>任务发布者，留空默认为自己</text>
+          <text>{{input[1].number}}/10</text>
         </view>
+      </view>
+    </view>
+    <view class="time">
+      <view class="component time_element">
+        <view class="image">
+          <image class="icon" src="/source/icon/add/event-gray-24dp.svg"></image>
+        </view>
+        <view class="text">
+          <!-- <view class="block"></view> -->
+          <view class="main" style="{{picker[0].main}}">
+            <text class="placeholder" style="{{picker[0].placeholder}}">截止日期</text>
+            <picker data-id="0" class="picker_area" mode="date" bindchange="change" style="{{picker[0].opacity}}">
+              {{picker[0].value}}</picker>
+          </view>
+          <view class="sub">
+            <text>任务截止日期</text>
+            <!-- <text>{{input[0].number}}/15</text> -->
+          </view>
+        </view>
+      </view>
+      <view id="time_block"></view>
+      <view class="component time_element">
+        <view class="image">
+          <image class="icon" src="/source/icon/add/schedule-gray-24dp.svg"></image>
+        </view>
+        <view class="text">
+          <!-- <view class="block"></view> -->
+          <view class="main" style="{{picker[1].main}}">
+            <text class="placeholder" style="{{picker[1].placeholder}}">截止时间</text>
+            <picker data-id="1" class="picker_area" mode="time" bindchange="change" style="{{picker[1].opacity}}">
+              {{picker[1].value}}</picker>
+          </view>
+          <view class="sub">
+            <text>任务截止时间</text>
+            <!-- <text>{{input[0].number}}/15</text> -->
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="line"></view>
+    <view class="textarea">
+      <view class="textarea_main" style="{{input[2].main}}">
+        <text class="textarea_placeholder" style="{{input[2].placeholder}}">内容</text>
+        <textarea data-id="2" class="input_area" type="text" bindfocus="focus" bindinput="input" bindblur="blur"
+          maxlength="200" auto-height="true"></textarea>
+      </view>
+      <view class="sub">
+        <text>任务详细内容，支持换行</text>
+        <text>{{input[2].number}}/200</text>
       </view>
     </view>
   </view>

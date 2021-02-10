@@ -6,24 +6,33 @@ Page({
    */
   data: {
     input: [{
-      main: "main",
-      placeholder: "placeholder",
+      main: "",
+      placeholder: "",
       number: 0
     }, {
-      main: "main",
-      placeholder: "placeholder",
+      main: "",
+      placeholder: "",
       number: 0
     }, {
-      main: "main",
-      placeholder: "placeholder",
+      main: "",
+      placeholder: "",
       number: 0
+    }],
+    picker: [{
+      main: "",
+      placeholder: "",
+      value: "."
+    }, {
+      main: "",
+      placeholder: "",
+      value: "."
     }],
   },
   input: function (e) {
     let id = e.currentTarget.dataset.id
     let str = "input[" + id + "].number"
     this.setData({
-      [str] : e.detail.cursor
+      [str]: e.detail.cursor
     })
   },
   focus: function (e) {
@@ -43,8 +52,26 @@ Page({
     if (e.detail.value == "")
       this.setData({
         [str1]: "border-bottom: 1.5px solid #444;",
-        [str2]: "top:37rpx;color:#666;font-size:1rem"
+        [str2]: "top:40rpx;color:#666;font-size:1rem"
       })
+    else
+      this.setData({
+        [str1]: "border-bottom: 1.5px solid #444;",
+        [str2]: "font-size:0.7rem;color:#666;top:0rpx;",
+      })
+  },
+
+  change: function (e) {
+    console.log(e.detail.value)
+    let id = e.currentTarget.dataset.id
+    let str1 = "picker[" + id + "].value"
+    let str2 = "picker[" + id + "].placeholder"
+    let str3 = "picker[" + id + "].opacity"
+    this.setData({
+      [str1]: e.detail.value,
+      [str2]: "font-size:0.7rem;color:#666;top:0rpx;",
+      [str3]: "opacity:1"
+    })
   },
 
   /**
