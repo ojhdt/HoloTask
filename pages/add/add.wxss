@@ -33,7 +33,7 @@ page {
 
 #button2{
   padding: 0;
-  margin: 0 0 0 20rpx;
+  margin: 0 0 0 40rpx;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -157,5 +157,45 @@ page {
 @media (prefers-color-scheme: dark) {
   page {
     background: #1f2535;
+  }
+
+  .heading{
+    color: #fff;
+  }
+
+  .placeholder{
+    color: #ccc;
+  }
+
+  .sub{
+    color: #ccc;
+  }
+
+  .main{
+    border-bottom: 1.5px solid #ccc;
+  }
+
+  .line{
+    background: #ccc;
+  }
+
+  .textarea{
+    color: #ccc;
+  }
+
+  .textarea_main{
+    border-bottom: 1.5px solid #ccc;
+  }
+
+  .textarea_placeholder{
+    color: #ccc;
+  }
+
+  .title{
+    color: #fff;
+  }
+
+  .subtitle{
+    color: #ccc;
   }
 }

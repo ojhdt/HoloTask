@@ -62,28 +62,55 @@ Page({
     let str2 = "input[" + id + "].placeholder"
     let str3 = "input[" + id + "].helptext"
     let str4 = "input[" + id + "].helptext_style"
-    this.setData({
-      [str1]: "border-bottom: 1.5px solid #07c160;",
-      [str2]: "font-size:0.7rem;color:#07c160;top:0rpx;",
-      [str3]: e.currentTarget.dataset.helptext,
-      [str4]: "color:#666;"
-    })
+    if(this.data.theme == 'light'){
+      this.setData({
+        [str1]: "border-bottom: 1.5px solid #07c160;",
+        [str2]: "font-size:0.7rem;color:#07c160;top:0rpx;",
+        [str3]: e.currentTarget.dataset.helptext,
+        [str4]: "color:#666;"
+      })
+    }else{
+      this.setData({
+        [str1]: "border-bottom: 1.5px solid #07c160;",
+        [str2]: "font-size:0.7rem;color:#07c160;top:0rpx;",
+        [str3]: e.currentTarget.dataset.helptext,
+        [str4]: "color:#ccc;"
+      })
+    }
   },
 
   blur: function (e) {
     let id = e.currentTarget.dataset.id
     let str1 = "input[" + id + "].main"
     let str2 = "input[" + id + "].placeholder"
-    if (e.detail.value == "")
-      this.setData({
-        [str1]: "border-bottom: 1.5px solid #444;",
-        [str2]: "top:40rpx;color:#666;font-size:1rem"
-      })
-    else
-      this.setData({
-        [str1]: "border-bottom: 1.5px solid #444;",
-        [str2]: "font-size:0.7rem;color:#666;top:0rpx;",
-      })
+    if (e.detail.value == ""){
+      if(this.data.theme == 'light'){
+        this.setData({
+          [str1]: "border-bottom: 1.5px solid #444;",
+          [str2]: "top:40rpx;color:#666;font-size:1rem"
+        })
+      }
+      else{
+        this.setData({
+          [str1]: "border-bottom: 1.5px solid #ccc;",
+          [str2]: "top:40rpx;color:#ccc;font-size:1rem"
+        })
+      }
+    }
+    else{
+      if(this.data.theme == 'light'){
+        this.setData({
+          [str1]: "border-bottom: 1.5px solid #444;",
+          [str2]: "font-size:0.7rem;color:#666;top:0rpx;",
+        })
+      }else{
+        this.setData({
+          [str1]: "border-bottom: 1.5px solid #ccc;",
+          [str2]: "font-size:0.7rem;color:#ccc;top:0rpx;",
+        })
+      }
+    }
+      
   },
 
   change: function (e) {
@@ -93,13 +120,24 @@ Page({
     let str3 = "picker[" + id + "].style"
     let str4 = "picker[" + id + "].helptext"
     let str5 = "picker[" + id + "].helptext_style"
-    this.setData({
-      [str1]: e.detail.value,
-      [str2]: "font-size:0.7rem;color:#666;top:0rpx;",
-      [str3]: "opacity:1",
-      [str4]: e.currentTarget.dataset.helptext,
-      [str5]: "color:#666;"
-    })
+    if(this.data.theme == 'light'){
+      this.setData({
+        [str1]: e.detail.value,
+        [str2]: "font-size:0.7rem;color:#666;top:0rpx;",
+        [str3]: "opacity:1",
+        [str4]: e.currentTarget.dataset.helptext,
+        [str5]: "color:#666;"
+      })
+    }else{
+      this.setData({
+        [str1]: e.detail.value,
+        [str2]: "font-size:0.7rem;color:#ccc;top:0rpx;",
+        [str3]: "opacity:1",
+        [str4]: e.currentTarget.dataset.helptext,
+        [str5]: "color:#ccc;"
+      })
+    }
+    
   },
 
   nchange: function (e) {
@@ -109,13 +147,23 @@ Page({
     let str3 = "picker[0].style"
     let str4 = "picker[0].helptext"
     let str5 = "picker[0].helptext_style"
-    this.setData({
-      [str1]: this.data.array[e.detail.value].name,
-      [str2]: "font-size:0.7rem;color:#666;top:0rpx;",
-      [str3]: "opacity:1",
-      [str4]: e.currentTarget.dataset.helptext,
-      [str5]: "color:#666;"
-    })
+    if(this.data.theme == 'light'){
+      this.setData({
+        [str1]: this.data.array[e.detail.value].name,
+        [str2]: "font-size:0.7rem;color:#666;top:0rpx;",
+        [str3]: "opacity:1",
+        [str4]: e.currentTarget.dataset.helptext,
+        [str5]: "color:#666;"
+      })
+    }else{
+      this.setData({
+        [str1]: this.data.array[e.detail.value].name,
+        [str2]: "font-size:0.7rem;color:#ccc;top:0rpx;",
+        [str3]: "opacity:1",
+        [str4]: e.currentTarget.dataset.helptext,
+        [str5]: "color:#ccc;"
+      })
+    }
   },
 
   reset: function (e) {
@@ -128,17 +176,32 @@ Page({
     let str7 = "picker[0].placeholder"
     let str8 = "picker[1].placeholder"
     let str9 = "picker[2].placeholder"
-    this.setData({
-      [str1]: '.',
-      [str2]: '.',
-      [str3]: '.',
-      [str4]: "opacity:0;",
-      [str5]: "opacity:0;",
-      [str6]: "opacity:0;",
-      [str7]: "font-size:1rem;color:#666;top:40rpx;",
-      [str8]: "font-size:1rem;color:#666;top:40rpx;",
-      [str9]: "font-size:1rem;color:#666;top:40rpx;"
-    })
+    if(this.data.theme =='light'){
+      this.setData({
+        [str1]: '.',
+        [str2]: '.',
+        [str3]: '.',
+        [str4]: "opacity:0;",
+        [str5]: "opacity:0;",
+        [str6]: "opacity:0;",
+        [str7]: "font-size:1rem;color:#666;top:40rpx;",
+        [str8]: "font-size:1rem;color:#666;top:40rpx;",
+        [str9]: "font-size:1rem;color:#666;top:40rpx;"
+      })
+    }else{
+      this.setData({
+        [str1]: '.',
+        [str2]: '.',
+        [str3]: '.',
+        [str4]: "opacity:0;",
+        [str5]: "opacity:0;",
+        [str6]: "opacity:0;",
+        [str7]: "font-size:1rem;color:#ccc;top:40rpx;",
+        [str8]: "font-size:1rem;color:#ccc;top:40rpx;",
+        [str9]: "font-size:1rem;color:#ccc;top:40rpx;"
+      })
+    }
+    
   },
 
   submit: function (e) {
@@ -189,9 +252,18 @@ Page({
           finished: false
         }
       })
-      wx.showToast({
-        title: "任务已发布",
-        duration: 500
+      .then(res => {
+        wx.showToast({
+          title: "任务已发布",
+          duration: 1000
+        })
+      })
+      .catch(res => {
+        wx.showToast({
+          title: "发布失败",
+          icon: "error",
+          duration: 1000
+        })
       })
     }
   },
@@ -219,6 +291,7 @@ Page({
     }
     //获取夜间模式
     if (app.globalData.theme) {
+      // console.log(app.globalData.theme)
       this.setData({
         theme: app.globalData.theme
       })
@@ -243,16 +316,22 @@ Page({
         console.log(err)
       })
     //获取昵称
-    wx.cloud.database().collection('user').where({
-      _openid : this.data.openid
-    }).get()
-    .then(res => {
-      console.log(res[0].nickname)
+    if (app.globalData.userInfo) {
       this.setData({
-        nickname: res[0].nickname
+        nickname: app.globalData.userInfo.nickName
       })
-    })
-    .catch(err => {})
+    } else {
+      wx.cloud.database().collection('user').where({
+          _openid: this.data.openid
+        }).get()
+        .then(res => {
+          // console.log(res.data[0].nickname)
+          this.setData({
+            nickname: res.data[0].nickname
+          })
+        })
+        .catch(err => {})
+    }
   },
 
   /**
