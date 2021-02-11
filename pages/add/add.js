@@ -62,14 +62,14 @@ Page({
     let str2 = "input[" + id + "].placeholder"
     let str3 = "input[" + id + "].helptext"
     let str4 = "input[" + id + "].helptext_style"
-    if(this.data.theme == 'light'){
+    if (this.data.theme == 'light') {
       this.setData({
         [str1]: "border-bottom: 1.5px solid #07c160;",
         [str2]: "font-size:0.7rem;color:#07c160;top:0rpx;",
         [str3]: e.currentTarget.dataset.helptext,
         [str4]: "color:#666;"
       })
-    }else{
+    } else {
       this.setData({
         [str1]: "border-bottom: 1.5px solid #07c160;",
         [str2]: "font-size:0.7rem;color:#07c160;top:0rpx;",
@@ -83,34 +83,32 @@ Page({
     let id = e.currentTarget.dataset.id
     let str1 = "input[" + id + "].main"
     let str2 = "input[" + id + "].placeholder"
-    if (e.detail.value == ""){
-      if(this.data.theme == 'light'){
+    if (e.detail.value == "") {
+      if (this.data.theme == 'light') {
         this.setData({
           [str1]: "border-bottom: 1.5px solid #444;",
           [str2]: "top:40rpx;color:#666;font-size:1rem"
         })
-      }
-      else{
+      } else {
         this.setData({
           [str1]: "border-bottom: 1.5px solid #ccc;",
           [str2]: "top:40rpx;color:#ccc;font-size:1rem"
         })
       }
-    }
-    else{
-      if(this.data.theme == 'light'){
+    } else {
+      if (this.data.theme == 'light') {
         this.setData({
           [str1]: "border-bottom: 1.5px solid #444;",
           [str2]: "font-size:0.7rem;color:#666;top:0rpx;",
         })
-      }else{
+      } else {
         this.setData({
           [str1]: "border-bottom: 1.5px solid #ccc;",
           [str2]: "font-size:0.7rem;color:#ccc;top:0rpx;",
         })
       }
     }
-      
+
   },
 
   change: function (e) {
@@ -120,7 +118,7 @@ Page({
     let str3 = "picker[" + id + "].style"
     let str4 = "picker[" + id + "].helptext"
     let str5 = "picker[" + id + "].helptext_style"
-    if(this.data.theme == 'light'){
+    if (this.data.theme == 'light') {
       this.setData({
         [str1]: e.detail.value,
         [str2]: "font-size:0.7rem;color:#666;top:0rpx;",
@@ -128,7 +126,7 @@ Page({
         [str4]: e.currentTarget.dataset.helptext,
         [str5]: "color:#666;"
       })
-    }else{
+    } else {
       this.setData({
         [str1]: e.detail.value,
         [str2]: "font-size:0.7rem;color:#ccc;top:0rpx;",
@@ -137,7 +135,7 @@ Page({
         [str5]: "color:#ccc;"
       })
     }
-    
+
   },
 
   nchange: function (e) {
@@ -147,7 +145,7 @@ Page({
     let str3 = "picker[0].style"
     let str4 = "picker[0].helptext"
     let str5 = "picker[0].helptext_style"
-    if(this.data.theme == 'light'){
+    if (this.data.theme == 'light') {
       this.setData({
         [str1]: this.data.array[e.detail.value].name,
         [str2]: "font-size:0.7rem;color:#666;top:0rpx;",
@@ -155,7 +153,7 @@ Page({
         [str4]: e.currentTarget.dataset.helptext,
         [str5]: "color:#666;"
       })
-    }else{
+    } else {
       this.setData({
         [str1]: this.data.array[e.detail.value].name,
         [str2]: "font-size:0.7rem;color:#ccc;top:0rpx;",
@@ -176,7 +174,14 @@ Page({
     let str7 = "picker[0].placeholder"
     let str8 = "picker[1].placeholder"
     let str9 = "picker[2].placeholder"
-    if(this.data.theme =='light'){
+    let str10 = "input[0].number"
+    let str11 = "input[1].number"
+    let str12 = "input[2].number"
+    let str13 = "input[0].placeholder"
+    let str14 = "input[1].placeholder"
+    let str15 = "input[2].placeholder"
+
+    if (this.data.theme == 'light') {
       this.setData({
         [str1]: '.',
         [str2]: '.',
@@ -186,9 +191,15 @@ Page({
         [str6]: "opacity:0;",
         [str7]: "font-size:1rem;color:#666;top:40rpx;",
         [str8]: "font-size:1rem;color:#666;top:40rpx;",
-        [str9]: "font-size:1rem;color:#666;top:40rpx;"
+        [str9]: "font-size:1rem;color:#666;top:40rpx;",
+        [str10]: 0,
+        [str11]: 0,
+        [str12]: 0,
+        [str13]: "font-size:1rem;color:#666;top:40rpx;",
+        [str14]: "font-size:1rem;color:#666;top:40rpx;",
+        [str15]: "font-size:1rem;color:#666;top:40rpx;",
       })
-    }else{
+    } else {
       this.setData({
         [str1]: '.',
         [str2]: '.',
@@ -198,13 +209,20 @@ Page({
         [str6]: "opacity:0;",
         [str7]: "font-size:1rem;color:#ccc;top:40rpx;",
         [str8]: "font-size:1rem;color:#ccc;top:40rpx;",
-        [str9]: "font-size:1rem;color:#ccc;top:40rpx;"
+        [str9]: "font-size:1rem;color:#ccc;top:40rpx;",
+        [str10]: 0,
+        [str11]: 0,
+        [str12]: 0,
+        [str13]: "font-size:1rem;color:#ccc;top:40rpx;",
+        [str14]: "font-size:1rem;color:#ccc;top:40rpx;",
+        [str15]: "font-size:1rem;color:#ccc;top:40rpx;",
       })
     }
-    
+
   },
 
   submit: function (e) {
+    var that = this
     // console.log(e)
     if (e.detail.value.groupid == "") {
       this.setData({
@@ -238,32 +256,42 @@ Page({
     }
 
     if (e.detail.value.groupid != "" && e.detail.value.title != "" && e.detail.value.date != "" && e.detail.value.time != "" && e.detail.value.content != "") {
-      console.log("success")
-      console.log(this.data.nickname)
-      let time = e.detail.value.date + " " + e.detail.value.time
-      let admin = (e.detail.value.admin) ? (e.detail.value.admin) : (this.data.nickname)
-      wx.cloud.database().collection('data').add({
-        data: {
-          groupid: e.detail.value.groupid,
-          title: e.detail.value.title,
-          admin: admin,
-          timestamp: Date.parse(time.replace(/-/g, '/')),
-          content: e.detail.value.content,
-          finished: false
+      wx.showModal({
+        cancelColor: '#000000',
+        confirmColor: '#07c160',
+        title: "发布任务",
+        content: "是否要发布该任务",
+        success(res) {
+          console.log("success")
+          // console.log(this.data.nickname)
+          let time = e.detail.value.date + " " + e.detail.value.time
+          let admin = (e.detail.value.admin) ? (e.detail.value.admin) : (this.data.nickname)
+          wx.cloud.database().collection('data').add({
+              data: {
+                groupid: e.detail.value.groupid,
+                title: e.detail.value.title,
+                admin: admin,
+                timestamp: Date.parse(time.replace(/-/g, '/')),
+                content: e.detail.value.content,
+                finished: false
+              }
+            })
+            .then(res => {
+              wx.showToast({
+                title: "任务已发布",
+                duration: 1000
+              })
+              that.reset()
+            })
+            .catch(res => {
+              wx.showToast({
+                title: "发布失败",
+                icon: "error",
+                duration: 1000
+              })
+              that.reset()
+            })
         }
-      })
-      .then(res => {
-        wx.showToast({
-          title: "任务已发布",
-          duration: 1000
-        })
-      })
-      .catch(res => {
-        wx.showToast({
-          title: "发布失败",
-          icon: "error",
-          duration: 1000
-        })
       })
     }
   },
