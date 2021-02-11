@@ -71,7 +71,7 @@ Page({
         if (res.data.length == 0) {
           wx.cloud.database().collection('user').add({
             data: {
-              group: openid,
+              group: [openid],
               nickname: nickname
             }
           })
@@ -133,22 +133,31 @@ Page({
       unfinished = 0,
       dying = 0;
     //获取夜间模式
-    var theme;
-    if (this.data.theme) {
-      theme = this.data.theme
-    } else {
-      if (app.globalData.theme) {
-        theme = app.globalData.theme
-      } else {
-        wx.getSystemInfo({
-          success: (res) => {
-            theme = res.theme;
-          }
-        })
-      }
-    }
+    var theme = this.data.theme
+    //获取openid
+    var openid = this.data.openid
+    //拉取数据+排序
+    wx.cloud.database().collection('user').where({
+        _openid: openid
+      }).get()
+      .then(res => {
+        var groups = res.data[0].group
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    groups.forEach((value, index, array) => {
+      wx.cloud.database().collection('data').where({
+        groupid: value
+      }).get
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    })
 
-    //排序
     var array_u = [];
     var array_g = [];
     var array_f = [];
@@ -309,9 +318,6 @@ Page({
         }
       })
     }
-    //已授权自动更新
-    if (this.data.login)
-      this.sortData()
     //获取openid
     if (app.globalData.openid) {
       this.setData({
@@ -344,6 +350,8 @@ Page({
         }
       })
     }
+    //已授权自动更新
+    if (this.data.login) this.sortData()
   },
 
   /**
