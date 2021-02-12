@@ -11,7 +11,7 @@
       <image src="{{avatarUrl}}"></image>
       <view>
         <text id="name">{{nickName}}</text>
-        <text id="description">{{user.description}}</text>
+        <text id="description">{{description}}</text>
       </view>
     </view>
   </view>
@@ -24,26 +24,26 @@
     <view id="content">
       <scroll-view scroll-x="true" enable-flex="true" enhanced="true" show-scrollbar="false" id="scroll">
         <view class="scroll_item">
-          <view class="scroll_card">
-            <image class="icon" src="/source/icon/account/settings-gray-24dp.svg"></image>
+          <view class="scroll_card" bindtap="joinGroup">
+            <image class="icon" src="/source/icon/account/group_add-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
             <text>加入群组</text>
           </view>
         </view>
         <view class="scroll_item">
-          <view class="scroll_card">
-            <image class="icon" src="/source/icon/account/settings-gray-24dp.svg"></image>
+          <view class="scroll_card" bindtap="addTask">
+            <image class="icon" src="/source/icon/account/add_task-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
             <text>任务发布</text>
           </view>
         </view>
         <view class="scroll_item">
           <view class="scroll_card">
-            <image class="icon" src="/source/icon/account/settings-gray-24dp.svg"></image>
+            <image class="icon" src="/source/icon/account/manage_accounts-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
             <text>群组管理</text>
           </view>
         </view>
         <view class="scroll_item">
           <view class="scroll_card">
-            <image class="icon" src="/source/icon/account/settings-gray-24dp.svg"></image>
+            <image class="icon" src="/source/icon/account/poll-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
             <text>统计数据</text>
           </view>
         </view>
@@ -51,7 +51,7 @@
       <view id="setting_container">
         <text class="heading">设置</text>
         <view class="setting_box">
-          <image class="icon" src="/source/icon/account/settings-gray-24dp.svg"></image>
+          <image class="icon" src="/source/icon/account/color_lens-gray-24dp.svg"></image>
           <view class="text">
             <text class="title">外观</text>
             <text class="subtitle">主题与图标</text>
@@ -65,14 +65,14 @@
           </view>
         </view>
         <view class="setting_box">
-          <image class="icon" src="/source/icon/account/settings-gray-24dp.svg"></image>
+          <image class="icon" src="/source/icon/account/bug_report-gray-24dp.svg"></image>
           <view class="text">
             <text class="title">反馈</text>
             <text class="subtitle">Bug或功能建议</text>
           </view>
         </view>
         <view class="setting_box">
-          <image class="icon" src="/source/icon/account/settings-gray-24dp.svg"></image>
+          <image class="icon" src="/source/icon/account/grade-gray-24dp.svg"></image>
           <view class="text">
             <text class="title">关于</text>
             <text class="subtitle">HoloTask信息</text>

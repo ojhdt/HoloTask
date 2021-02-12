@@ -72,7 +72,8 @@ Page({
           wx.cloud.database().collection('user').add({
             data: {
               group: [openid],
-              nickname: nickname
+              nickname: nickname,
+              timestamp: new Date().getTime()
             }
           })
           wx.cloud.database().collection('group').add({
@@ -137,26 +138,27 @@ Page({
     //获取openid
     var openid = this.data.openid
     //拉取数据+排序
-    wx.cloud.database().collection('user').where({
-        _openid: openid
-      }).get()
-      .then(res => {
-        var groups = res.data[0].group
-      })
-      .catch(err => {
-        console.log(err)
-      })
-    groups.forEach((value, index, array) => {
-      wx.cloud.database().collection('data').where({
-        groupid: value
-      }).get
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-    })
+    // wx.cloud.database().collection('user').where({
+    //     _openid: openid
+    //   }).get()
+    //   .then(res => {
+    //     var groups = res.data[0].group
+    //     groups.forEach((value, index, array) => {
+    //       wx.cloud.database().collection('data').where({
+    //           groupid: value
+    //         }).get()
+    //         .then(res => {
+    //           console.log(res)
+    //         })
+    //         .catch(err => {
+    //           console.log(err)
+    //         })
+    //     })
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //   })
+
 
     var array_u = [];
     var array_g = [];
