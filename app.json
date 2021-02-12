@@ -6,6 +6,8 @@
     "pages/account/account",
     "pages/modify/modify",
     "pages/add/add",
+    "pages/group/group",
+    "pages/addgroup/addgroup",
     "pages/logs/logs"
   ],
   "window":{

@@ -108,7 +108,6 @@ Page({
         })
       }
     }
-
   },
 
   change: function (e) {
@@ -262,36 +261,38 @@ Page({
         title: "发布任务",
         content: "是否要发布该任务",
         success(res) {
-          console.log("success")
-          // console.log(this.data.nickname)
-          let time = e.detail.value.date + " " + e.detail.value.time
-          let admin = (e.detail.value.admin) ? (e.detail.value.admin) : (this.data.nickname)
-          let groupid = that.data.array[e.detail.value.groupid].groupid
-          wx.cloud.database().collection('data').add({
-              data: {
-                groupid: groupid,
-                title: e.detail.value.title,
-                admin: admin,
-                timestamp: Date.parse(time.replace(/-/g, '/')),
-                content: e.detail.value.content,
-                finished: false
-              }
-            })
-            .then(res => {
-              wx.showToast({
-                title: "任务已发布",
-                duration: 1000
+          if (res.confirm) {
+            console.log("success")
+            // console.log(this.data.nickname)
+            let time = e.detail.value.date + " " + e.detail.value.time
+            let admin = (e.detail.value.admin) ? (e.detail.value.admin) : (this.data.nickname)
+            let groupid = that.data.array[e.detail.value.groupid].groupid
+            wx.cloud.database().collection('data').add({
+                data: {
+                  groupid: groupid,
+                  title: e.detail.value.title,
+                  admin: admin,
+                  timestamp: Date.parse(time.replace(/-/g, '/')),
+                  content: e.detail.value.content,
+                  finished: false
+                }
               })
-              that.reset()
-            })
-            .catch(res => {
-              wx.showToast({
-                title: "发布失败",
-                icon: "error",
-                duration: 1000
+              .then(res => {
+                wx.showToast({
+                  title: "任务已发布",
+                  duration: 1000
+                })
+                that.reset()
               })
-              that.reset()
-            })
+              .catch(res => {
+                wx.showToast({
+                  title: "发布失败",
+                  icon: "error",
+                  duration: 1000
+                })
+                that.reset()
+              })
+          } else if (res.cancel) {}
         }
       })
     }

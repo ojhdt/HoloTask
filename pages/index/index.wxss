@@ -1,7 +1,7 @@
 /**index.wxss**/
 /* 正常模式下应用的样式 */
 page{
-  background: #fff;
+  background: #f1f1f1;
 }
 
 #blank{

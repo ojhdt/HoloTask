@@ -42,6 +42,34 @@ page {
   background: rgba(0, 0, 0, 0);
 }
 
+.btn-1{
+  font-size: 0.9rem;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30rpx;
+  margin: 50rpx auto;
+  width: 300rpx;
+  height: 60rpx;
+  color: #444;
+  box-shadow: 5rpx 5rpx 20rpx #ddd;
+}
+
+.btn-2{
+  font-size: 0.9rem;
+  background-color: #07c160;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30rpx;
+  margin: 50rpx auto;
+  width: 300rpx;
+  height: 60rpx;
+  color: white;
+  box-shadow: 5rpx 5rpx 20rpx #ddd;
+}
+
 .component {
   display: flex;
   flex-direction: row;
@@ -104,59 +132,19 @@ page {
   color: #666;
 }
 
-.picker_area {
-  position: relative;
-  top: 10rpx;
-  width: 100%;
-  opacity: 0
-}
-
-.time{
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
-
-.time_element{
-  width: 47%;
-}
-
-#time_block{
-  width: 6%;
-}
-
-.line{
-  background: #666;
-  width: 100%;
-  height: 2rpx;
-  margin: 20rpx 0;
-}
-
-.textarea{
-  margin-bottom: 40rpx;
-}
-
-.textarea_main {
-  border-bottom: 1.5px solid #444;
-  transition: border .3s;
-  padding-bottom: 15rpx;
-}
-
-.textarea_placeholder{
-  position: relative;
-  top: 40rpx;
-  color: #666;
-  transition: font-size .3s,color .3s,top .3s;
-}
-
-.subtitle{
-  font-size: .7rem;
-  color: #666;
-}
-
 @media (prefers-color-scheme: dark) {
   page {
     background: #1f2535;
+  }
+
+  .btn-1{
+    color: white;
+    background: #444;
+    box-shadow: 0rpx 0rpx 0rpx #ddd;
+  }
+
+  .btn-2{
+    box-shadow: 0rpx 0rpx 0rpx #ddd;
   }
 
   .heading{
@@ -173,29 +161,5 @@ page {
 
   .main{
     border-bottom: 1.5px solid #ccc;
-  }
-
-  .line{
-    background: #ccc;
-  }
-
-  .textarea{
-    color: #ccc;
-  }
-
-  .textarea_main{
-    border-bottom: 1.5px solid #ccc;
-  }
-
-  .textarea_placeholder{
-    color: #ccc;
-  }
-
-  .title{
-    color: #fff;
-  }
-
-  .subtitle{
-    color: #ccc;
   }
 }

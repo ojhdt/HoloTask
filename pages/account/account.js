@@ -70,6 +70,12 @@ Page({
     })
   },
 
+  manageGroup: function() {
+    wx.navigateTo({
+      url: '/pages/group/group',
+    })
+  },
+
   refreshData: function () {
     if (this.data.login) {
       this.setData({

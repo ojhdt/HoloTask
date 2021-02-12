@@ -36,7 +36,7 @@
           </view>
         </view>
         <view class="scroll_item">
-          <view class="scroll_card">
+          <view class="scroll_card" bindtap="manageGroup">
             <image class="icon" src="/source/icon/account/manage_accounts-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
             <text>群组管理</text>
           </view>
