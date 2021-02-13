@@ -71,10 +71,12 @@ page {
 }
 
 .component {
+  position: relative;
   display: flex;
   flex-direction: row;
   height: 130rpx;
   margin-bottom: 10rpx;
+  width: 100%;
 }
 
 .image {
@@ -86,6 +88,11 @@ page {
 .icon {
   width: 50rpx;
   height: 50rpx;
+}
+
+.l_icon {
+  width: 40rpx;
+  height: 40rpx;
 }
 
 .text {
@@ -130,6 +137,49 @@ page {
   justify-content: space-between;
   font-size: .7rem;
   color: #666;
+}
+
+.status{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 0rpx;
+  transition: width .5s ease-in-out;
+}
+
+.status_box{
+  position: absolute;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  /* background: chocolate; */
+  width: 170rpx;
+}
+
+.status text{
+  font-size: .8rem;
+  overflow: hidden;
+}
+
+.uesable{
+  color: #07c160;
+}
+
+.unuseable{
+  color: #ff8a80;
+}
+
+.checking{
+  color: #FFC107;
+}
+
+.status_block{
+  position: absolute;
+  right: -50rpx;
+  width: 50rpx;
+  height: 100rpx;
 }
 
 @media (prefers-color-scheme: dark) {

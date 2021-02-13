@@ -9,8 +9,9 @@ Page({
   data: {
     openid: null,
     theme: null,
-    useable: false,
-    idvalue: null,
+    useable: 0,
+    idvalue: "",
+    style: "",
     input: [{
       main: "",
       placeholder: "",
@@ -26,38 +27,58 @@ Page({
       main: "",
       placeholder: "",
       number: 0,
-      helptext: "群组唯一八位纯数字标识ID，建议随机生成",
+      helptext: "群组八位数字标识ID，建议随机生成",
       value: null,
     }],
   },
 
-  random: function() {
-    var random = Math.floor((Math.random()+Math.floor(Math.random()*9+1))*Math.pow(10,8-1));
+  random: function () {
     var unpass = true
-    while(unpass){
+    while (unpass) {
+      var random = Math.floor((Math.random() + Math.floor(Math.random() * 9 + 1)) * Math.pow(10, 8 - 1));
       wx.cloud.database().collection('group').where({
-        groupid: random
-      }).get()
-      .then(res => {
-        
-      })
+          groupid: random
+        }).get()
+        .then(res => {
+          if (res.data.length == 0){
+            unpass = false
+            let str = "input[2].value"
+            this.setData({
+              useable: 1,
+              [str]: random
+            })
+          }
+        })
     }
   },
 
-  check: function(e) {
-    var id = this.data.idvalue
-    wx.cloud.database().collection('group').where({
-      groupid: id
-    }).get()
-    .then(res => {
-      if(res.data.length == 0){
-        let str = input[2].value
-        this.setData({
-          useable: true,
-          [str]: id
+  check: function (e) {
+    if (this.data.idvalue == "" || this.data.idvalue.length != 8) {
+      this.setData({
+        ["input[2].helptext"]: "输入格式有误",
+        ["input[2].helptext_style"]: "color:#ff8a80;"
+      })
+    } else {
+      var id = this.data.idvalue
+      wx.cloud.database().collection('group').where({
+          groupid: id
+        }).get()
+        .then(res => {
+          if (res.data.length == 0) {
+            let str = "input[2].value"
+            this.setData({
+              useable: 1,
+              [str]: id,
+              style: "width:120rpx"
+            })
+          } else{
+            this.setData({
+              useable: 0,
+              style: "width:170rpx"
+            })
+          }
         })
-      }
-    })
+    }
   },
 
   input: function (e) {
@@ -73,6 +94,21 @@ Page({
     this.setData({
       idvalue: e.detail.value
     })
+    if(e.detail.value ==""){
+      this.setData({
+        style: "width:0rpx"
+      })
+    }else if(e.detail.value !="" && e.detail.value.length != 8){
+      this.setData({
+        useable: 0,
+        style: "width:170rpx",
+      })
+    }else if(e.detail.value !="" && e.detail.value.length == 8){
+      this.setData({
+        useable: 2,
+        style: "width:220rpx",
+      })
+    }
     let id = e.currentTarget.dataset.id
     let str = "input[" + id + "].number"
     this.setData({
@@ -150,6 +186,7 @@ Page({
         [str3]: "font-size:1rem;color:#666;top:40rpx;",
         [str4]: "font-size:1rem;color:#666;top:40rpx;",
         [str5]: "font-size:1rem;color:#666;top:40rpx;",
+        useable: false,
       })
     } else {
       this.setData({
@@ -159,6 +196,7 @@ Page({
         [str3]: "font-size:1rem;color:#ccc;top:40rpx;",
         [str4]: "font-size:1rem;color:#ccc;top:40rpx;",
         [str5]: "font-size:1rem;color:#ccc;top:40rpx;",
+        useable: false,
       })
     }
 

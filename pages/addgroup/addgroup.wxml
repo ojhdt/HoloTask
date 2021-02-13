@@ -55,14 +55,30 @@
           <!-- <view class="block"></view> -->
           <view class="main" style="{{input[2].main}}">
             <text class="placeholder" style="{{input[2].placeholder}}">群组ID</text>
-            <input name="groupid" data-id="2" data-helptext="群组唯一八位纯数字标识ID，建议随机生成" class="input_area" type="number"
-              value="{{input[2].value}}" bindfocus="focus" bindinput="idinput" bindblur="blur" maxlength="8" confirm-type="done"></input>
+            <input name="groupid" data-id="2" data-helptext="群组八位数字标识ID，建议随机生成" class="input_area" type="number"
+              value="{{input[2].value}}" bindfocus="focus" bindinput="idinput" bindblur="blur" maxlength="8"
+              confirm-type="done"></input>
           </view>
           <view class="sub">
             <text style="{{input[2].helptext_style}}">{{input[2].helptext}}</text>
             <text>{{input[2].number}}/8</text>
           </view>
         </view>
+        <view class="status" style="{{style}}">
+          <view wx:if="{{useable == 1}}" class="status_box">
+            <image class="l_icon" src="/source/icon/addgroup/check_circle_outline-black-18dp.svg"></image>
+            <text class="useable">可用</text>
+          </view>
+          <view wx:if="{{useable == 0}}" class="status_box">
+            <image class="l_icon" src="/source/icon/addgroup/block-black-18dp.svg"></image>
+            <text class="unuseable">不可用</text>
+          </view>
+          <view wx:if="{{useable == 2}}" class="status_box">
+            <image class="l_icon" src="/source/icon/addgroup/warning_amber-black-18dp.svg"></image>
+            <text class="checking">等待检查</text>
+          </view>
+        </view>
+        <view class="status_block" style="background:{{theme=='light'?'#f1f1f1':'#1f2535'}}"></view>
       </view>
       <view class="btn-1" bindtap="random">
         <text>随机生成群组ID</text>
