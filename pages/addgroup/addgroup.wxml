@@ -15,7 +15,7 @@
     <view class="list">
       <view class="component">
         <view class="image">
-          <image class="icon" src="/source/icon/add/assignment-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
+          <image class="icon" src="/source/icon/addgroup/groups-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
         </view>
         <view class="text">
           <!-- <view class="block"></view> -->
@@ -32,7 +32,7 @@
       </view>
       <view class="component">
         <view class="image">
-          <image class="icon" src="/source/icon/add/account_circle-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
+          <image class="icon" src="/source/icon/addgroup/message-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
         </view>
         <view class="text">
           <!-- <view class="block"></view> -->

@@ -44,32 +44,34 @@ Page({
           let str2 = "input[2].main"
           let str3 = "input[2].placeholder"
           let str4 = "input[2].helptext_style"
+          let str5 = "input[2].helptext"
           this.setData({
             useable: 1,
             style: "width:120rpx",
             [str]: random,
-            [str1]: 8
+            [str1]: 8,
+            [str5]: "群组八位数字标识ID，建议随机生成",
+            idvalue: random.toString()
           })
           if (this.data.theme == 'light') {
             this.setData({
-              [str2]: "border-bottom: 1.5px solid #07c160;",
-              [str3]: "font-size:0.7rem;color:#07c160;top:0rpx;",
+              [str3]: "font-size:0.7rem;color:#666;top:0rpx;",
               [str4]: "color:#666;"
             })
           } else {
             this.setData({
-              [str2]: "border-bottom: 1.5px solid #07c160;",
-              [str3]: "font-size:0.7rem;color:#07c160;top:0rpx;",
+              [str3]: "font-size:0.7rem;color:#ccc;top:0rpx;",
               [str4]: "color:#ccc;"
             })
           }
-        }else{
+        } else {
           this.random()
         }
       })
   },
 
   check: function (e) {
+    console.log(this.data.idvalue.length)
     if (this.data.idvalue == "" || this.data.idvalue.length != 8) {
       this.setData({
         ["input[2].helptext"]: "输入格式有误",
@@ -203,7 +205,8 @@ Page({
         [str3]: "font-size:1rem;color:#666;top:40rpx;",
         [str4]: "font-size:1rem;color:#666;top:40rpx;",
         [str5]: "font-size:1rem;color:#666;top:40rpx;",
-        useable: false,
+        useable: 0,
+        style: "width:0rpx"
       })
     } else {
       this.setData({
@@ -213,7 +216,8 @@ Page({
         [str3]: "font-size:1rem;color:#ccc;top:40rpx;",
         [str4]: "font-size:1rem;color:#ccc;top:40rpx;",
         [str5]: "font-size:1rem;color:#ccc;top:40rpx;",
-        useable: false,
+        useable: 0,
+        style: "width:0rpx"
       })
     }
 
@@ -222,22 +226,39 @@ Page({
   submit: function (e) {
     var that = this
     // console.log(e)
-    if (this.data.useable == false) {
-      this.setData({
-        ["input[2].helptext"]: "此群组ID不可用，建议随机生成",
-        ["input[2].helptext_style"]: "color:#ff8a80;"
-      })
-    } else {
-      if (e.detail.value.title == "") {
-        this.setData({
-          ["input[0].helptext"]: "此项不得为空",
-          ["input[0].helptext_style"]: "color:#ff8a80;"
-        })
-      }
+    if (this.data.useable == 0) {
       if (e.detail.value.groupid == "") {
         this.setData({
           ["input[2].helptext"]: "此项不得为空",
           ["input[2].helptext_style"]: "color:#ff8a80;"
+        })
+      } else {
+        this.setData({
+          ["input[2].helptext"]: "此群组ID不可用，建议随机生成",
+          ["input[2].helptext_style"]: "color:#ff8a80;"
+        })
+      }
+    } else if (this.data.useable == 2) {
+      this.setData({
+        ["input[2].helptext"]: "检查群组ID可用性，或随机生成",
+        ["input[2].helptext_style"]: "color:#ff8a80;"
+      })
+    } else if (this.data.useable == 1) {
+      if (this.data.theme == 'light') {
+        this.setData({
+          ["input[2].helptext"]: "群组八位数字标识ID，建议随机生成",
+          ["input[2].helptext_style"]: "color:#666;"
+        })
+      } else {
+        this.setData({
+          ["input[2].helptext"]: "群组八位数字标识ID，建议随机生成",
+          ["input[2].helptext_style"]: "color:#ccc;"
+        })
+      }
+      if (e.detail.value.title == "") {
+        this.setData({
+          ["input[0].helptext"]: "此项不得为空",
+          ["input[0].helptext_style"]: "color:#ff8a80;"
         })
       }
       if (e.detail.value.title != "" && e.detail.value.groupid != "") {
@@ -249,13 +270,14 @@ Page({
           success(res) {
             if (res.confirm) {
               console.log("success")
-              // console.log(this.data.nickname)
+              let groupid = e.detail.value.groupid
               let description = (e.detail.value.description) ? (e.detail.value.description) : "无"
               wx.cloud.database().collection('group').add({
                   data: {
                     groupid: groupid,
-                    title: e.detail.value.title,
-                    description: description
+                    name: e.detail.value.title,
+                    description: description,
+                    member: [that.data.openid]
                   }
                 })
                 .then(res => {
@@ -272,6 +294,22 @@ Page({
                     duration: 1000
                   })
                   that.reset()
+                })
+                const _ = wx.cloud.database().command
+                wx.cloud.database().collection('user').where({
+                  _openid: that.data.openid
+                }).update({
+                  data: {
+                    'group': _.push(groupid),
+                    'joined': _.push(groupid),
+                    'manage': _.push(groupid),
+                  }
+                })
+                .then(res => {
+                  console.log(res)
+                })
+                .catch(err => {
+                  console.log(err)
                 })
             } else if (res.cancel) {}
           }

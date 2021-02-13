@@ -72,6 +72,8 @@ Page({
           wx.cloud.database().collection('user').add({
             data: {
               group: [openid],
+              joined: [],
+              manage: [],
               nickname: nickname,
               timestamp: new Date().getTime()
             }
@@ -80,7 +82,7 @@ Page({
             data: {
               groupid: openid,
               name: "个人",
-              sub: "个人",
+              description: "个人",
               member: [openid]
             }
           })

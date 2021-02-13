@@ -9,30 +9,21 @@ Page({
   data: {
     openid: null,
     theme: null,
-    manage: [{
-      name: "群组1",
-      groupid: "12345678"
-    },{
-      name: "群组2",
-      groupid: "87654321"
-    }],
-    joined: [{
-      name: "群组3",
-      groupid: "13579000"
-    },{
-      name: "群组4",
-      groupid: "98761111"
-    }]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  add: function(){
+  add: function () {
     wx.navigateTo({
       url: '/pages/addgroup/addgroup',
     })
   },
+
+  tap: function (e) {
+    console.log(e.currentTarget.dataset.id)
+  },
+
   onLoad: function (options) {
     //获取openid
     if (app.globalData.openid) {
@@ -66,6 +57,37 @@ Page({
         }
       })
     }
+    //获取群组
+    wx.cloud.database().collection('user').where({
+        _openid: this.data.openid
+      }).get()
+      .then(res => {
+        var joined = res.data[0].joined
+        var manage = res.data[0].manage
+        //拉取joined
+        joined.forEach((value, index, array) => {
+          wx.cloud.database().collection('group').where({
+              groupid: value
+            }).get()
+            .then(res => {
+              this.setData({
+                joined: res.data
+              })
+            })
+        })
+        //拉取manage
+        manage.forEach((value, index, array) => {
+          wx.cloud.database().collection('group').where({
+              groupid: value,
+              _openid: this.data.openid
+            }).get()
+            .then(res => {
+              this.setData({
+                manage: res.data
+              })
+            })
+        })
+      })
   },
 
   /**

@@ -15,14 +15,16 @@
     <view class="heading">
       <text>我管理的群组</text>
     </view>
-    <view class="notification">
+    <view wx:if="{{manage.length == 0}}" class="notification">
       <text class="sub">您目前没有管理的群组</text>
     </view>
-    <view class="list" wx:for="{{manage}}" wx:key="index">
-      <view class="card">
-        <view class="text">
-          <view class="main">{{item.name}}</view>
-          <view class="sub">GroupID: {{item.groupid}}</view>
+    <view wx:else>
+      <view class="list" wx:for="{{manage}}" wx:key="index">
+        <view class="card" bindtap="tap" data-id="{{item._id}}">
+          <view class="text">
+            <view class="main">{{item.name}}</view>
+            <view class="sub">GroupID: {{item.groupid}}</view>
+          </view>
         </view>
       </view>
     </view>
@@ -31,14 +33,16 @@
     <view class="heading">
       <text>我加入的群组</text>
     </view>
-    <view class="notification">
+    <view wx:if="{{joined.length == 0}}" class="notification">
       <text class="sub">您目前没有加入的群组</text>
     </view>
-    <view wx:for="{{joined}}" wx:key="index">
-      <view class="card">
-        <view class="text">
-          <view class="main">{{item.name}}</view>
-          <view class="sub">GroupID: {{item.groupid}}</view>
+    <view wx:else>
+      <view wx:for="{{joined}}" wx:key="index">
+        <view class="card" bindtap="tap" data-id="{{item._id}}">
+          <view class="text">
+            <view class="main">{{item.name}}</view>
+            <view class="sub">GroupID: {{item.groupid}}</view>
+          </view>
         </view>
       </view>
     </view>
