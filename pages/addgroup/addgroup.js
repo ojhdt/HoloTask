@@ -33,23 +33,40 @@ Page({
   },
 
   random: function () {
-    var unpass = true
-    while (unpass) {
-      var random = Math.floor((Math.random() + Math.floor(Math.random() * 9 + 1)) * Math.pow(10, 8 - 1));
-      wx.cloud.database().collection('group').where({
-          groupid: random
-        }).get()
-        .then(res => {
-          if (res.data.length == 0){
-            unpass = false
-            let str = "input[2].value"
+    var random = Math.floor((Math.random() + Math.floor(Math.random() * 9 + 1)) * Math.pow(10, 8 - 1));
+    wx.cloud.database().collection('group').where({
+        groupid: random
+      }).get()
+      .then(res => {
+        if (res.data.length == 0) {
+          let str = "input[2].value"
+          let str1 = "input[2].number"
+          let str2 = "input[2].main"
+          let str3 = "input[2].placeholder"
+          let str4 = "input[2].helptext_style"
+          this.setData({
+            useable: 1,
+            style: "width:120rpx",
+            [str]: random,
+            [str1]: 8
+          })
+          if (this.data.theme == 'light') {
             this.setData({
-              useable: 1,
-              [str]: random
+              [str2]: "border-bottom: 1.5px solid #07c160;",
+              [str3]: "font-size:0.7rem;color:#07c160;top:0rpx;",
+              [str4]: "color:#666;"
+            })
+          } else {
+            this.setData({
+              [str2]: "border-bottom: 1.5px solid #07c160;",
+              [str3]: "font-size:0.7rem;color:#07c160;top:0rpx;",
+              [str4]: "color:#ccc;"
             })
           }
-        })
-    }
+        }else{
+          this.random()
+        }
+      })
   },
 
   check: function (e) {
@@ -71,7 +88,7 @@ Page({
               [str]: id,
               style: "width:120rpx"
             })
-          } else{
+          } else {
             this.setData({
               useable: 0,
               style: "width:170rpx"
@@ -94,16 +111,16 @@ Page({
     this.setData({
       idvalue: e.detail.value
     })
-    if(e.detail.value ==""){
+    if (e.detail.value == "") {
       this.setData({
         style: "width:0rpx"
       })
-    }else if(e.detail.value !="" && e.detail.value.length != 8){
+    } else if (e.detail.value != "" && e.detail.value.length != 8) {
       this.setData({
         useable: 0,
         style: "width:170rpx",
       })
-    }else if(e.detail.value !="" && e.detail.value.length == 8){
+    } else if (e.detail.value != "" && e.detail.value.length == 8) {
       this.setData({
         useable: 2,
         style: "width:220rpx",
