@@ -1,6 +1,5 @@
-// pages/group/group.js
+// pages/groupdetails/groupdetails.js
 const app = getApp()
-var util = require("../../utils/util.js")
 Page({
 
   /**
@@ -9,21 +8,14 @@ Page({
   data: {
     openid: null,
     theme: null,
+    name: "测试群组",
+    description: "群组描述",
+    groupid: "12345678",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  add: function () {
-    wx.navigateTo({
-      url: '/pages/addgroup/addgroup',
-    })
-  },
-
-  tap: function (e) {
-    // console.log(e.currentTarget.dataset.id)
-  },
-
   onLoad: function (options) {
     //获取openid
     if (app.globalData.openid) {
@@ -57,37 +49,6 @@ Page({
         }
       })
     }
-    //获取群组
-    wx.cloud.database().collection('user').where({
-        _openid: this.data.openid
-      }).get()
-      .then(res => {
-        var joined = res.data[0].joined
-        var manage = res.data[0].manage
-        //拉取joined
-        joined.forEach((value, index, array) => {
-          wx.cloud.database().collection('group').where({
-              groupid: value
-            }).get()
-            .then(res => {
-              this.setData({
-                joined: res.data
-              })
-            })
-        })
-        //拉取manage
-        manage.forEach((value, index, array) => {
-          wx.cloud.database().collection('group').where({
-              groupid: value,
-              _openid: this.data.openid
-            }).get()
-            .then(res => {
-              this.setData({
-                manage: res.data
-              })
-            })
-        })
-      })
   },
 
   /**

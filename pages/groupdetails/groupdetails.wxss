@@ -1,0 +1,10 @@
+/* pages/groupdetails/groupdetails.wxss */
+page {
+  background: #f1f1f1;
+}
+
+@media (prefers-color-scheme: dark) {
+  page {
+    background: #1f2535;
+  }
+}

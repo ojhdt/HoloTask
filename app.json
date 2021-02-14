@@ -8,6 +8,7 @@
     "pages/add/add",
     "pages/group/group",
     "pages/addgroup/addgroup",
+    "pages/groupdetails/groupdetails",
     "pages/logs/logs"
   ],
   "window":{

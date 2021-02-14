@@ -85,6 +85,12 @@
         {
           "name": "pages/addgroup/addgroup",
           "pathName": "pages/addgroup/addgroup",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/groupdetails/groupdetails",
+          "pathName": "pages/groupdetails/groupdetails",
           "scene": null
         }
       ]

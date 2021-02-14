@@ -1,0 +1,13 @@
+<!--pages/groupdetails/groupdetails.wxml-->
+<view class="container">
+  <view class="heading">
+    <text class="name">{{name}}</text>
+    <text class="groupid">{{groupid}}</text>
+  </view>
+  <view class="description">
+    <text>简介</text>
+    <text>{{description}}</text>
+  </view>
+  <view class="task"></view>
+  <view class="member"></view>
+</view>
