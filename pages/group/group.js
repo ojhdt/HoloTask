@@ -22,6 +22,10 @@ Page({
 
   tap: function (e) {
     // console.log(e.currentTarget.dataset.id)
+    let url = "/pages/groupdetails/groupdetails?id=" + e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: url,
+    })
   },
 
   onLoad: function (options) {

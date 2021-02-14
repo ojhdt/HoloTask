@@ -1,5 +1,6 @@
 // pages/groupdetails/groupdetails.js
 const app = getApp()
+var util = require("../../utils/util.js")
 Page({
 
   /**
@@ -8,15 +9,80 @@ Page({
   data: {
     openid: null,
     theme: null,
-    name: "测试群组",
+    taskskip: 0,
+    memberopenid: null,
+    adminopenid: null,
+    name: "群组名称",
     description: "群组描述",
-    groupid: "12345678",
+    admin: "群组管理员",
+    groupid: "NaN",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
+
+  refreshTask: function() {
+    wx.cloud.database().collection('data').where({
+      _openid: this.data.adminopenid,
+      groupid: this.data.groupid
+    }).orderBy("timestamp",'desc').limit(20).skip(this.data.taskskip).get()
+    .then(res => {
+      // console.log(res)
+      this.setData({
+        task: res.data
+      })
+      res.data.forEach((value,index,array) => {
+        let str = "task["+(index+this.data.taskskip)+"].time"
+        this.setData({
+          [str]: util.formatTime(new Date(value.timestamp))
+        })
+      })
+    })
+  },
+
+  taskskipPlus: function(){},
+
+  refreshMember: function() {
+    (this.data.memberopenid).forEach((value,index,array)=>{
+      wx.cloud.database().collection('user').where({
+        _openid: value
+      }).get()
+      .then(res => {
+        let str = "member["+ index + "]"
+        this.setData({
+          [str]: res.data[0].nickname
+        })
+      })
+    })
+  },
+
   onLoad: function (options) {
+    var that = this
+    var id = options.id
+    var admin_openid
+    wx.cloud.database().collection('group').doc(id).get()
+    .then(res => {
+      this.setData({
+        name: res.data.name,
+        groupid: res.data.groupid,
+        description: res.data.description,
+        memberopenid: res.data.member,
+        adminopenid: res.data._openid
+      })
+      this.refreshMember()
+      this.refreshTask()
+      admin_openid = res.data._openid
+    })
+    wx.cloud.database().collection('user').where({
+      _openid: admin_openid
+    }).get()
+    .then(res => {
+      // console.log(res)
+      this.setData({
+        admin: res.data[0].nickname
+      })
+    })
     //获取openid
     if (app.globalData.openid) {
       this.setData({
@@ -49,6 +115,7 @@ Page({
         }
       })
     }
+    // this.refreshTask()
   },
 
   /**
