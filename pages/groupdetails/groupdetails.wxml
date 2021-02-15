@@ -19,7 +19,7 @@
     <view class="title">
       <text>历史任务</text>
     </view>
-    <scroll-view class="scroll" scroll-y="true" enable-flex="true">
+    <scroll-view class="scroll" scroll-y="true" enable-flex="true" refresher-enabled="true" refresher-triggered="{{tasktriggered}}" bindrefresherpulling="taskOnpulling" bindrefresherrefresh="refreshTask" bindscrolltolower="taskskipPlus">
       <view wx:for="{{task}}" wx:key="index" class="scroll_item">
         <image class="icon" src="/source/icon/groupdetails/message-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
         <view class="content">
@@ -34,7 +34,7 @@
     <view class="title">
       <text>群组成员</text>
     </view>
-    <scroll-view class="scroll" scroll-y="true" enable-flex="true">
+    <scroll-view class="scroll" scroll-y="true" enable-flex="true" refresher-enabled="true" refresher-triggered="{{membertriggered}}" bindrefresherpulling="memberOnpulling" bindrefresherrefresh="refreshMember">
       <view wx:for="{{member}}" wx:key="index" class="scroll_item">
         <image class="icon" src="/source/icon/groupdetails/account_circle-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
         <view class="content">

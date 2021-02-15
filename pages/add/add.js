@@ -265,7 +265,7 @@ Page({
             console.log("success")
             // console.log(this.data.nickname)
             let time = e.detail.value.date + " " + e.detail.value.time
-            let admin = (e.detail.value.admin) ? (e.detail.value.admin) : (this.data.nickname)
+            let admin = (e.detail.value.admin) ? (e.detail.value.admin) : (that.data.nickname)
             let groupid = that.data.array[e.detail.value.groupid].groupid
             wx.cloud.database().collection('data').add({
                 data: {

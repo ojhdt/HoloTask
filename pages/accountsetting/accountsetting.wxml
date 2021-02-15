@@ -1,0 +1,29 @@
+<!--pages/accountsetting/accountsetting.wxml-->
+<view class="container">
+  <view class="heading">
+    <text>账户页偏好设置</text>
+  </view>
+  <view class="component" data-name="bing" bindtap="switch">
+    <view class="text">
+      <text class="title">必应每日一图</text>
+      <text class="subtitle">自动获取必应每日壁纸作为背景</text>
+    </view>
+    <view class="switch">
+      <view class="bar" style="{{bingbar}}"></view>
+      <view class="dot" style="{{bingdot}}"></view>
+    </view>
+  </view>
+  <view class="component" data-name="hitokoto" bindtap="switch">
+    <view class="text">
+      <text class="title">Hitokoto - 一言</text>
+      <text class="subtitle">自动获取 Hitokoto 一言语句</text>
+    </view>
+    <view class="switch">
+      <view class="bar" style="{{hitokotobar}}"></view>
+      <view class="dot" style="{{hitokotodot}}"></view>
+    </view>
+  </view>
+  <view>
+    <text class="subtitle">设置将在下次启动应用时生效。</text>
+  </view>
+</view>

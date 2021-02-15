@@ -86,6 +86,7 @@ page {
   }
 
   .card{
-    background: #1f2535;
+    background: #444;
+    box-shadow: 0 0 0 #ddd;
   }
 }

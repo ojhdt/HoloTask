@@ -93,4 +93,16 @@ margin: 30rpx 0 0 0;
   page {
     background: #1f2535;
   }
+
+  .groupid{
+    color: #ccc;
+  }
+
+  .imformation_content{
+    color: #ccc;
+  }
+
+  .line{
+    background: #ccc;
+  }
 }

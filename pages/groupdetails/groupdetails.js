@@ -12,6 +12,7 @@ Page({
     taskskip: 0,
     memberopenid: null,
     adminopenid: null,
+    triggered: false,
     name: "群组名称",
     description: "群组描述",
     admin: "群组管理员",
@@ -22,38 +23,70 @@ Page({
    * 生命周期函数--监听页面加载
    */
 
-  refreshTask: function() {
+  refreshTask: function () {
+    this.setData({
+      taskskip: 0
+    })
     wx.cloud.database().collection('data').where({
-      _openid: this.data.adminopenid,
-      groupid: this.data.groupid
-    }).orderBy("timestamp",'desc').limit(20).skip(this.data.taskskip).get()
-    .then(res => {
-      // console.log(res)
-      this.setData({
-        task: res.data
-      })
-      res.data.forEach((value,index,array) => {
-        let str = "task["+(index+this.data.taskskip)+"].time"
+        _openid: this.data.adminopenid,
+        groupid: this.data.groupid
+      }).orderBy("timestamp", 'desc').limit(5).get()
+      .then(res => {
+        let newtask = res.data
+        newtask.forEach((value, index, array) => {
+          newtask[index].time = util.formatTime(new Date(value.timestamp))
+        })
         this.setData({
-          [str]: util.formatTime(new Date(value.timestamp))
+          task: newtask,
+          tasktriggered: false,
         })
       })
+  },
+
+  taskskipPlus: function () {
+    let skip = this.data.taskskip + 5
+    this.setData({
+      taskskip: skip
+    })
+    wx.cloud.database().collection('data').where({
+        _openid: this.data.adminopenid,
+        groupid: this.data.groupid
+      }).orderBy("timestamp", 'desc').limit(5).skip(skip).get()
+      .then(res => {
+        let newtask = res.data
+        newtask.forEach((value, index, array) => {
+          newtask[index].time = util.formatTime(new Date(value.timestamp))
+        })
+        this.setData({
+          task: (this.data.task).concat(newtask)
+        })
+      })
+  },
+
+  taskOnpulling: function () {
+    this.setData({
+      tasktriggered: true,
     })
   },
 
-  taskskipPlus: function(){},
+  memberOnpulling: function () {
+    this.setData({
+      membertriggered: true,
+    })
+  },
 
-  refreshMember: function() {
-    (this.data.memberopenid).forEach((value,index,array)=>{
+  refreshMember: function () {
+    (this.data.memberopenid).forEach((value, index, array) => {
       wx.cloud.database().collection('user').where({
-        _openid: value
-      }).get()
-      .then(res => {
-        let str = "member["+ index + "]"
-        this.setData({
-          [str]: res.data[0].nickname
+          _openid: value
+        }).get()
+        .then(res => {
+          let str = "member[" + index + "]"
+          this.setData({
+            [str]: res.data[0].nickname,
+            membertriggered: false,
+          })
         })
-      })
     })
   },
 
@@ -62,27 +95,27 @@ Page({
     var id = options.id
     var admin_openid
     wx.cloud.database().collection('group').doc(id).get()
-    .then(res => {
-      this.setData({
-        name: res.data.name,
-        groupid: res.data.groupid,
-        description: res.data.description,
-        memberopenid: res.data.member,
-        adminopenid: res.data._openid
+      .then(res => {
+        this.setData({
+          name: res.data.name,
+          groupid: res.data.groupid,
+          description: res.data.description,
+          memberopenid: res.data.member,
+          adminopenid: res.data._openid
+        })
+        this.refreshMember()
+        this.refreshTask()
+        admin_openid = res.data._openid
       })
-      this.refreshMember()
-      this.refreshTask()
-      admin_openid = res.data._openid
-    })
     wx.cloud.database().collection('user').where({
-      _openid: admin_openid
-    }).get()
-    .then(res => {
-      // console.log(res)
-      this.setData({
-        admin: res.data[0].nickname
+        _openid: admin_openid
+      }).get()
+      .then(res => {
+        // console.log(res)
+        this.setData({
+          admin: res.data[0].nickname
+        })
       })
-    })
     //获取openid
     if (app.globalData.openid) {
       this.setData({

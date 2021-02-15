@@ -18,6 +18,12 @@ Page({
     bing: true
   },
 
+  settings: function () {
+    wx.navigateTo({
+      url: '/pages/accountsetting/accountsetting',
+    })
+  },
+
   joinGroup: function () {
     wx.showModal({
       title: "加入群组",
@@ -64,13 +70,13 @@ Page({
     })
   },
 
-  addTask: function() {
+  addTask: function () {
     wx.navigateTo({
       url: '/pages/add/add',
     })
   },
 
-  manageGroup: function() {
+  manageGroup: function () {
     wx.navigateTo({
       url: '/pages/group/group',
     })
@@ -256,9 +262,19 @@ Page({
         }
       })
     }
+    //获取设置
+    wx.cloud.database().collection('user').where({
+        _openid: this.openid
+      }).get()
+      .then(res => {
+        this.setData({
+          bing: res.data[0].settings.bing,
+          hitokoto: res.data[0].settings.hitokoto,
+        })
+        this.getImage();
+        this.getMoto();
+      })
     this.refreshUserInfo();
-    this.getImage();
-    this.getMoto();
     this.animation();
     this.refreshData();
   },

@@ -75,7 +75,11 @@ Page({
               joined: [],
               manage: [],
               nickname: nickname,
-              timestamp: new Date().getTime()
+              timestamp: new Date().getTime(),
+              settings: {
+                bing: true,
+                hitokoto: false
+              }
             }
           })
           wx.cloud.database().collection('group').add({

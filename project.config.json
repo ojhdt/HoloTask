@@ -89,8 +89,9 @@
           "scene": null
         },
         {
-          "name": "pages/groupdetails/groupdetails",
-          "pathName": "pages/groupdetails/groupdetails",
+          "name": "pages/accountsetting/accountsetting",
+          "pathName": "pages/accountsetting/accountsetting",
+          "query": "",
           "scene": null
         }
       ]

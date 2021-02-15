@@ -17,6 +17,7 @@
   </view>
 </view>
 <scroll-view id="scroller" scroll-y="true" enable-flex="true">
+  <view id="settings" bindtap="settings"></view>
   <view id="footer">
     <view id="bar">
       <view></view>

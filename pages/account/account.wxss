@@ -87,6 +87,14 @@ page{
   position: absolute;
 }
 
+#settings{
+  position: fixed;
+  width: 100rpx;
+  height: 100rpx;
+  right: 25rpx;
+  top: 25rpx;
+}
+
 #footer{
   position: relative;
   top: 900rpx;
