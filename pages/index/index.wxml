@@ -14,7 +14,7 @@
   </block>
   <!-- 已登录 -->
   <block wx:if="{{login}}">
-    <view class="add_btn" hover-class="h_add_btn">
+    <view class="add_btn" hover-class="h_add_btn" bindtap="add">
       <image src="/source/icon/index/add-white-24dp.svg"></image>
     </view>
     <view id="home">
@@ -38,7 +38,7 @@
       </view>
       <view>
         <text class="heading">任务</text>
-        <view wx:for="{{db.user1}}" wx:key="index">
+        <view wx:for="{{db}}" wx:key="index">
 
           <view class="rw" style="{{item.color}}">
             <view class="rw_1" style="{{item.textcolor}}">

@@ -25,25 +25,25 @@
     <view id="content">
       <scroll-view scroll-x="true" enable-flex="true" enhanced="true" show-scrollbar="false" id="scroll">
         <view class="scroll_item">
-          <view class="scroll_card" bindtap="joinGroup">
+          <view class="scroll_card" bindtap="joinGroup" hover-class="h_scroll_card">
             <image class="icon" src="/source/icon/account/group_add-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
             <text>加入群组</text>
           </view>
         </view>
         <view class="scroll_item">
-          <view class="scroll_card" bindtap="addTask">
+          <view class="scroll_card" bindtap="addTask" hover-class="h_scroll_card">
             <image class="icon" src="/source/icon/account/add_task-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
             <text>任务发布</text>
           </view>
         </view>
         <view class="scroll_item">
-          <view class="scroll_card" bindtap="manageGroup">
+          <view class="scroll_card" bindtap="manageGroup" hover-class="h_scroll_card">
             <image class="icon" src="/source/icon/account/manage_accounts-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
             <text>群组管理</text>
           </view>
         </view>
         <view class="scroll_item">
-          <view class="scroll_card">
+          <view class="scroll_card" hover-class="h_scroll_card">
             <image class="icon" src="/source/icon/account/poll-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
             <text>统计数据</text>
           </view>

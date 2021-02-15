@@ -52,6 +52,10 @@ page {
   border-radius: 0.5rem;
 }
 
+.h_card{
+  opacity: .7;
+}
+
 .text{
   display: flex;
   height: 100%;

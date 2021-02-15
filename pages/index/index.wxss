@@ -71,6 +71,7 @@ page{
 
 .h_add_btn{
   background: #43a047;
+  /* opacity: .7; */
 }
 
 .add_btn image{

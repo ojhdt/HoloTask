@@ -10,34 +10,33 @@ Page({
     theme: null,
     login: true,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    db: {
-      user1: [{
-        title: "C语言程序设计",
-        admin: "冼广铭",
-        timestamp: 1613574395579,
-        finished: false,
-      }, {
-        title: "高等数学",
-        admin: "翁文",
-        timestamp: 1612584395579,
-        finished: false,
-      }, {
-        title: "思想道德修养与法律基础",
-        admin: "甘培聪",
-        timestamp: 1612948723579,
-        finished: true,
-      }, {
-        title: "计算机科学技术导论",
-        admin: "杨欢",
-        timestamp: 1612639135126,
-        finished: false,
-      }, {
-        title: "基础英语",
-        admin: "郭珊珊",
-        timestamp: 1612728437602,
-        finished: false,
-      }]
-    }
+    taskskip: 0,
+    db: [{
+      title: "C语言程序设计",
+      admin: "冼广铭",
+      timestamp: 1613574395579,
+      finished: false,
+    }, {
+      title: "高等数学",
+      admin: "翁文",
+      timestamp: 1612584395579,
+      finished: false,
+    }, {
+      title: "思想道德修养与法律基础",
+      admin: "甘培聪",
+      timestamp: 1612948723579,
+      finished: true,
+    }, {
+      title: "计算机科学技术导论",
+      admin: "杨欢",
+      timestamp: 1612639135126,
+      finished: false,
+    }, {
+      title: "基础英语",
+      admin: "郭珊珊",
+      timestamp: 1612728437602,
+      finished: false,
+    }]
   },
 
   getUserInfo: function (e) {
@@ -133,6 +132,81 @@ Page({
     }
   },
 
+  add: function () {
+    wx.navigateTo({
+      url: '/pages/add/add',
+    })
+  },
+
+  refreshData: function () {
+    var that = this
+    this.setData({
+      taskskip: 0
+    })
+    wx.cloud.database().collection('user').where({
+        _openid: this.data.openid
+      }).get()
+      .then(res => {
+        var groups = res.data[0].group
+        // console.log("groups:", groups)
+        var db = []
+        var counter = 0
+        // console.log(groups.length)
+        groups.forEach((value, index, array) => {
+          wx.cloud.database().collection('data').where({
+              groupid: value
+            }).orderBy("timestamp", 'desc').limit(20).skip(0).get()
+            .then(res => {
+              // console.log(res.data)
+              let newtask = res.data
+              newtask.forEach((value, index, array) => {
+                newtask[index].time = util.formatTime(new Date(value.timestamp))
+              })
+              db = db.concat(newtask)
+              // console.log("db", db)
+              counter++
+              // console.log(counter)
+              if (counter == groups.length) {
+                // console.log("a")
+                that.setData({
+                  db: db
+                })
+              }
+            })
+        })
+      })
+  },
+
+  taskskipPlus: function () {
+    let skip = this.data.taskskip + 20
+    this.setData({
+      taskskip: skip
+    })
+    wx.cloud.database().collection('user').where({
+        _openid: this.data.openid
+      }).get()
+      .then(res => {
+        var groups = res.data[0].group
+        var newdb
+        groups.forEach((value, index, array) => {
+          wx.cloud.database().collection('data').where({
+              groupid: value
+            }).orderBy("timestamp", 'desc').limit(20).skip(skip).get()
+            .then(res => {
+              let newtask = res.data
+              newtask.forEach((value, index, array) => {
+                newtask[index].time = util.formatTime(new Date(value.timestamp))
+              })
+            })
+          newdb = newdb.concat(newtask)
+        }).then(res => {
+          this.setData({
+            db: this.data.db.concat(newdb)
+          })
+        })
+      })
+  },
+
   sortData: function () {
     // var time = util.formatTime(new Date());
     // console.log((new Date).getTime());
@@ -143,33 +217,13 @@ Page({
     var theme = this.data.theme
     //获取openid
     var openid = this.data.openid
-    //拉取数据+排序
-    // wx.cloud.database().collection('user').where({
-    //     _openid: openid
-    //   }).get()
-    //   .then(res => {
-    //     var groups = res.data[0].group
-    //     groups.forEach((value, index, array) => {
-    //       wx.cloud.database().collection('data').where({
-    //           groupid: value
-    //         }).get()
-    //         .then(res => {
-    //           console.log(res)
-    //         })
-    //         .catch(err => {
-    //           console.log(err)
-    //         })
-    //     })
-    //   })
-    //   .catch(err => {
-    //     console.log(err)
-    //   })
+
 
 
     var array_u = [];
     var array_g = [];
     var array_f = [];
-    this.data.db.user1.forEach((value, index, array) => {
+    this.data.db.forEach((value, index, array) => {
       if (value.finished) array_f.push(value);
       else {
         if (value.timestamp - (new Date).getTime() < 0) array_g.push(value);
@@ -186,22 +240,17 @@ Page({
       return a.timestamp - b.timestamp;
     })
     this.setData({
-      "db.user1": (array_u.concat(array_g)).concat(array_f)
+      "db": (array_u.concat(array_g)).concat(array_f)
     });
-    this.data.db.user1.forEach((element, index) => {
+    this.data.db.forEach((element, index) => {
       let timestamp = element.timestamp;
       let timelast = (element.timestamp - (new Date).getTime()) / 1000;
       // console.log(timelast);
-      //写入时间字符串
-      let str = 'db.user1[' + index + '].time';
-      this.setData({
-        [str]: util.formatTime(new Date(timestamp))
-      })
       //读取完成数及未完成数
       if (element.finished) {
         finished++;
-        let str1 = 'db.user1[' + index + '].color';
-        let str2 = 'db.user1[' + index + '].unit';
+        let str1 = 'db[' + index + '].color';
+        let str2 = 'db[' + index + '].unit';
         if (theme == "dark") {
           this.setData({
             [str1]: "background-image: linear-gradient(to bottom right, #43a047, #66bb6a)",
@@ -219,7 +268,7 @@ Page({
         if (timelast < 172800 && timelast > 0) {
           //如果少于两天，执行
           dying++;
-          let str1 = 'db.user1[' + index + '].color';
+          let str1 = 'db[' + index + '].color';
           if (theme == "dark") {
             this.setData({
               [str1]: "background-image: linear-gradient(to bottom right, #e53935, #ef5350)"
@@ -232,33 +281,33 @@ Page({
         }
         if (timelast >= 86400) {
           //如果多于一天
-          let str1 = 'db.user1[' + index + '].timelast';
-          let str2 = 'db.user1[' + index + '].unit';
+          let str1 = 'db[' + index + '].timelast';
+          let str2 = 'db[' + index + '].unit';
           this.setData({
             [str1]: Math.round(timelast / 86400),
             [str2]: "天"
           })
         } else if (timelast < 86400 && timelast > 3600) {
           //如果少于一天但多于1小时
-          let str1 = 'db.user1[' + index + '].timelast';
-          let str2 = 'db.user1[' + index + '].unit';
+          let str1 = 'db[' + index + '].timelast';
+          let str2 = 'db[' + index + '].unit';
           this.setData({
             [str1]: Math.round(timelast / 3600),
             [str2]: "时"
           })
         } else if (timelast <= 3600 && timelast >= 0) {
           //如果少于1小时但未过期
-          let str1 = 'db.user1[' + index + '].timelast';
-          let str2 = 'db.user1[' + index + '].unit';
+          let str1 = 'db[' + index + '].timelast';
+          let str2 = 'db[' + index + '].unit';
           this.setData({
             [str1]: Math.round(timelast / 60),
             [str2]: "分"
           })
         } else {
           //如果已过期
-          let str1 = 'db.user1[' + index + '].timelast';
-          let str2 = 'db.user1[' + index + '].unit';
-          let str3 = 'db.user1[' + index + '].textcolor';
+          let str1 = 'db[' + index + '].timelast';
+          let str2 = 'db[' + index + '].unit';
+          let str3 = 'db[' + index + '].textcolor';
           if (theme == "dark") {
             this.setData({
               [str3]: "color: #666"
@@ -359,7 +408,10 @@ Page({
       })
     }
     //已授权自动更新
-    if (this.data.login) this.sortData()
+    if (this.data.login) {
+      this.refreshData()
+      this.sortData()
+    }
   },
 
   /**
@@ -394,6 +446,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    this.refreshData()
     this.sortData()
     wx.stopPullDownRefresh({
       success: (res) => {

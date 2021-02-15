@@ -20,7 +20,7 @@
     </view>
     <view wx:else>
       <view class="list" wx:for="{{manage}}" wx:key="index">
-        <view class="card" bindtap="tap" data-id="{{item._id}}">
+        <view class="card" bindtap="tap" data-id="{{item._id}}" hover-class="h_card">
           <view class="text">
             <view class="main">{{item.name}}</view>
             <view class="sub">GroupID: {{item.groupid}}</view>
@@ -38,7 +38,7 @@
     </view>
     <view wx:else>
       <view wx:for="{{joined}}" wx:key="index">
-        <view class="card" bindtap="tap" data-id="{{item._id}}">
+        <view class="card" bindtap="tap" data-id="{{item._id}}" hover-class="h_card">
           <view class="text">
             <view class="main">{{item.name}}</view>
             <view class="sub">GroupID: {{item.groupid}}</view>

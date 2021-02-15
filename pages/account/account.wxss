@@ -151,6 +151,10 @@ page{
   font-size: 0.8rem;
 }
 
+.h_scroll_card{
+  opacity: .7;
+}
+
 .heading{
   font-size: 1.4rem;
 }
