@@ -25,6 +25,7 @@ Page({
   },
 
   joinGroup: function () {
+    var that = this
     wx.showModal({
       title: "加入群组",
       content: "请输入群组八位唯一ID",
@@ -32,6 +33,7 @@ Page({
       confirmColor: "#07c160",
       success: (res => {
         if (res.confirm) {
+          var inputcontent = res.content
           console.log(res.content.length)
           if (res.content.length == 8) {
             wx.cloud.database().collection('group').where({
@@ -49,6 +51,35 @@ Page({
                         this.joinGroup()
                       }
                     })
+                  })
+                } else {
+                  var _groupid = res.data._id
+                  wx.cloud.database().collection('group').where({
+                    groupid: inputcontent,
+                    member: that.openid
+                  }).get()
+                  .then(res => {
+                    if(res.data.length != 0){
+                      wx.showToast({
+                        title: '请勿重复加入群组',
+                        icon: "none"
+                      })
+                    } else {
+                      const _ = wx.cloud.database().command
+                      wx.cloud.database().collection('group').doc(_groupid).update({
+                        data: {
+                          'member': _.push(that.openid),
+                        }
+                      })
+                      wx.cloud.database().collection('user').where({
+                        _openid: that.data.openid
+                      }).update({
+                        data: {
+                          'group': _.push(inputcontent),
+                          'joined': _.push(inputcontent),
+                        }
+                      })
+                    }
                   })
                 }
               })

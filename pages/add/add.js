@@ -335,16 +335,43 @@ Page({
       })
     }
     //获取群组
-    wx.cloud.database().collection('group').get()
-      .then(res => {
-        // console.log(res)
-        this.setData({
-          array: res.data
+    if (app.globalData.openid) {
+      wx.cloud.database().collection('group').where({
+        _openid: app.globalData.openid
+      }).get()
+        .then(res => {
+          // console.log(res)
+          this.setData({
+            array: res.data
+          })
         })
+        .catch(err => {
+          console.log(err)
+        })
+    }else{
+      wx.cloud.callFunction({
+        name: 'getOpenid',
+        complete: res => {
+          app.globalData.openid = res.result.openid
+          app.globalData.appid = res.result.appid
+          this.setData({
+            openid: res.result.openid
+          })
+          wx.cloud.database().collection('group').where({
+            _openid: res.result.openid
+          }).get()
+            .then(res => {
+              // console.log(res)
+              this.setData({
+                array: res.data
+              })
+            })
+            .catch(err => {
+              console.log(err)
+            })
+        }
       })
-      .catch(err => {
-        console.log(err)
-      })
+    }
     //获取昵称
     if (app.globalData.userInfo) {
       this.setData({
