@@ -52,8 +52,8 @@ Page({
         })
       } else {
         wx.showToast({
-          title: '任务已过期',
-          icon: 'error'
+          title: '过期任务无法修改状态',
+          icon: "none"
         })
       }
     }
@@ -96,7 +96,7 @@ Page({
     }
     //计算剩余时间
     let timelast = (this.data.timestamp - (new Date).getTime()) / 1000;
-    console.log(timelast)
+    // console.log(timelast)
     if (timelast >= 172800) {
       //如果多于两天
       let str = Math.round(timelast / 86400) + "天"

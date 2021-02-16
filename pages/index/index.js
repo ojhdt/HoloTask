@@ -9,6 +9,9 @@ Page({
     openid: null,
     theme: null,
     login: true,
+    finished: 0,
+    unfinished: 0,
+    dying: 0,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     taskskip: 0,
     db: []
@@ -154,6 +157,13 @@ Page({
                   db: db
                 })
                 this.sortData()
+                wx.stopPullDownRefresh({
+                  success: (res) => {
+                    wx.showToast({
+                      title: "数据已更新",
+                    })
+                  },
+                })
               }
             })
         })
@@ -237,7 +247,7 @@ Page({
       let timelast = (element.timestamp - (new Date).getTime()) / 1000;
       // console.log(timelast);
       //读取完成数及未完成数
-      if (element.finished) {
+      if (element.finished[openid]) {
         finished++;
         let str1 = 'db[' + index + '].color';
         let str2 = 'db[' + index + '].unit';
@@ -436,14 +446,6 @@ Page({
    */
   onPullDownRefresh: function () {
     this.refreshData()
-    wx.stopPullDownRefresh({
-      success: (res) => {
-        wx.showToast({
-          title: "数据已更新",
-          duration: 500
-        })
-      },
-    })
   },
 
   /**

@@ -6,7 +6,7 @@
             </view>
             <view class="btns">
                 <view class="btn" wx:if="{{editable}}" hover-class="hover" bindtap="edit">
-                    <text>修改</text>
+                    <text>编辑</text>
                 </view>
                 <view class="btn" style="{{style}}" hover-class="hover" bindtap="finish">
                     <text>{{btn}}</text>
