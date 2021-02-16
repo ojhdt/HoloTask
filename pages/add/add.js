@@ -274,7 +274,7 @@ Page({
                   admin: admin,
                   timestamp: Date.parse(time.replace(/-/g, '/')),
                   content: e.detail.value.content,
-                  finished: false
+                  finished: {[that.data.openid]: false}
                 }
               })
               .then(res => {

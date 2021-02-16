@@ -94,7 +94,8 @@ page{
   justify-content: space-around;
   align-items: center;
   /* background-color: #ddd; */
-  background-image: linear-gradient(to bottom right, #e9e9e9, #ccc);
+  background: #fff;
+  box-shadow: 5rpx 5rpx 20rpx #ddd;
   margin: 30rpx 0;
   border-radius: 0.5rem;
   /* box-shadow: 0 0 20rpx 1rpx #bbb; */
@@ -129,7 +130,8 @@ page{
   display: flex;
   flex-direction: column;
   /* background-color: #ddd; */
-  background-image: linear-gradient(to bottom right, #e9e9e9, #ccc);
+  background: #fff;
+  box-shadow: 5rpx 5rpx 20rpx #ddd;
   margin: 40rpx 0;
   padding: 40rpx 50rpx;
   border-radius: 0.5rem;
@@ -175,6 +177,10 @@ page{
   color: #666;
 }
 
+.hover{
+  opacity: .7;
+}
+
 /* 暗黑模式下应用的样式 */
 @media (prefers-color-scheme: dark) {
   page{
@@ -208,8 +214,9 @@ page{
   }
 
   #gl{
-    background-image: linear-gradient(to bottom right, #333, #444);
+    background: #444;
     color: white;
+    box-shadow: 0 0 0 #ddd;
     /* box-shadow: 6rpx 6rpx 8rpx #222; */
   }
 
@@ -226,8 +233,9 @@ page{
   }
 
   .rw{
-    background-image: linear-gradient(to bottom right, #333, #444);
+    background: #444;
     color: white;
+    box-shadow: 0 0 0 #ddd;
     /* box-shadow: 6rpx 6rpx 8rpx #222; */
   }
 

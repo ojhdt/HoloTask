@@ -11,32 +11,7 @@ Page({
     login: true,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     taskskip: 0,
-    db: [{
-      title: "C语言程序设计",
-      admin: "冼广铭",
-      timestamp: 1613574395579,
-      finished: false,
-    }, {
-      title: "高等数学",
-      admin: "翁文",
-      timestamp: 1612584395579,
-      finished: false,
-    }, {
-      title: "思想道德修养与法律基础",
-      admin: "甘培聪",
-      timestamp: 1612948723579,
-      finished: true,
-    }, {
-      title: "计算机科学技术导论",
-      admin: "杨欢",
-      timestamp: 1612639135126,
-      finished: false,
-    }, {
-      title: "基础英语",
-      admin: "郭珊珊",
-      timestamp: 1612728437602,
-      finished: false,
-    }]
+    db: []
   },
 
   getUserInfo: function (e) {
@@ -138,6 +113,13 @@ Page({
     })
   },
 
+  details: function (e) {
+    let url = '/pages/details/details?id=' + e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: url,
+    })
+  },
+
   refreshData: function () {
     var that = this
     this.setData({
@@ -171,6 +153,7 @@ Page({
                 that.setData({
                   db: db
                 })
+                this.sortData()
               }
             })
         })
@@ -178,33 +161,41 @@ Page({
   },
 
   taskskipPlus: function () {
+    var that = this
     let skip = this.data.taskskip + 20
     this.setData({
       taskskip: skip
     })
     wx.cloud.database().collection('user').where({
-        _openid: this.data.openid
-      }).get()
-      .then(res => {
-        var groups = res.data[0].group
-        var newdb
-        groups.forEach((value, index, array) => {
-          wx.cloud.database().collection('data').where({
-              groupid: value
-            }).orderBy("timestamp", 'desc').limit(20).skip(skip).get()
-            .then(res => {
-              let newtask = res.data
-              newtask.forEach((value, index, array) => {
-                newtask[index].time = util.formatTime(new Date(value.timestamp))
-              })
+      _openid: this.data.openid
+    }).get()
+    .then(res => {
+      var groups = res.data[0].group
+      var db = []
+      var counter = 0
+      groups.forEach((value, index, array) => {
+        wx.cloud.database().collection('data').where({
+            groupid: value
+          }).orderBy("timestamp", 'desc').limit(20).skip(skip).get()
+          .then(res => {
+            let newtask = res.data
+            newtask.forEach((value, index, array) => {
+              newtask[index].time = util.formatTime(new Date(value.timestamp))
             })
-          newdb = newdb.concat(newtask)
-        }).then(res => {
-          this.setData({
-            db: this.data.db.concat(newdb)
+            db = db.concat(newtask)
+            // console.log("db", db)
+            counter++
+            // console.log(counter)
+            if (counter == groups.length) {
+              // console.log("a")
+              that.setData({
+                db: this.data.db.concat(db)
+              })
+              this.sortData()
+            }
           })
-        })
       })
+    })
   },
 
   sortData: function () {
@@ -218,13 +209,12 @@ Page({
     //获取openid
     var openid = this.data.openid
 
-
-
     var array_u = [];
     var array_g = [];
     var array_f = [];
     this.data.db.forEach((value, index, array) => {
-      if (value.finished) array_f.push(value);
+      // console.log(value)
+      if (value.finished[openid]) array_f.push(value);
       else {
         if (value.timestamp - (new Date).getTime() < 0) array_g.push(value);
         else array_u.push(value);
@@ -410,7 +400,6 @@ Page({
     //已授权自动更新
     if (this.data.login) {
       this.refreshData()
-      this.sortData()
     }
   },
 
@@ -425,7 +414,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.sortData()
+
   },
 
   /**
@@ -447,7 +436,6 @@ Page({
    */
   onPullDownRefresh: function () {
     this.refreshData()
-    this.sortData()
     wx.stopPullDownRefresh({
       success: (res) => {
         wx.showToast({
@@ -462,7 +450,8 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    console.log("bottom")
+    this.taskskipPlus()
   },
 
   /**
