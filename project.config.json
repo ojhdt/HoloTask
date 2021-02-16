@@ -93,6 +93,12 @@
           "pathName": "pages/accountsetting/accountsetting",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/modify/modify",
+          "pathName": "pages/modify/modify",
+          "query": "id=b00064a7602b432e05367dd96f354c44",
+          "scene": null
         }
       ]
     }

@@ -17,7 +17,10 @@ Page({
   },
 
   edit: function () {
-
+    let url = '/pages/modify/modify?id=' + this.data._id
+    wx.navigateTo({
+      url: url,
+    })
   },
 
   finish: function () {
