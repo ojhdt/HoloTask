@@ -87,7 +87,6 @@ page{
 
 .licenses_sub{
   margin: 10rpx 0 0 0;
-  font-size: .6rem;
   color: #666;
 }
 
@@ -99,6 +98,7 @@ page{
 
   .head{
     background: #1f2535;
+    box-shadow: 0 0 0 #ddd;
   }
 
   .version{

@@ -55,7 +55,8 @@ Page({
               timestamp: new Date().getTime(),
               settings: {
                 bing: true,
-                hitokoto: false
+                hitokoto: false,
+                archive: "5"
               }
             }
           })

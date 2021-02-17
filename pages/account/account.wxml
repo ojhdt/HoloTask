@@ -17,7 +17,7 @@
   </view>
 </view>
 <scroll-view id="scroller" scroll-y="true" enable-flex="true">
-  <view id="settings" bindtap="settings"></view>
+  <view id="settings" bindtap="accountsettings"></view>
   <view id="footer">
     <view id="bar">
       <view></view>
@@ -58,11 +58,11 @@
             <text class="subtitle">主题与图标</text>
           </view>
         </view>
-        <view class="setting_box">
+        <view class="setting_box" bindtap="settings" hover-class="h_scroll_card">
           <image class="icon" src="/source/icon/account/settings-gray-24dp.svg"></image>
           <view class="text">
             <text class="title">偏好</text>
-            <text class="subtitle">细节选项设置</text>
+            <text class="subtitle">功能选项设置</text>
           </view>
         </view>
         <button id="feedback" open-type="feedback" hover-class="h_scroll_card">

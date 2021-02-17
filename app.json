@@ -11,6 +11,7 @@
     "pages/groupdetails/groupdetails",
     "pages/accountsetting/accountsetting",
     "pages/about/about",
+    "pages/settings/settings",
     "pages/logs/logs"
   ],
   "window":{

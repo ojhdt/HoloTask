@@ -105,6 +105,12 @@
           "pathName": "pages/about/about",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/settings/settings",
+          "pathName": "pages/settings/settings",
+          "query": "",
+          "scene": null
         }
       ]
     }

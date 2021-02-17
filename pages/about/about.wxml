@@ -49,7 +49,7 @@
         <text>联系我们</text>
       </view>
       <view class="element_content contact">
-        <text user-select="true">E_mail: ojhdtmail@gmail.com\nTelegram: https://https://t.me/ojhdt</text>
+        <text user-select="true">E_mail: ojhdtmail@gmail.com\nTelegram: https://t.me/ojhdt</text>
       </view>
     </view>
     <view class="element">

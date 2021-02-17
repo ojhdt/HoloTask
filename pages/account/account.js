@@ -18,9 +18,15 @@ Page({
     bing: true
   },
 
-  settings: function () {
+  accountsettings: function () {
     wx.navigateTo({
       url: '/pages/accountsetting/accountsetting',
+    })
+  },
+
+  settings: function () {
+    wx.navigateTo({
+      url: '/pages/settings/settings',
     })
   },
 
