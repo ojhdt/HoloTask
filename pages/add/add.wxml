@@ -1,0 +1,139 @@
+<!--pages/add/add.wxml-->
+<form bindsubmit="submit" bindreset="reset">
+  <view class="container">
+    <view class="heading">
+      <text>发布任务</text>
+      <view class="buttons">
+        <button id="button1" form-type="reset">
+          <image class="icon" src="/source/icon/add/refresh-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
+        </button>
+        <button id="button2" form-type="submit">
+          <image class="icon" src="/source/icon/add/done-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
+        </button>
+      </view>
+    </view>
+    <view class="list">
+      <view class="component">
+        <view class="image">
+          <image class="icon" src="/source/icon/add/group-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
+        </view>
+        <view class="text">
+          <!-- <view class="block"></view> -->
+          <view class="main" style="{{picker[0].main}}">
+            <text class="placeholder" style="{{picker[0].placeholder}}">对象</text>
+            <picker name="groupid" data-id="0" data-helptext="任务对象，可选择自己或管理的群组" class="picker_area" mode="selector"
+              bindchange="nchange" style="{{picker[0].style}}" range="{{array}}" range-key="name">
+              {{picker[0].value}}</picker>
+          </view>
+          <view class="sub">
+            <text style="{{picker[0].helptext_style}}">{{picker[0].helptext}}</text>
+            <!-- <text>{{input[0].number}}/15</text> -->
+          </view>
+        </view>
+      </view>
+      <view class="component">
+        <view class="image">
+          <image class="icon" src="/source/icon/add/assignment-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
+        </view>
+        <view class="text">
+          <!-- <view class="block"></view> -->
+          <view class="main" style="{{input[0].main}}">
+            <text class="placeholder" style="{{input[0].placeholder}}">标题</text>
+            <input name="title" data-id="0" data-helptext="任务标题" class="input_area" type="text" bindfocus="focus"
+              bindinput="input" bindblur="blur" maxlength="15"></input>
+          </view>
+          <view class="sub">
+            <text style="{{input[0].helptext_style}}">{{input[0].helptext}}</text>
+            <text>{{input[0].number}}/15</text>
+          </view>
+        </view>
+      </view>
+      <view class="component">
+        <view class="image">
+          <image class="icon" src="/source/icon/add/account_circle-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
+        </view>
+        <view class="text">
+          <!-- <view class="block"></view> -->
+          <view class="main" style="{{input[1].main}}">
+            <text class="placeholder" style="{{input[1].placeholder}}">发布者</text>
+            <input name="admin" data-id="1" data-helptext="任务发布者，留空默认为自己" class="input_area" type="text"
+              bindfocus="focus" bindinput="input" bindblur="blur" maxlength="10"></input>
+          </view>
+          <view class="sub">
+            <text style="{{input[1].helptext_style}}">{{input[1].helptext}}</text>
+            <text>{{input[1].number}}/10</text>
+          </view>
+        </view>
+      </view>
+      <view class="time">
+        <view class="component time_element">
+          <view class="image">
+            <image class="icon" src="/source/icon/add/event-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
+          </view>
+          <view class="text">
+            <!-- <view class="block"></view> -->
+            <view class="main" style="{{picker[1].main}}">
+              <text class="placeholder" style="{{picker[1].placeholder}}">截止日期</text>
+              <picker name="date" data-id="1" data-helptext="任务截止日期" class="picker_area" mode="date" bindchange="change"
+                style="{{picker[1].style}}">
+                {{picker[1].value}}</picker>
+            </view>
+            <view class="sub">
+              <text style="{{picker[1].helptext_style}}">{{picker[1].helptext}}</text>
+              <!-- <text>{{input[0].number}}/15</text> -->
+            </view>
+          </view>
+        </view>
+        <view id="time_block"></view>
+        <view class="component time_element">
+          <view class="image">
+            <image class="icon" src="/source/icon/add/schedule-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
+          </view>
+          <view class="text">
+            <!-- <view class="block"></view> -->
+            <view class="main" style="{{picker[2].main}}">
+              <text class="placeholder" style="{{picker[2].placeholder}}">截止时间</text>
+              <picker name="time" data-id="2" data-helptext="任务截止时间" class="picker_area" mode="time" bindchange="change"
+                style="{{picker[2].style}}">
+                {{picker[2].value}}</picker>
+            </view>
+            <view class="sub">
+              <text style="{{picker[2].helptext_style}}">{{picker[2].helptext}}</text>
+              <!-- <text>{{input[0].number}}/15</text> -->
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="line"></view>
+      <view class="textarea">
+        <view class="textarea_main" style="{{input[2].main}}">
+          <text class="textarea_placeholder" style="{{input[2].placeholder}}">内容</text>
+          <textarea name="content" data-id="2" data-helptext="任务详细内容，支持换行" class="input_area" type="text"
+            bindfocus="focus" bindinput="input" bindblur="blur" maxlength="200" auto-height="true"></textarea>
+        </view>
+        <view class="sub">
+          <text style="{{input[2].helptext_style}}">{{input[2].helptext}}</text>
+          <text>{{input[2].number}}/200</text>
+        </view>
+      </view>
+      <view class="component">
+        <view class="image">
+          <image class="icon" src="/source/icon/add/insert_photo-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
+        </view>
+        <view class="text">
+          <text class="title">添加图片</text>
+          <text class="subtitle">可添加两张图片，仅支持格式。传输过程会进行压缩</text>
+        </view>
+      </view>
+      <view class="component">
+        <view class="image">
+          <image class="icon" src="/source/icon/add/insert_drive_file-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
+        </view>
+        <view class="text">
+          <text class="title">添加附件</text>
+          <text class="subtitle">可添加一个大小不超过的附件，仅支持格式</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</form>

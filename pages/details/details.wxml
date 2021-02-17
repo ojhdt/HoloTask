@@ -1,2 +1,44 @@
-<!--pages/details/details.wxml-->
-<text>pages/details/details.wxml</text>
+<view class="head">
+    <view class="container">
+        <view class="divide">
+            <view class="title">
+                <text>{{title}}</text>
+            </view>
+            <view class="btns">
+                <view class="btn" wx:if="{{editable}}" hover-class="hover" bindtap="edit">
+                    <text>编辑</text>
+                </view>
+                <view class="btn" style="{{style}}" hover-class="hover" bindtap="finish">
+                    <text>{{btn}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="box">
+            <view class="element">
+                <text>发布者</text>
+                <text class="sub">{{admin}}</text>
+            </view>
+            <view class="element">
+                <text>隶属群组</text>
+                <text class="sub">{{group}}</text>
+            </view>
+        </view>
+        <view class="box">
+            <view class="element">
+                <text>结束时间</text>
+                <text class="sub">{{time}}</text>
+            </view>
+            <view class="element">
+                <text>剩余时间</text>
+                <text class="sub">{{timelast}}</text>
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="content" style="top:{{height}}rpx">
+    <view class="container">
+        <view class="k">详细内容</view>
+        <view>{{content}}</view>
+    </view>
+</view>

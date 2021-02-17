@@ -1,0 +1,108 @@
+/* pages/groupdetails/groupdetails.wxss */
+page {
+  background: #f1f1f1;
+}
+
+.container{
+  margin: 0 50rpx;
+}
+
+.component {
+margin: 30rpx 0 0 0;
+}
+
+.heading{
+  display: flex;
+  flex-direction: column;
+}
+
+.name{
+  font-size: 1.2rem;
+}
+
+.groupid{
+  font-size: .8rem;
+  color: #666;
+}
+
+.imformation{
+  display: flex;
+  flex-direction: row;
+  font-size: .8rem;
+  flex-wrap: wrap;
+}
+
+.imformation_item{
+  min-width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: 30rpx 0 0 0;
+}
+
+.imformation_content{
+  color: #666;
+}
+
+.line{
+  width: 100%;
+  height: 1rpx;
+  background: #666;
+}
+
+.scroll{
+  height: 300rpx;
+}
+
+.title{
+  margin: 30rpx 0 20rpx;
+}
+
+.icon {
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 30rpx;
+}
+
+.scroll_item{
+  height: 100rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.empty{
+  justify-content: center;
+  font-size: .8rem;
+}
+
+.content{
+  font-size: .8rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.content{
+  width: 90%;
+}
+
+@media (prefers-color-scheme: dark) {
+  page {
+    background: #1f2535;
+  }
+
+  .groupid{
+    color: #ccc;
+  }
+
+  .imformation_content{
+    color: #ccc;
+  }
+
+  .line{
+    background: #ccc;
+  }
+}

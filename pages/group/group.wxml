@@ -1,0 +1,50 @@
+<!--pages/group/group.wxml-->
+<view class="container">
+  <view class="add">
+    <view class="heading">
+      <text>新建群组</text>
+    </view>
+    <view class="sub">
+      <text>通过群组，您可以方便地向您的组织成员发布任务，并汇总完成情况。每个群组皆有唯一八位标识ID，以加入他人群组或邀请他人加入。</text>
+    </view>
+    <view class="btn" bindtap="add">
+      <text>新建群组</text>
+    </view>
+  </view>
+  <view class="manage">
+    <view class="heading">
+      <text>我管理的群组</text>
+    </view>
+    <view wx:if="{{manage.length == 0}}" class="notification">
+      <text class="sub">您目前没有管理的群组</text>
+    </view>
+    <view wx:else>
+      <view class="list" wx:for="{{manage}}" wx:key="index">
+        <view class="card" bindtap="tap" data-id="{{item._id}}" hover-class="h_card">
+          <view class="text">
+            <view class="main">{{item.name}}</view>
+            <view class="sub">GroupID: {{item.groupid}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="joined">
+    <view class="heading">
+      <text>我加入的群组</text>
+    </view>
+    <view wx:if="{{joined.length == 0}}" class="notification">
+      <text class="sub">您目前没有加入的群组</text>
+    </view>
+    <view wx:else>
+      <view wx:for="{{joined}}" wx:key="index">
+        <view class="card" bindtap="tap" data-id="{{item._id}}" hover-class="h_card">
+          <view class="text">
+            <view class="main">{{item.name}}</view>
+            <view class="sub">GroupID: {{item.groupid}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

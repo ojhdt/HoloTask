@@ -5,13 +5,12 @@ Page({
    * 页面的初始数据
    */
   data: {
+    openid: null,
+    theme: null,
     login: false,
     avatarUrl: "/source/img/account/avatar.png",
     nickName: "未登录",
-    user:{
-      name: "Ojhdt",
-      description: "个性签名",
-    },
+    description: "欢迎使用 HoloTask",
     motto: "From small beginnings comes great things.",
     motto_from: "Winston Churchill",
     imgUrl: "",
@@ -19,17 +18,138 @@ Page({
     bing: true
   },
 
-  refreshData: function(){
-    if(this.data.login){
+  accountsettings: function () {
+    wx.navigateTo({
+      url: '/pages/accountsetting/accountsetting',
+    })
+  },
+
+  settings: function () {
+    wx.navigateTo({
+      url: '/pages/settings/settings',
+    })
+  },
+
+  about: function() {
+    wx.navigateTo({
+      url: '/pages/about/about',
+    })
+  },
+
+  joinGroup: function () {
+    var that = this
+    wx.showModal({
+      title: "加入群组",
+      content: "请输入群组八位唯一ID",
+      editable: true,
+      confirmColor: "#07c160",
+      success: (res => {
+        if (res.confirm) {
+          var inputcontent = res.content
+          console.log(res.content.length)
+          if (res.content.length == 8) {
+            wx.cloud.database().collection('group').where({
+                groupid: res.content
+              }).get()
+              .then(res => {
+                if (res.data.length == 0) {
+                  wx.showModal({
+                    title: "错误",
+                    content: "未检索到群组信息，请检查群组ID",
+                    confirmColor: "#07c160",
+                    confirmText: "重试",
+                    success: (res => {
+                      if (res.confirm) {
+                        this.joinGroup()
+                      }
+                    })
+                  })
+                } else {
+                  var _groupid = res.data._id
+                  wx.cloud.database().collection('group').where({
+                    groupid: inputcontent,
+                    member: that.openid
+                  }).get()
+                  .then(res => {
+                    if(res.data.length != 0){
+                      wx.showToast({
+                        title: '请勿重复加入群组',
+                        icon: "none"
+                      })
+                    } else {
+                      const _ = wx.cloud.database().command
+                      wx.cloud.database().collection('group').doc(_groupid).update({
+                        data: {
+                          'member': _.push(that.openid),
+                        }
+                      })
+                      wx.cloud.database().collection('user').where({
+                        _openid: that.data.openid
+                      }).update({
+                        data: {
+                          'group': _.push(inputcontent),
+                          'joined': _.push(inputcontent),
+                        }
+                      })
+                    }
+                  })
+                }
+              })
+          } else {
+            wx.showModal({
+              title: "错误",
+              content: "输入格式有误",
+              confirmColor: "#07c160",
+              confirmText: "重试",
+              success: (res => {
+                if (res.confirm) {
+                  this.joinGroup()
+                }
+              })
+            })
+          }
+        }
+      }),
+    })
+  },
+
+  addTask: function () {
+    wx.navigateTo({
+      url: '/pages/add/add',
+    })
+  },
+
+  manageGroup: function () {
+    wx.navigateTo({
+      url: '/pages/group/group',
+    })
+  },
+
+  refreshData: function () {
+    if (this.data.login) {
       this.setData({
         nickName: this.data.userInfo.nickName,
         avatarUrl: this.data.userInfo.avatarUrl
       })
+    } else {
+      console.log("failed")
     }
-    else{console.log("failed")}
+    wx.cloud.database().collection('user').where({
+        _openid: this.data.openid
+      }).get()
+      .then(res => {
+        let timestamp = res.data[0].timestamp
+        let days = Math.ceil((new Date().getTime() - timestamp) / 86400000)
+        this.setData({
+          description: "HoloTask 已陪伴您 " + days + " 天"
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
   },
 
-  refreshUserInfo: function(){
+  refreshUserInfo: function () {
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -58,8 +178,8 @@ Page({
     }
   },
 
-  getImage: function(){
-    if(this.data.bing){
+  getImage: function () {
+    if (this.data.bing) {
       wx.request({
         url: 'https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1',
         method: 'GET',
@@ -71,8 +191,7 @@ Page({
           })
         }
       })
-    }
-    else{
+    } else {
       wx.cloud.getTempFileURL({
         fileList: ["cloud://holotask-1gb3a2qhe28a3262.686f-holotask-1gb3a2qhe28a3262-1304966310/image/account/sajad-nori-i4lvriR96Ek-unsplash.jpg"],
         success: res => {
@@ -87,8 +206,8 @@ Page({
     }
   },
 
-  getMoto: function(){
-    if(this.data.hitokoto){
+  getMoto: function () {
+    if (this.data.hitokoto) {
       wx.request({
         url: 'https://v1.hitokoto.cn/?c=a&c=b&c=c&c=d&c=i&encode=json&max_length=30',
         method: 'GET',
@@ -104,14 +223,14 @@ Page({
     }
   },
 
-  animation: function(){
+  animation: function () {
     this.animate('#motto_container', [{
       opacity: 1.0,
       offset: 0
-    },{
+    }, {
       opacity: 0.0,
       offset: 1
-    },], 2000, {
+    }, ], 2000, {
       scrollSource: '#scroller',
       timeRange: 2000,
       startScrollOffset: 50,
@@ -120,28 +239,28 @@ Page({
 
     this.animate('#header', [{
       height: '100%',
-    },{
+    }, {
       height: '120%',
-    },], 2000, {
+    }, ], 2000, {
       scrollSource: '#scroller',
       timeRange: 2000,
       startScrollOffset: 0,
       endScrollOffset: 280
     })
-    
+
     this.animate('#motto_setting', [{
       opacity: 1.0,
       transform: 'rotate(0deg)',
       offset: 0
-    },{
+    }, {
       opacity: 1.0,
       transform: 'rotate(32deg)',
       offset: .18
-    },{
+    }, {
       opacity: 0.0,
       transform: 'rotate(180deg)',
       offset: 1
-    },], 2000, {
+    }, ], 2000, {
       scrollSource: '#scroller',
       timeRange: 2000,
       startScrollOffset: 0,
@@ -154,9 +273,51 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    //获取openid
+    if (app.globalData.openid) {
+      this.setData({
+        openid: app.globalData.openid
+      })
+    } else {
+      wx.cloud.callFunction({
+        name: 'getOpenid',
+        complete: res => {
+          app.globalData.openid = res.result.openid
+          app.globalData.appid = res.result.appid
+          this.setData({
+            openid: res.result.openid
+          })
+        }
+      })
+    }
+    //获取夜间模式
+    if (app.globalData.theme) {
+      // console.log(app.globalData.theme)
+      this.setData({
+        theme: app.globalData.theme
+      })
+    } else {
+      wx.getSystemInfo({
+        success: (res) => {
+          this.setData({
+            theme: res.theme
+          })
+        }
+      })
+    }
+    //获取设置
+    wx.cloud.database().collection('user').where({
+        _openid: this.openid
+      }).get()
+      .then(res => {
+        this.setData({
+          bing: res.data[0].settings.bing,
+          hitokoto: res.data[0].settings.hitokoto,
+        })
+        this.getImage();
+        this.getMoto();
+      })
     this.refreshUserInfo();
-    this.getImage();
-    this.getMoto();
     this.animation();
     this.refreshData();
   },

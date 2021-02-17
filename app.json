@@ -5,6 +5,13 @@
     "pages/history/history",
     "pages/account/account",
     "pages/modify/modify",
+    "pages/add/add",
+    "pages/group/group",
+    "pages/addgroup/addgroup",
+    "pages/groupdetails/groupdetails",
+    "pages/accountsetting/accountsetting",
+    "pages/about/about",
+    "pages/settings/settings",
     "pages/logs/logs"
   ],
   "window":{

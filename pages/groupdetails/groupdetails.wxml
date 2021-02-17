@@ -1,0 +1,46 @@
+<!--pages/groupdetails/groupdetails.wxml-->
+<view class="container">
+  <view class="heading component">
+    <text class="name">{{name}}</text>
+    <text class="groupid">{{groupid}}</text>
+  </view>
+  <view class="imformation">
+    <view class="imformation_item">
+      <text>简介</text>
+      <text class="imformation_content">{{description}}</text>
+    </view>
+    <view class="imformation_item">
+      <text>管理员</text>
+      <text class="imformation_content">{{admin}}</text>
+    </view>
+  </view>
+  <view class="line component"></view>
+  <view class="task">
+    <view class="title">
+      <text>历史任务</text>
+    </view>
+    <scroll-view class="scroll" scroll-y="true" enable-flex="true" refresher-enabled="true" refresher-triggered="{{tasktriggered}}" bindrefresherpulling="taskOnpulling" bindrefresherrefresh="refreshTask" bindscrolltolower="taskskipPlus">
+      <view wx:for="{{task}}" wx:key="index" class="scroll_item" data-id="{{item._id}}" bindtap="taskDetails">
+        <image class="icon" src="/source/icon/groupdetails/message-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
+        <view class="content">
+          <text>{{item.title}}</text>
+          <text>{{item.time}}</text>
+        </view>
+      </view>
+      <view class="scroll_item empty" wx:if="{{task.length == 0}}">无任务</view>
+    </scroll-view>
+  </view>
+  <view class="member">
+    <view class="title">
+      <text>群组成员</text>
+    </view>
+    <scroll-view class="scroll" scroll-y="true" enable-flex="true" refresher-enabled="true" refresher-triggered="{{membertriggered}}" bindrefresherpulling="memberOnpulling" bindrefresherrefresh="refreshMember">
+      <view wx:for="{{member}}" wx:key="index" class="scroll_item">
+        <image class="icon" src="/source/icon/groupdetails/account_circle-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
+        <view class="content">
+          <text>{{item}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

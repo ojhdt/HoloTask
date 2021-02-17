@@ -1,0 +1,96 @@
+/* pages/group/group.wxss */
+page {
+  background: #f1f1f1;
+}
+
+.container{
+  margin: 0 50rpx;
+}
+
+.notification{
+  height: 200rpx;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading{
+  font-size: 1.4rem;
+  margin: 30rpx 0;
+}
+
+.sub{
+  font-size: 0.8rem;
+  color: #444;
+}
+
+.btn{
+  font-size: 0.9rem;
+  background-color: #07c160;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30rpx;
+  margin: 50rpx auto;
+  width: 300rpx;
+  height: 60rpx;
+  color: white;
+  box-shadow: 5rpx 5rpx 20rpx #ddd;
+}
+
+.list{
+  margin: 50rpx 0;
+}
+
+.card{
+  width: 100%;
+  height: 150rpx;
+  margin: 50rpx 0;
+  background: white;
+  box-shadow: 5rpx 5rpx 20rpx #ddd;
+  border-radius: 0.5rem;
+}
+
+.h_card{
+  opacity: .7;
+}
+
+.text{
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 0 30rpx;
+}
+
+.main{
+  font-size: 1.2rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  page {
+    background: #1f2535;
+  }
+
+  .btn{
+    box-shadow: 0rpx 0rpx 0rpx #ddd;
+  }
+
+  .heading{
+    color: #fff;
+  }
+
+  .main{
+    color: #fff;
+  }
+
+  .sub{
+    color: #cccccc;
+  }
+
+  .card{
+    background: #444;
+    box-shadow: 0 0 0 #ddd;
+  }
+}

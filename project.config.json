@@ -1,4 +1,5 @@
 {
+  "cloudfunctionRoot": "cloud/",
   "description": "项目配置文件",
   "packOptions": {
     "ignore": []
@@ -40,7 +41,7 @@
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.14.1",
+  "libVersion": "2.15.0",
   "appid": "wxe3dbdde5783f0401",
   "projectname": "miniprogram",
   "debugOptions": {
@@ -50,6 +51,7 @@
   "isGameTourist": false,
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {
     "plugin": {
       "list": []
@@ -65,6 +67,49 @@
         {
           "name": "pages/account/account",
           "pathName": "pages/account/account",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/add/add",
+          "pathName": "pages/add/add",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/group/group",
+          "pathName": "pages/group/group",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/addgroup/addgroup",
+          "pathName": "pages/addgroup/addgroup",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/accountsetting/accountsetting",
+          "pathName": "pages/accountsetting/accountsetting",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/modify/modify",
+          "pathName": "pages/modify/modify",
+          "query": "id=b00064a7602b432e05367dd96f354c44",
+          "scene": null
+        },
+        {
+          "name": "pages/about/about",
+          "pathName": "pages/about/about",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/settings/settings",
+          "pathName": "pages/settings/settings",
+          "query": "",
           "scene": null
         }
       ]

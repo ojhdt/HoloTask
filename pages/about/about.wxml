@@ -1,0 +1,67 @@
+<!--pages/about/about.wxml-->
+<view class="container">
+  <view class="head">
+    <image src="/source/main.png" mode="widthFix"></image>
+    <view class="head_text">
+      <text>简洁，轻量化的任务管理工具</text>
+      <text class="version">HoloTask 1.2.1.210217_beta</text>
+    </view>
+  </view>
+  <view class="content">
+    <view class="element">
+      <view class="element_title">
+        <text>简介</text>
+      </view>
+      <view class="element_content">
+        <text>HoloTask 是一款简洁，轻量化的任务管理工具。支持云端同步，群组管理，任务提醒等功能，可应用于班级管理，自我约束等多种场合。\n\nHoloTask 重视每一位用户的使用体验。在界面设计上，HoloTask 尽可能遵循了移动端开发主流的 Material Design 设计规范，重新设计了软件内使用的大量控件。在功能设计上，我们摒弃冗余的配置项，力求简化操作逻辑。同时，我们承诺将不会在 HoloTask 中添加任何广告，还用户清爽的使用体验。\n\n感谢每一位使用 HoloTask 的你！</text>
+      </view>
+    </view>
+    <view class="element">
+      <view class="element_title">
+        <text>开发者</text>
+      </view>
+      <view class="element_content">
+        <view class="developer">
+          <image src="/source/img/about/ojhdt.jpeg" class="developer_avatar" mode="widthFix"></image>
+          <view class="developer_text">
+            <text class="developer_main">Ojhdt</text>
+            <text class="developer_sub">学生</text>
+          </view>
+        </view>
+        <view class="developer">
+          <image src="/source/img/about/habc706.jpg" class="developer_avatar" mode="widthFix"></image>
+          <view class="developer_text">
+            <text class="developer_main">habc706</text>
+            <text class="developer_sub">大一学生</text>
+          </view>
+        </view>
+        <view class="developer">
+          <image src="/source/img/about/liusenjun.jpg" class="developer_avatar" mode="widthFix"></image>
+          <view class="developer_text">
+            <text class="developer_main">liusenjun</text>
+            <text class="developer_sub">大一狗</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="element">
+      <view class="element_title">
+        <text>联系我们</text>
+      </view>
+      <view class="element_content contact">
+        <text user-select="true">E_mail: ojhdtmail@gmail.com\nTelegram: https://t.me/ojhdt</text>
+      </view>
+    </view>
+    <view class="element">
+      <view class="element_title">
+        <text>开源协议</text>
+      </view>
+      <view class="element_content">
+        <view class="licenses">
+          <text class="licenses_main">Wemark - TooBug</text>
+          <text user-select="true" class="licenses_sub">https://github.com/TooBug/wemark\nMIT License</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
