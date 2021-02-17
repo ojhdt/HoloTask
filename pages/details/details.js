@@ -25,7 +25,36 @@ Page({
 
   finish: function () {
     var that = this
-    if (this.data.finished == false) {
+    // if (this.data.finished == false) {
+    // }
+    if (this.data.finished == true) {
+      wx.showModal({
+        confirmColor: '#07c160',
+        title: "修改",
+        content: "是否要撤销完成状态",
+        success(res) {
+          if (res.confirm) {
+            wx.cloud.callFunction({
+              name: 'updateFinished',
+              data: {
+                id: that.data._id,
+                openid: that.data.openid,
+                value: false
+              }
+            }).then(res => {
+              console.log("调用成功")
+              that.setData({
+                finished: false
+              })
+              that.process()
+              wx.showToast({
+                title: '状态已撤销',
+              })
+            })
+          }
+        }
+      })
+    } else {
       if (this.data.timestamp - (new Date).getTime() > 0) {
         wx.showModal({
           confirmColor: '#07c160',
@@ -60,34 +89,6 @@ Page({
         })
       }
     }
-    if (this.data.finished == true) {
-      wx.showModal({
-        confirmColor: '#07c160',
-        title: "修改",
-        content: "是否要撤销完成状态",
-        success(res) {
-          if (res.confirm) {
-            wx.cloud.callFunction({
-              name: 'updateFinished',
-              data: {
-                id: that.data._id,
-                openid: that.data.openid,
-                value: false
-              }
-            }).then(res => {
-              console.log("调用成功")
-              that.setData({
-                finished: false
-              })
-              that.process()
-              wx.showToast({
-                title: '状态已撤销',
-              })
-            })
-          }
-        }
-      })
-    }
   },
 
   process: function () {
@@ -107,6 +108,15 @@ Page({
         timelast: str,
         btn: "未完成"
       })
+      if(this.data.theme == 'light'){
+        this.setData({
+          style: "background:#e9e9e9;color:#000;",
+        })
+      } else if(this.data.theme == 'dark'){
+        this.setData({
+          style: "background:#444444;color:#fff;",
+        })
+      }
     } else if (timelast >= 86400 && timelast < 172800) {
       //如果多于一天
       let str = "1天" + Math.floor((timelast - 84400) / 3600) + "时"
@@ -114,6 +124,15 @@ Page({
         timelast: str,
         btn: "未完成"
       })
+      if(this.data.theme == 'light'){
+        this.setData({
+          style: "background:#e9e9e9;color:#000;",
+        })
+      } else if(this.data.theme == 'dark'){
+        this.setData({
+          style: "background:#444444;color:#fff;",
+        })
+      }
     } else if (timelast < 86400 && timelast > 3600) {
       //如果少于一天但多于1小时
       let str = Math.floor(timelast / 3600) + "时" + Math.floor((timelast % 3600) / 60) + "分"
@@ -133,7 +152,8 @@ Page({
       //如果已过期
       this.setData({
         timelast: "已过期",
-        btn: "已过期"
+        btn: "已过期",
+        style: "background:#ffc107;color:#fff;",
       })
     }
     //最后更改按钮状态

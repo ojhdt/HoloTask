@@ -181,6 +181,16 @@ page{
   opacity: .7;
 }
 
+.notask{
+  color: #666;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300rpx;
+  font-size: .8rem;
+  padding: 0 50rpx;
+}
+
 /* 暗黑模式下应用的样式 */
 @media (prefers-color-scheme: dark) {
   page{
@@ -245,5 +255,9 @@ page{
 
   #home_line{
     color: #ccc
+  }
+
+  .notask{
+    color: #ccc;
   }
 }

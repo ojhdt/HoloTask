@@ -53,19 +53,20 @@ Page({
     }],
   },
   delete: function() {
+    var that =  this
     wx.showModal({
       confirmColor: '#ff8a80',
       title: "警告",
       content: "是否要删除该任务",
       success(res) {
         if(res.confirm){
-          wx.cloud.database().collection('data').doc(this.data.id).remove()
+          wx.cloud.database().collection('data').doc(that.data.id).remove()
           .then(res => {
             wx.showToast({
               title: '已删除',
             })
             wx.navigateBack({
-              delta: 1,
+              delta: 2,
             })
           })
         }
@@ -304,7 +305,7 @@ Page({
                   duration: 1000
                 })
                 wx.navigateBack({
-                  delta: 1,
+                  delta: 2,
                 })
               })
               .catch(res => {
