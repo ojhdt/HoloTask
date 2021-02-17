@@ -147,7 +147,7 @@ page{
   align-items: center;
   background: #fff;
   border-radius: 0.8rem;
-  box-shadow: 5rpx 5rpx 20rpx #ddd;
+  
   font-size: 0.8rem;
 }
 
@@ -171,11 +171,25 @@ page{
   margin: 50rpx 0 0 0;
 }
 
+#feedback{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 50rpx 0 0 0;
+  width: auto;
+  height: auto;
+  font-weight: normal;
+  font-size: 1rem;
+  padding: 0;
+  background: rgba(0,0,0,0);
+}
+
 .text{
   margin: 0 0 0 50rpx;
   width: 300rpx;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 
 .subtitle{

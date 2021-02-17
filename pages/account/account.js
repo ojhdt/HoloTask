@@ -24,6 +24,12 @@ Page({
     })
   },
 
+  about: function() {
+    wx.navigateTo({
+      url: '/pages/about/about',
+    })
+  },
+
   joinGroup: function () {
     var that = this
     wx.showModal({

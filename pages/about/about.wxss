@@ -1,0 +1,119 @@
+/* pages/about/about.wxss */
+/* 一般情况下的样式 begin */
+page{
+  background: #ffffff;
+}
+
+.head{
+  background: #f1f1f1;
+  box-shadow: 5rpx 5rpx 20rpx #ddd;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50rpx 0;
+}
+
+.head > image{
+  width: 200rpx;
+}
+
+.head_text{
+  font-size: .9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30rpx 0 0 0;
+}
+
+.version{
+  font-size: .7rem;
+  color: #666;
+  margin: 10rpx 0 0 0;
+}
+
+.content{
+  margin: 0 50rpx;
+  font-size: .8rem;
+  padding: 0 0 50rpx 0 ;
+}
+
+.element{
+  margin: 50rpx 0 0 0;
+}
+
+.element_title{
+  color: #666;
+}
+
+.element_content{
+  margin: 10rpx 0 0 0;
+}
+
+.developer{
+  display: flex;
+  flex-direction: row;
+  margin: 40rpx 0 0 0;
+}
+
+.developer_avatar{
+  width: 80rpx;
+  border-radius: 40rpx;
+}
+
+.developer_text{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 0 30rpx;
+}
+
+.developer_main{
+  margin: 5rpx 0 0 0;
+}
+
+.developer_sub{
+  color: #666;
+}
+
+.contact{
+  line-height: 40rpx;
+}
+
+.licenses{
+  display: flex;
+  flex-direction: column;
+}
+
+.licenses_sub{
+  margin: 10rpx 0 0 0;
+  font-size: .6rem;
+  color: #666;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* DarkMode 下的样式 start */
+  page{
+    background: #1d1f25;
+  }
+
+  .head{
+    background: #1f2535;
+  }
+
+  .version{
+    color: #ccc;
+  }
+
+  .element_title{
+    color: #ccc;
+  }
+
+  .developer_sub{
+    color: #ccc;
+  }
+
+  .licenses_sub{
+    color: #ccc;
+  }
+}

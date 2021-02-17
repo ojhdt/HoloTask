@@ -10,6 +10,7 @@
     "pages/addgroup/addgroup",
     "pages/groupdetails/groupdetails",
     "pages/accountsetting/accountsetting",
+    "pages/about/about",
     "pages/logs/logs"
   ],
   "window":{
