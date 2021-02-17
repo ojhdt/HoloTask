@@ -256,7 +256,6 @@ Page({
 
     if (e.detail.value.groupid != "" && e.detail.value.title != "" && e.detail.value.date != "" && e.detail.value.time != "" && e.detail.value.content != "") {
       wx.showModal({
-        cancelColor: '#000000',
         confirmColor: '#07c160',
         title: "发布任务",
         content: "是否要发布该任务",
@@ -282,7 +281,9 @@ Page({
                   title: "任务已发布",
                   duration: 1000
                 })
-                that.reset()
+                wx.navigateBack({
+                  delta: 1,
+                })
               })
               .catch(res => {
                 wx.showToast({
