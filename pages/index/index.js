@@ -134,13 +134,16 @@ Page({
       }).get()
       .then(res => {
         var groups = res.data[0].group
+        var archive = Number(res.data[0].settings.archive)
         // console.log("groups:", groups)
         var db = []
         var counter = 0
         // console.log(groups.length)
         groups.forEach((value, index, array) => {
+          const _ = wx.cloud.database().command
           wx.cloud.database().collection('data').where({
-              groupid: value
+              groupid: value,
+              timestamp: _.gt((new Date).getTime() - archive * 86400000)
             }).orderBy("timestamp", 'desc').limit(20).skip(0).get()
             .then(res => {
               // console.log(res.data)
@@ -182,11 +185,14 @@ Page({
     }).get()
     .then(res => {
       var groups = res.data[0].group
+      var archive = Number(res.data[0].settings.archive)
       var db = []
       var counter = 0
       groups.forEach((value, index, array) => {
+        const _ = wx.cloud.database().command
         wx.cloud.database().collection('data').where({
-            groupid: value
+            groupid: value,
+            timestamp: _.gt((new Date).getTime() - archive * 86400000)
           }).orderBy("timestamp", 'desc').limit(20).skip(skip).get()
           .then(res => {
             let newtask = res.data

@@ -7,7 +7,7 @@
     <view class="component" bindtap="switch">
       <view class="text">
         <text class="title">自动归档时间阈值</text>
-        <text class="subtitle">任务过期一定天数后自动归档（默认为五天）</text>
+        <text class="subtitle">任务过期一定天数后自动归档（默认为五天）\n设置为0则任务过期后立即归档</text>
       </view>
       <view class="picker">
         <text>{{value}} 天</text>
