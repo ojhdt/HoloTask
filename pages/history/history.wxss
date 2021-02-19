@@ -1,6 +1,6 @@
 /*正常模式*/
 page{
-  background: #EEEEEE;
+  background: #f1f1f1;
 }
 
 .container{
@@ -70,5 +70,23 @@ page{
   /* DarkMode 下的样式 start */
   page{
     background: #1f2535;
+  }
+
+  .first_title > text{
+    color: #ccc;
+  }
+
+  .card{
+    background: #444;
+    box-shadow: 0 0 0 #ddd;
+  }
+
+  .text{
+    color: #ccc;
+  }
+
+  .btn{
+    background: #444;
+    box-shadow: 0 0 0 #ddd;
   }
 }
