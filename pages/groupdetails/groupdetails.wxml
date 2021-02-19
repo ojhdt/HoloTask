@@ -14,7 +14,7 @@
       <text class="imformation_content">{{admin}}</text>
     </view>
   </view>
-  <view class="line component"></view>
+  <!-- <view class="line component"></view> -->
   <view class="task">
     <view class="title">
       <text>历史任务</text>
@@ -38,7 +38,8 @@
       <view wx:for="{{member}}" wx:key="index" class="scroll_item">
         <image class="icon" src="/source/icon/groupdetails/account_circle-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
         <view class="content">
-          <text>{{item}}</text>
+          <text>{{item.nickname}}</text>
+          <text wx:if="{{is_admin}}" data-id="{{item._id}}" data-openid="{{item._openid}}" bindtap="remove">移出</text>
         </view>
       </view>
     </scroll-view>

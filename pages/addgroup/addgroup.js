@@ -286,6 +286,9 @@ Page({
                     duration: 1000
                   })
                   that.reset()
+                  wx.navigateBack({
+                    delta: 1,
+                  })
                 })
                 .catch(res => {
                   wx.showToast({

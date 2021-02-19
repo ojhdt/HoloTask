@@ -115,6 +115,12 @@
         {
           "name": "pages/history/history",
           "pathName": "pages/history/history",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/groupdetails/groupdetails",
+          "pathName": "pages/groupdetails/groupdetails",
           "scene": null
         }
       ]

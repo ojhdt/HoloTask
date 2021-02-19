@@ -32,6 +32,15 @@ page{
   padding: 0 30rpx;
 }
 
+.text{
+  height: 200rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: .8rem;
+  color: #666;
+}
+
 .card_time{
   font-size: .8rem;
   color: #666;

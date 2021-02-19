@@ -7,6 +7,9 @@
     <view class="groupname">
       <text>{{item.name}}</text>
     </view>
+    <view wx:if="{{item.data.length == 0}}" class="text">
+      <text>该群组暂未发布任何任务</text>
+    </view>
     <view wx:for="{{item.data}}" wx:key="index">
       <view class="card" data-id="{{item._id}}" hover-class="hover" bindtap="details">
         <text>{{item.title}}</text>
