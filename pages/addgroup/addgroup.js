@@ -33,7 +33,7 @@ Page({
   },
 
   random: function () {
-    var random = Math.floor((Math.random() + Math.floor(Math.random() * 9 + 1)) * Math.pow(10, 8 - 1));
+    var random = (Math.floor((Math.random() + Math.floor(Math.random() * 9 + 1)) * Math.pow(10, 8 - 1))).toString();
     wx.cloud.database().collection('group').where({
         groupid: random
       }).get()
@@ -281,13 +281,13 @@ Page({
                   }
                 })
                 .then(res => {
-                  wx.showToast({
-                    title: "群组已创建",
-                    duration: 1000
-                  })
                   that.reset()
                   wx.navigateBack({
                     delta: 1,
+                  })
+                  wx.showToast({
+                    title: "群组已创建",
+                    duration: 1000
                   })
                 })
                 .catch(res => {

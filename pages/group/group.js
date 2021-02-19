@@ -9,6 +9,8 @@ Page({
   data: {
     openid: null,
     theme: null,
+    joined: [],
+    manage: []
   },
 
   /**
@@ -26,6 +28,53 @@ Page({
     wx.navigateTo({
       url: url,
     })
+  },
+
+  refresh: function () {
+    //获取群组
+    wx.cloud.database().collection('user').where({
+        _openid: this.data.openid
+      }).get()
+      .then(res => {
+        var joined = res.data[0].joined
+        var manage = res.data[0].manage
+        var joineddata = []
+        var managedata = []
+        var counterj = 0
+        var counterm = 0
+        console.log(joined,manage)
+        //拉取joined
+        joined.forEach((value, index, array) => {
+          wx.cloud.database().collection('group').where({
+              groupid: value
+            }).get()
+            .then(res => {
+              joineddata = joineddata.concat(res.data)
+              counterj++
+              if (counterj == joined.length) {
+                this.setData({
+                  joined: joineddata
+                })
+              }
+            })
+        })
+        //拉取manage
+        manage.forEach((value, index, array) => {
+          wx.cloud.database().collection('group').where({
+              groupid: value,
+              _openid: this.data.openid
+            }).get()
+            .then(res => {
+              managedata = managedata.concat(res.data)
+              counterm++
+              if (counterm == manage.length) {
+                this.setData({
+                  manage: managedata
+                })
+              }
+            })
+        })
+      })
   },
 
   onLoad: function (options) {
@@ -61,37 +110,7 @@ Page({
         }
       })
     }
-    //获取群组
-    wx.cloud.database().collection('user').where({
-        _openid: this.data.openid
-      }).get()
-      .then(res => {
-        var joined = res.data[0].joined
-        var manage = res.data[0].manage
-        //拉取joined
-        joined.forEach((value, index, array) => {
-          wx.cloud.database().collection('group').where({
-              groupid: value
-            }).get()
-            .then(res => {
-              this.setData({
-                joined: res.data
-              })
-            })
-        })
-        //拉取manage
-        manage.forEach((value, index, array) => {
-          wx.cloud.database().collection('group').where({
-              groupid: value,
-              _openid: this.data.openid
-            }).get()
-            .then(res => {
-              this.setData({
-                manage: res.data
-              })
-            })
-        })
-      })
+    this.refresh()
   },
 
   /**
