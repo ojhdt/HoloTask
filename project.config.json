@@ -111,6 +111,11 @@
           "pathName": "pages/settings/settings",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/history/history",
+          "pathName": "pages/history/history",
+          "scene": null
         }
       ]
     }
