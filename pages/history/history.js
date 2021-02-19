@@ -24,7 +24,7 @@ Page({
       [str]: this.data.groups[e.currentTarget.dataset.index].taskskip - 20,
       [str1]: this.data.groups[e.currentTarget.dataset.index].nextcount - 1
     })
-    this.refresh(this.data.groups[e.currentTarget.dataset.index],e.currentTarget.dataset.index)
+    this.refresh(this.data.groups[e.currentTarget.dataset.index], e.currentTarget.dataset.index)
   },
 
   next: function (e) {
@@ -34,7 +34,7 @@ Page({
       [str]: this.data.groups[e.currentTarget.dataset.index].taskskip + 20,
       [str1]: this.data.groups[e.currentTarget.dataset.index].nextcount + 1
     })
-    this.refresh(this.data.groups[e.currentTarget.dataset.index],e.currentTarget.dataset.index)
+    this.refresh(this.data.groups[e.currentTarget.dataset.index], e.currentTarget.dataset.index)
   },
 
   refreshData: function () {
@@ -80,7 +80,9 @@ Page({
                     })
                     wx.stopPullDownRefresh({
                       success: (res) => {
-                        console.log("success")
+                        wx.showToast({
+                          title: "数据已更新",
+                        })
                       },
                     })
                   }
@@ -91,7 +93,7 @@ Page({
       })
   },
 
-  refresh: function (group,index) {
+  refresh: function (group, index) {
     wx.cloud.database().collection('data').where({
         groupid: group.groupid
       }).orderBy("timestamp", 'desc').limit(20).skip(group.taskskip).get()
@@ -99,9 +101,9 @@ Page({
         res.data.forEach((value, index, array) => {
           value.time = util.formatTime(new Date(value.timestamp))
         })
-        let data = "groups["+ index +"].data"
-        let next = "groups["+ index +"].next"
-        let last = "groups["+ index +"].last"
+        let data = "groups[" + index + "].data"
+        let next = "groups[" + index + "].next"
+        let last = "groups[" + index + "].last"
         // let data = res.data
         // if (res.data.length == 20) {
         //   let next = true
@@ -187,7 +189,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.refreshData()
   },
 
   /**

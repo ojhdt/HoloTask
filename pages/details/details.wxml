@@ -39,6 +39,7 @@
 <view class="content" style="top:{{height}}rpx">
     <view class="container">
         <view class="k">详细内容</view>
-        <view>{{content}}</view>
+        <view wx:if="{{!markdown}}">{{content}}</view>
+        <wemark wx:if="{{markdown}}" md="{{content}}" link="true" highlight="true" type="wemark"></wemark>
     </view>
 </view>

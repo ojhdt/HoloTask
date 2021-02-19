@@ -4,7 +4,12 @@ page{
 }
 
 .container{
-  margin: 50rpx;
+  margin: 0 50rpx;
+}
+
+#blank{
+  width: 100%;
+  height: 50rpx;
 }
 
 .first_title > text{

@@ -13,7 +13,8 @@ Page({
     admin: "加载中",
     group: "加载中",
     time: "加载中",
-    timelast: "加载中"
+    timelast: "加载中",
+    markdown: false
   },
 
   edit: function () {
@@ -214,7 +215,8 @@ Page({
           groupid: res.data.groupid,
           timestamp: res.data.timestamp,
           title: res.data.title,
-          time: util.formatTime(new Date(res.data.timestamp))
+          time: util.formatTime(new Date(res.data.timestamp)),
+          markdown: res.data.markdown
         })
         wx.cloud.database().collection('group').where({
             groupid: res.data.groupid

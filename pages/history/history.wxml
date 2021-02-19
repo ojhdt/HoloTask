@@ -1,4 +1,5 @@
 <view class="container">
+  <view id="blank"></view>
   <view class="first_title">
     <view class="title">历史</view>
     <text>成功获取 {{groups.length - 1}} 群组数据</text>

@@ -112,11 +112,11 @@
         <view class="textarea_main" style="{{input[2].main}}">
           <text class="textarea_placeholder" style="{{input[2].placeholder}}">内容</text>
           <textarea name="content" value="{{input[2].value}}" data-id="2" data-helptext="任务详细内容，支持换行" class="input_area" type="text"
-            bindfocus="focus" bindinput="input" bindblur="blur" maxlength="200" auto-height="true"></textarea>
+            bindfocus="focus" bindinput="input" bindblur="blur" maxlength="500" auto-height="true"></textarea>
         </view>
         <view class="sub">
           <text style="{{input[2].helptext_style}}">{{input[2].helptext}}</text>
-          <text>{{input[2].number}}/200</text>
+          <text>{{input[2].number}}/500</text>
         </view>
       </view>
       <view class="component">

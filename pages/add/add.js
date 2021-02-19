@@ -11,6 +11,7 @@ Page({
     theme: null,
     array: null,
     nickname: null,
+    markdown: false,
     input: [{
       main: "",
       placeholder: "",
@@ -49,6 +50,31 @@ Page({
       helptext_style: ""
     }],
   },
+  switch: function (e) {
+    let target = e.currentTarget.dataset.name
+    if (target == "markdown") {
+      var value = !this.data.markdown
+    }
+    this.setData({
+      [target]: value
+    })
+    this.check()
+  },
+
+  check: function () {
+    if (this.data.markdown) {
+      this.setData({
+        markdownbar: "background:#bcddb0;",
+        markdowndot: "right:0rpx;background:#07c160;"
+      })
+    } else {
+      this.setData({
+        markdownbar: "background:#9e9e9e;",
+        markdowndot: "right:34rpx;background:#fff;"
+      })
+    }
+  },
+
   input: function (e) {
     let id = e.currentTarget.dataset.id
     let str = "input[" + id + "].number"
@@ -272,8 +298,11 @@ Page({
                   title: e.detail.value.title,
                   admin: admin,
                   timestamp: Date.parse(time.replace(/-/g, '/')),
+                  markdown: that.data.markdown,
                   content: e.detail.value.content,
-                  finished: {[that.data.openid]: false}
+                  finished: {
+                    [that.data.openid]: false
+                  }
                 }
               })
               .then(res => {
@@ -338,8 +367,8 @@ Page({
     //获取群组
     if (app.globalData.openid) {
       wx.cloud.database().collection('group').where({
-        _openid: app.globalData.openid
-      }).get()
+          _openid: app.globalData.openid
+        }).get()
         .then(res => {
           // console.log(res)
           this.setData({
@@ -349,7 +378,7 @@ Page({
         .catch(err => {
           console.log(err)
         })
-    }else{
+    } else {
       wx.cloud.callFunction({
         name: 'getOpenid',
         complete: res => {
@@ -359,8 +388,8 @@ Page({
             openid: res.result.openid
           })
           wx.cloud.database().collection('group').where({
-            _openid: res.result.openid
-          }).get()
+              _openid: res.result.openid
+            }).get()
             .then(res => {
               // console.log(res)
               this.setData({
