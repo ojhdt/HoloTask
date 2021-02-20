@@ -71,6 +71,10 @@ page{
   font-size: .8rem;
 }
 
+.hover{
+  opacity: .7;
+}
+
 @media (prefers-color-scheme: dark) {
   /* DarkMode 下的样式 start */
   page{
@@ -84,6 +88,10 @@ page{
   .card{
     background: #444;
     box-shadow: 0 0 0 #ddd;
+  }
+
+  .card_time{
+    color: #ccc;
   }
 
   .text{

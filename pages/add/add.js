@@ -310,9 +310,11 @@ Page({
                   title: "任务已发布",
                   duration: 1000
                 })
-                wx.navigateBack({
+                setTimeout(() => {
+                  wx.navigateBack({
                   delta: 1,
                 })
+              },1000)
               })
               .catch(res => {
                 wx.showToast({
