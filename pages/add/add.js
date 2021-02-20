@@ -12,6 +12,10 @@ Page({
     array: null,
     nickname: null,
     markdown: false,
+    tempImgs: [],
+    tempFiles: [],
+    file_style: null,
+    file_helptext: "可添加一个大小不超过 10 MiB 的附件。",
     input: [{
       main: "",
       placeholder: "",
@@ -50,6 +54,74 @@ Page({
       helptext_style: ""
     }],
   },
+
+  chooseFile: function () {
+    var that = this
+    wx.chooseMessageFile({
+      count: 1,
+      type: 'file',
+      success(res) {
+        // tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = res.tempFiles
+        if (tempFilePaths[0].size > 10485760) {
+          let str = "文件过大（" + (tempFilePaths[0].size / 1048576).toFixed(2) + "MiB），超出 10 MiB 限制，文件未上传"
+          that.setData({
+            file_helptext: str,
+            file_style: "color:#ff8a80;"
+          })
+        } else {
+          that.setData({
+            tempFiles: tempFilePaths,
+            file_helptext: "可添加一个大小不超过 10 MiB 的附件。",
+            file_style: ""
+          })
+        }
+      }
+    })
+  },
+
+  clearFile: function () {
+    this.setData({
+      tempFiles: []
+    })
+  },
+
+  chooseImage: function () {
+    var that = this
+    wx.chooseImage({
+      count: 2,
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera'],
+      success(res) {
+        // tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = res.tempFilePaths
+        // console.log(tempFilePaths)
+        that.setData({
+          tempImgs: tempFilePaths
+        })
+      }
+    })
+  },
+
+  clearImage: function (e) {
+    let temp = this.data.tempImgs
+    this.setData({
+      tempImgs: temp.splice(e.currentTarget.dataset.index + 1, 1)
+    })
+  },
+
+  uploadFile: function (cloudpath, filepath) {
+    wx.cloud.uploadFile({
+      cloudPath: cloudpath,
+      filePath: filepath, // 文件路径
+    }).then(res => {
+      // get resource ID
+      console.log(res.fileID)
+    }).catch(error => {
+      // handle error
+    })
+  },
+
   switch: function (e) {
     let target = e.currentTarget.dataset.name
     if (target == "markdown") {
@@ -312,9 +384,9 @@ Page({
                 })
                 setTimeout(() => {
                   wx.navigateBack({
-                  delta: 1,
-                })
-              },1000)
+                    delta: 1,
+                  })
+                }, 1000)
               })
               .catch(res => {
                 wx.showToast({

@@ -184,6 +184,22 @@ page {
   transition: background .2s ease-in-out, right .2s ease-in-out;
 }
 
+.img{
+  width: 150rpx;
+  height: 150rpx;
+  margin: 0 10rpx 0 0;
+}
+
+.imgs{
+  display: flex;
+  flex-direction: row;
+  margin: 10rpx 0 0 0;
+}
+
+.hover{
+  opacity: .7;
+}
+
 @media (prefers-color-scheme: dark) {
   page {
     background: #1f2535;
