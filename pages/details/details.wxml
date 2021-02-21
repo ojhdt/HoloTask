@@ -39,7 +39,33 @@
 <view class="content" style="top:{{height}}rpx">
     <view class="container">
         <view class="k">详细内容</view>
-        <view wx:if="{{!markdown}}">{{content}}</view>
-        <wemark wx:if="{{markdown}}" md="{{content}}" link="true" highlight="true" type="wemark"></wemark>
+        <view class="content_main">
+            <view wx:if="{{!markdown}}">{{content}}</view>
+            <wemark wx:if="{{markdown}}" md="{{content}}" link="true" highlight="true" type="wemark"></wemark>
+        </view>
+        <view class="content_sub">
+            <view class="upload" wx:if="{{imgs.length != 0}}">
+                <text class="sub">图片</text>
+                <view class="imgs">
+                    <view wx:for="{{imgs}}" wx:key="index">
+                        <image data-url="{{item}}" class="img" src="{{item}}" mode="aspectFill" bindtap="previewImage">
+                        </image>
+                    </view>
+                </view>
+            </view>
+            <view class="upload" wx:if="{{files.length != 0}}">
+                <text class="sub">附件</text>
+                <view wx:for="{{files}}" wx:key="index">
+                    <view class="file" bindtap="chooseAction">
+                        <view class="file_icon">
+                            <image class="icon"
+                                src="/source/icon/add/insert_drive_file-{{theme=='light'?'gray':'white'}}-24dp.svg">
+                            </image>
+                        </view>
+                        <text>{{filename}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
     </view>
 </view>

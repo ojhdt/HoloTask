@@ -93,6 +93,7 @@ Page({
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
       success(res) {
+        console.log(res)
         // tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths
         // console.log(tempFilePaths)
@@ -104,21 +105,25 @@ Page({
   },
 
   clearImage: function (e) {
+    console.log(e.currentTarget.dataset.index)
     let temp = this.data.tempImgs
+    temp.splice(e.currentTarget.dataset.index, 1)
     this.setData({
-      tempImgs: temp.splice(e.currentTarget.dataset.index + 1, 1)
+      tempImgs: temp
     })
   },
 
   uploadFile: function (cloudpath, filepath) {
+    console.log("uploading")
     wx.cloud.uploadFile({
       cloudPath: cloudpath,
       filePath: filepath, // 文件路径
     }).then(res => {
       // get resource ID
       console.log(res.fileID)
+      return res.fileID
     }).catch(error => {
-      // handle error
+      console.log("handle error")
     })
   },
 
@@ -360,42 +365,191 @@ Page({
         success(res) {
           if (res.confirm) {
             console.log("success")
-            // console.log(this.data.nickname)
-            let time = e.detail.value.date + " " + e.detail.value.time
-            let admin = (e.detail.value.admin) ? (e.detail.value.admin) : (that.data.nickname)
-            let groupid = that.data.array[e.detail.value.groupid].groupid
-            wx.cloud.database().collection('data').add({
-                data: {
-                  groupid: groupid,
-                  title: e.detail.value.title,
-                  admin: admin,
-                  timestamp: Date.parse(time.replace(/-/g, '/')),
-                  markdown: that.data.markdown,
-                  content: e.detail.value.content,
-                  finished: {
-                    [that.data.openid]: false
-                  }
+            var filepath = "taskfile/" + that.data.array[0].groupid + "/" + new Date().getTime() + "/"
+            console.log(filepath)
+            var imgid = []
+            var fileid = []
+            // let i = 0,
+            //   j = 0
+            // while (i < that.data.tempImgs.length) {
+            //   console.log(i)
+            //   imgid.push(await that.uploadFile(filepath + i.toString() + ".jpg", that.data.tempImg[i]))
+            //   i++
+            // }
+            // while (j < that.data.tempFiles.length) {
+            //   fileid.push(await that.uploadFile(filepath + that.data.tempFiles[j].name, that.data.tempFiles[j].path))
+            //   j++
+            // }
+
+            function step1() {
+              return new Promise((resolve, reject) => {
+                if (that.data.tempImgs.length != 0) {
+                  wx.showLoading({
+                    title: '图片上传中',
+                  })
+                  wx.cloud.uploadFile({
+                    cloudPath: filepath + "0.jpg",
+                    filePath: that.data.tempImgs[0], // 文件路径
+                    success: res => {
+                      // get resource ID
+                      console.log(res.fileID)
+                      imgid.push(res.fileID)
+                      resolve()
+                    },
+                    fail: err => {
+                      reject()
+                    },
+                  })
+                } else {
+                  resolve()
                 }
               })
-              .then(res => {
-                wx.showToast({
-                  title: "任务已发布",
-                  duration: 1000
-                })
-                setTimeout(() => {
-                  wx.navigateBack({
-                    delta: 1,
+            }
+
+            function step2() {
+              return new Promise((resolve, reject) => {
+                if (that.data.tempImgs.length == 2) {
+                  wx.showLoading({
+                    title: '图片上传中',
                   })
-                }, 1000)
+                  wx.cloud.uploadFile({
+                    cloudPath: filepath + "1.jpg",
+                    filePath: that.data.tempImgs[1], // 文件路径
+                    success: res => {
+                      // get resource ID
+                      console.log(res.fileID)
+                      imgid.push(res.fileID)
+                      resolve()
+                    },
+                    fail: err => {
+                      reject()
+                    },
+                  })
+                } else {
+                  resolve()
+                }
+
               })
-              .catch(res => {
-                wx.showToast({
-                  title: "发布失败",
-                  icon: "error",
-                  duration: 1000
+            }
+
+            function step3() {
+              return new Promise((resolve, reject) => {
+                if (that.data.tempFiles.length == 1) {
+                  wx.showLoading({
+                    title: '文件上传中',
+                  })
+                  wx.cloud.uploadFile({
+                    cloudPath: filepath + that.data.tempFiles[0].name,
+                    filePath: that.data.tempFiles[0].path, // 文件路径
+                    success: res => {
+                      // get resource ID
+                      console.log(res.fileID)
+                      fileid.push(res.fileID)
+                      resolve()
+                    },
+                    fail: err => {
+                      reject()
+                    },
+                  })
+                } else {
+                  resolve()
+                }
+              })
+            }
+
+            function step4() {
+              //正式处理数据
+              wx.showLoading({
+                title: '任务发布中',
+              })
+              let time = e.detail.value.date + " " + e.detail.value.time
+              let admin = (e.detail.value.admin) ? (e.detail.value.admin) : (that.data.nickname)
+              let groupid = that.data.array[e.detail.value.groupid].groupid
+              wx.cloud.database().collection('data').add({
+                  data: {
+                    groupid: groupid,
+                    title: e.detail.value.title,
+                    admin: admin,
+                    timestamp: Date.parse(time.replace(/-/g, '/')),
+                    markdown: that.data.markdown,
+                    content: e.detail.value.content,
+                    fileid: fileid,
+                    imgid: imgid,
+                    filename: that.data.tempFiles[0].name,
+                    finished: {
+                      [that.data.openid]: false
+                    }
+                  }
                 })
-                that.reset()
+                .then(res => {
+                  wx.hideLoading()
+                  wx.showToast({
+                    title: "任务已发布",
+                    duration: 1000
+                  })
+                  setTimeout(() => {
+                    wx.navigateBack({
+                      delta: 1,
+                    })
+                  }, 1000)
+                })
+                .catch(res => {
+                  wx.showToast({
+                    title: "发布失败",
+                    icon: "error",
+                    duration: 1000
+                  })
+                  // that.reset()
+                })
+            }
+
+            step1().then(() => {
+              step2().then(() => {
+                step3().then(() => {
+                  step4()
+                }).catch(() => {
+                  wx.hideLoading()
+                  wx.showToast({
+                    title: '文件上传失败',
+                    icon: "none",
+                    duration: 2000
+                  })
+                })
+              }).catch(() => {
+                wx.hideLoading()
+                wx.showToast({
+                  title: '图片上传失败',
+                  icon: "none",
+                  duration: 2000
+                })
               })
+            }).catch(() => {
+              wx.hideLoading()
+              wx.showToast({
+                title: '图片上传失败',
+                icon: "none",
+                duration: 2000
+              })
+            })
+
+            //async写法
+            // async function upload() {
+            //   if (that.data.tempImgs != []) {
+            //     await step1()
+            //   }
+            //   console.log("1,", new Date().getTime())
+            //   if (that.data.tempImgs != [] && that.data.tempImgs.length == 2) {
+            //     await step2()
+            //   }
+            //   console.log("2,", new Date().getTime())
+            //   if (that.data.tempFiles != []) {
+            //     await step3()
+            //   }
+            //   console.log("3,", new Date().getTime())
+            //   step4()
+            // }
+            // upload()
+
           } else if (res.cancel) {}
         }
       })

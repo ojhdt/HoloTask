@@ -40,6 +40,23 @@ Page({
         })
       }
     }
+    // wx.getSetting({
+    //   success: (res) => {
+    //     //检查是否有访问相册的权限，如果没有则通过wx.authorize方法授权
+    //     if (!res.authSetting['scope.writePhotosAlbum']) {
+    //       console.log('没有获取授权');
+    //       wx.authorize({
+    //         scope: 'scope.writePhotosAlbum',
+    //         success: (res) => {
+    //           //用户点击允许获取相册信息后进入下载保存逻辑
+    //           console.log('已获取授权');
+    //         }
+    //       })
+    //     } else {
+    //       console.log('已获取授权');
+    //     }
+    //   }
+    // });
     wx.cloud.database().collection('user').where({
         _openid: openid
       }).get()
@@ -70,12 +87,12 @@ Page({
           })
           wx.showToast({
             title: "新用户已注册",
-            duration: 500
+            duration: 1000
           })
         } else {
           wx.showToast({
             title: "已获取用户数据",
-            duration: 500
+            duration: 1000
           })
         }
       })
@@ -181,38 +198,38 @@ Page({
       taskskip: skip
     })
     wx.cloud.database().collection('user').where({
-      _openid: this.data.openid
-    }).get()
-    .then(res => {
-      var groups = res.data[0].group
-      var archive = Number(res.data[0].settings.archive)
-      var db = []
-      var counter = 0
-      groups.forEach((value, index, array) => {
-        const _ = wx.cloud.database().command
-        wx.cloud.database().collection('data').where({
-            groupid: value,
-            timestamp: _.gt((new Date).getTime() - archive * 86400000)
-          }).orderBy("timestamp", 'desc').limit(20).skip(skip).get()
-          .then(res => {
-            let newtask = res.data
-            newtask.forEach((value, index, array) => {
-              newtask[index].time = util.formatTime(new Date(value.timestamp))
-            })
-            db = db.concat(newtask)
-            // console.log("db", db)
-            counter++
-            // console.log(counter)
-            if (counter == groups.length) {
-              // console.log("a")
-              that.setData({
-                db: this.data.db.concat(db)
+        _openid: this.data.openid
+      }).get()
+      .then(res => {
+        var groups = res.data[0].group
+        var archive = Number(res.data[0].settings.archive)
+        var db = []
+        var counter = 0
+        groups.forEach((value, index, array) => {
+          const _ = wx.cloud.database().command
+          wx.cloud.database().collection('data').where({
+              groupid: value,
+              timestamp: _.gt((new Date).getTime() - archive * 86400000)
+            }).orderBy("timestamp", 'desc').limit(20).skip(skip).get()
+            .then(res => {
+              let newtask = res.data
+              newtask.forEach((value, index, array) => {
+                newtask[index].time = util.formatTime(new Date(value.timestamp))
               })
-              this.sortData()
-            }
-          })
+              db = db.concat(newtask)
+              // console.log("db", db)
+              counter++
+              // console.log(counter)
+              if (counter == groups.length) {
+                // console.log("a")
+                that.setData({
+                  db: this.data.db.concat(db)
+                })
+                this.sortData()
+              }
+            })
+        })
       })
-    })
   },
 
   sortData: function () {

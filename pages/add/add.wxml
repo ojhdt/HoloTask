@@ -116,7 +116,7 @@
           <text>{{input[2].number}}/500</text>
         </view>
       </view>
-      <view wx:if="{{tempImgs.length != 0}}">
+      <view class="upload" wx:if="{{tempImgs.length != 0}}">
         <text class="subtitle">已上传图片</text>
         <view class="imgs">
           <view wx:for="{{tempImgs}}" wx:key="index">
@@ -125,10 +125,15 @@
           </view>
         </view>
       </view>
-      <view wx:if="{{tempFiles.length != 0}}">
+      <view class="upload" wx:if="{{tempFiles.length != 0}}">
         <text class="subtitle">已上传附件</text>
         <view wx:for="{{tempFiles}}" wx:key="index" bindtap="clearFile">
-          <text>{{item.name}}</text>
+          <view class="file">
+            <view class="file_icon">
+              <image class="icon" src="/source/icon/add/insert_drive_file-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
+            </view>
+            <text>{{item.name}}</text>
+          </view>
         </view>
       </view>
       <view class="component" bindtap="chooseImage" hover-class="hover">
@@ -137,7 +142,7 @@
         </view>
         <view class="text">
           <text class="title">添加图片</text>
-          <text class="subtitle">可添加两张图片，传输过程会进行压缩</text>
+          <text class="subtitle">可添加两张图片，传输过程会进行压缩且转换为.JPG格式</text>
         </view>
       </view>
       <view class="component" bindtap="chooseFile" hover-class="hover">
