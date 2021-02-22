@@ -85,7 +85,7 @@ Page({
                   var _groupid = res.data[0]._id
                   wx.cloud.database().collection('group').where({
                     groupid: inputcontent,
-                    member: [that.data.openid]
+                    member: that.data.openid
                   }).get()
                   .then(res => {
                     if(res.data.length != 0){
@@ -97,7 +97,7 @@ Page({
                         icon: "none"
                       })
                     } else {
-                      // const _ = wx.cloud.database().command
+                      const _ = wx.cloud.database().command
                       // wx.cloud.database().collection('group').doc(_groupid).update({
                       //   data: {
                       //     'member': _.push(that.data.openid),

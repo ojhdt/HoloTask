@@ -1,7 +1,7 @@
 <view class="head">
     <view class="container">
         <view class="divide">
-            <view class="title">
+            <view class="title" style="width:{{editable?300:470}}rpx;">
                 <text class="title_text">{{title}}</text>
                 <text class="sub">点击右侧按钮切换完成状态</text>
             </view>
@@ -41,7 +41,7 @@
     <view class="container">
         <view class="k">详细内容</view>
         <view class="content_main">
-            <view wx:if="{{!markdown}}">{{content}}</view>
+            <view wx:if="{{!markdown}}"><text userselect="true">{{content}}</text></view>
             <wemark wx:if="{{markdown}}" md="{{content}}" link="true" highlight="true" type="wemark"></wemark>
         </view>
         <view class="content_sub">

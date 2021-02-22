@@ -444,6 +444,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    var that = this
     //获取head高度
     let query = wx.createSelectorQuery();
     query.select('.head').boundingClientRect(rect => {
@@ -453,6 +454,13 @@ Page({
       let height = clientHeight * ratio;
       this.setData({
         height: height
+      })
+    }).exec();
+    //获取btns宽度
+    let queryb = wx.createSelectorQuery();
+    queryb.select('.btns').boundingClientRect(function (rect) {
+      that.setData({
+        width: rect.width
       })
     }).exec();
 
