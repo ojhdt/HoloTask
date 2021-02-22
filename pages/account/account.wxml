@@ -58,7 +58,7 @@
             <text class="subtitle">功能选项设置</text>
           </view>
         </view>
-        <view class="setting_box">
+        <view class="setting_box" bindtap="share">
           <image class="icon" src="/source/icon/account/share-gray-24dp.svg"></image>
           <view class="text">
             <text class="title">分享</text>

@@ -2,7 +2,8 @@
     <view class="container">
         <view class="divide">
             <view class="title">
-                <text>{{title}}</text>
+                <text class="title_text">{{title}}</text>
+                <text class="sub">点击右侧按钮切换完成状态</text>
             </view>
             <view class="btns">
                 <view class="btn" wx:if="{{editable}}" hover-class="hover" bindtap="edit">

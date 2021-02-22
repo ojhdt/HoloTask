@@ -42,6 +42,10 @@ Page({
     })
   },
 
+  share: function() {
+
+  },
+
   joinGroup: function () {
     var that = this
     wx.showModal({
@@ -55,12 +59,13 @@ Page({
             title: '处理中',
           })
           var inputcontent = res.content
-          console.log(res.content.length)
-          if (res.content.length == 8) {
+          console.log(inputcontent)
+          if (inputcontent.length == 8) {
             wx.cloud.database().collection('group').where({
-                groupid: res.content
+                groupid: inputcontent
               }).get()
               .then(res => {
+                console.log(res)
                 if (res.data.length == 0) {
                   wx.hideLoading({
                     success: (res) => {},
@@ -77,10 +82,10 @@ Page({
                     })
                   })
                 } else {
-                  var _groupid = res.data._id
+                  var _groupid = res.data[0]._id
                   wx.cloud.database().collection('group').where({
                     groupid: inputcontent,
-                    member: that.openid
+                    member: [that.data.openid]
                   }).get()
                   .then(res => {
                     if(res.data.length != 0){
@@ -92,10 +97,17 @@ Page({
                         icon: "none"
                       })
                     } else {
-                      const _ = wx.cloud.database().command
-                      wx.cloud.database().collection('group').doc(_groupid).update({
+                      // const _ = wx.cloud.database().command
+                      // wx.cloud.database().collection('group').doc(_groupid).update({
+                      //   data: {
+                      //     'member': _.push(that.data.openid),
+                      //   }
+                      // })
+                      wx.cloud.callFunction({
+                        name: 'addGroupMember',
                         data: {
-                          'member': _.push(that.openid),
+                          groupid: _groupid,
+                          openid: that.data.openid
                         }
                       })
                       wx.cloud.database().collection('user').where({
@@ -119,6 +131,9 @@ Page({
                 }
               })
           } else {
+            wx.hideLoading({
+              success: (res) => {},
+            })
             wx.showModal({
               title: "错误",
               content: "输入格式有误",

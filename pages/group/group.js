@@ -49,7 +49,7 @@ Page({
               groupid: value
             }).get()
             .then(res => {
-              joineddata = joineddata.concat(res.data)
+              joineddata = joineddata.push(res.data[0])
               counterj++
               if (counterj == joined.length) {
                 this.setData({
@@ -65,7 +65,7 @@ Page({
               _openid: this.data.openid
             }).get()
             .then(res => {
-              managedata = managedata.concat(res.data)
+              managedata = managedata.push(res.data[0])
               counterm++
               if (counterm == manage.length) {
                 this.setData({

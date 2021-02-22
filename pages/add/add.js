@@ -15,7 +15,7 @@ Page({
     tempImgs: [],
     tempFiles: [],
     file_style: null,
-    file_helptext: "可添加一个大小不超过 10 MiB 的附件。",
+    file_helptext: "可添加一个大小不超过 10 MiB 的附件。仅支持从会话文件中选择",
     input: [{
       main: "",
       placeholder: "",
@@ -72,7 +72,7 @@ Page({
         } else {
           that.setData({
             tempFiles: tempFilePaths,
-            file_helptext: "可添加一个大小不超过 10 MiB 的附件。",
+            file_helptext: "可添加一个大小不超过 10 MiB 的附件。仅支持从会话文件中选择",
             file_style: ""
           })
         }

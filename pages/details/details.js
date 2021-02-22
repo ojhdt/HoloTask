@@ -19,24 +19,24 @@ Page({
     files: []
   },
 
-  previewImage: function(e) {
+  previewImage: function (e) {
     wx.previewImage({
       current: e.currentTarget.dataset.url,
       urls: this.data.imgs,
     })
   },
 
-  chooseAction: function() {
+  chooseAction: function () {
     wx.showActionSheet({
-      itemList: ["预览（仅支持文档）","保存到设备"],
+      itemList: ["预览（仅支持文档）", "保存到设备"],
       success: (res) => {
-        if(res.tapIndex == 0) this.previewDocument()
-        if(res.tapIndex == 1) this.downloadFile()
+        if (res.tapIndex == 0) this.previewDocument()
+        if (res.tapIndex == 1) this.downloadFile()
       }
     })
   },
 
-  previewDocument: function() {
+  previewDocument: function () {
     wx.showLoading({
       title: '正在下载文档',
     })
@@ -52,7 +52,7 @@ Page({
           success: function (res) {
             console.log('打开文档成功')
           },
-          fail: function(err){
+          fail: function (err) {
             wx.showModal({
               title: "预览失败",
               showCancel: false,
@@ -65,7 +65,7 @@ Page({
     })
   },
 
-  downloadFile: function() {
+  downloadFile: function () {
     var that = this
     wx.showLoading({
       title: '正在下载文件',
@@ -80,7 +80,7 @@ Page({
         wx.getFileSystemManager().saveFile({
           tempFilePath: filePath,
           filePath: savePath,
-          success (res) {
+          success(res) {
             wx.saveImageToPhotosAlbum({
               filePath: savePath,
               success: res => {
@@ -110,43 +110,41 @@ Page({
 
   finish: function () {
     var that = this
-    // if (this.data.finished == false) {
-    // }
-    if (this.data.finished == true) {
-      wx.showModal({
-        confirmColor: '#07c160',
-        title: "修改",
-        content: "是否要撤销完成状态",
-        success(res) {
-          if (res.confirm) {
-            wx.showLoading({
-              title: '正在提交更改',
-            })
-            wx.cloud.callFunction({
-              name: 'updateFinished',
-              data: {
-                id: that.data._id,
-                openid: that.data.openid,
-                value: false
-              }
-            }).then(res => {
-              console.log("调用成功")
-              that.setData({
-                finished: false
+    if (this.data.timestamp - (new Date).getTime() > 0) {
+      if (this.data.finished == true) {
+        wx.showModal({
+          confirmColor: '#07c160',
+          title: "修改",
+          content: "是否要撤销完成状态",
+          success(res) {
+            if (res.confirm) {
+              wx.showLoading({
+                title: '正在提交更改',
               })
-              that.process()
-              wx.hideLoading({
-                success: (res) => {},
+              wx.cloud.callFunction({
+                name: 'updateFinished',
+                data: {
+                  id: that.data._id,
+                  openid: that.data.openid,
+                  value: false
+                }
+              }).then(res => {
+                console.log("调用成功")
+                that.setData({
+                  finished: false
+                })
+                that.process()
+                wx.hideLoading({
+                  success: (res) => {},
+                })
+                wx.showToast({
+                  title: '状态已撤销',
+                })
               })
-              wx.showToast({
-                title: '状态已撤销',
-              })
-            })
+            }
           }
-        }
-      })
-    } else {
-      if (this.data.timestamp - (new Date).getTime() > 0) {
+        })
+      } else {
         wx.showModal({
           confirmColor: '#07c160',
           title: "提交",
@@ -179,14 +177,94 @@ Page({
             }
           }
         })
-      } else {
-        wx.showToast({
-          title: '过期任务无法修改状态',
-          icon: "none"
-        })
       }
+    } else {
+      wx.showToast({
+        title: '过期任务无法修改状态',
+        icon: "none"
+      })
     }
   },
+
+  // finish: function () {
+  //   var that = this
+  //   // if (this.data.finished == false) {
+  //   // }
+  //   if (this.data.finished == true) {
+  //     wx.showModal({
+  //       confirmColor: '#07c160',
+  //       title: "修改",
+  //       content: "是否要撤销完成状态",
+  //       success(res) {
+  //         if (res.confirm) {
+  //           wx.showLoading({
+  //             title: '正在提交更改',
+  //           })
+  //           wx.cloud.callFunction({
+  //             name: 'updateFinished',
+  //             data: {
+  //               id: that.data._id,
+  //               openid: that.data.openid,
+  //               value: false
+  //             }
+  //           }).then(res => {
+  //             console.log("调用成功")
+  //             that.setData({
+  //               finished: false
+  //             })
+  //             that.process()
+  //             wx.hideLoading({
+  //               success: (res) => {},
+  //             })
+  //             wx.showToast({
+  //               title: '状态已撤销',
+  //             })
+  //           })
+  //         }
+  //       }
+  //     })
+  //   } else {
+  //     if (this.data.timestamp - (new Date).getTime() > 0) {
+  //       wx.showModal({
+  //         confirmColor: '#07c160',
+  //         title: "提交",
+  //         content: "是否要修改完成状态",
+  //         success(res) {
+  //           if (res.confirm) {
+  //             wx.showLoading({
+  //               title: '正在提交更改',
+  //             })
+  //             wx.cloud.callFunction({
+  //               name: 'updateFinished',
+  //               data: {
+  //                 id: that.data._id,
+  //                 openid: that.data.openid,
+  //                 value: true
+  //               }
+  //             }).then(res => {
+  //               console.log("调用成功")
+  //               that.setData({
+  //                 finished: true
+  //               })
+  //               that.process()
+  //               wx.hideLoading({
+  //                 success: (res) => {},
+  //               })
+  //               wx.showToast({
+  //                 title: '状态已修改',
+  //               })
+  //             })
+  //           }
+  //         }
+  //       })
+  //     } else {
+  //       wx.showToast({
+  //         title: '过期任务无法修改状态',
+  //         icon: "none"
+  //       })
+  //     }
+  //   }
+  // },
 
   process: function () {
     //检测状态
@@ -205,11 +283,11 @@ Page({
         timelast: str,
         btn: "未完成"
       })
-      if(this.data.theme == 'light'){
+      if (this.data.theme == 'light') {
         this.setData({
           style: "background:#e9e9e9;color:#000;",
         })
-      } else if(this.data.theme == 'dark'){
+      } else if (this.data.theme == 'dark') {
         this.setData({
           style: "background:#444444;color:#fff;",
         })
@@ -221,11 +299,11 @@ Page({
         timelast: str,
         btn: "未完成"
       })
-      if(this.data.theme == 'light'){
+      if (this.data.theme == 'light') {
         this.setData({
           style: "background:#e9e9e9;color:#000;",
         })
-      } else if(this.data.theme == 'dark'){
+      } else if (this.data.theme == 'dark') {
         this.setData({
           style: "background:#444444;color:#fff;",
         })

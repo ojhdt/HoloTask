@@ -48,12 +48,13 @@ page{
 }
 
 .title{
-  font-size: 1.5rem;
-  width: 100%;
+  width: 400rpx;
+  display: flex;
+  flex-direction: column;
 }
 
-.title > text{
-  width: 100%;
+.title_text{
+  font-size: 1.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

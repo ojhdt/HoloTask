@@ -49,6 +49,7 @@ page{
 .card_time{
   font-size: .8rem;
   color: #666;
+  white-space: nowrap;
 }
 
 .btns{
