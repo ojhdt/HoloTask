@@ -97,7 +97,7 @@
         {
           "name": "pages/modify/modify",
           "pathName": "pages/modify/modify",
-          "query": "id=b00064a7602b432e05367dd96f354c44",
+          "query": "id=79550af260333626065769ec29e361ca",
           "scene": null
         },
         {
@@ -121,6 +121,7 @@
         {
           "name": "pages/groupdetails/groupdetails",
           "pathName": "pages/groupdetails/groupdetails",
+          "query": "",
           "scene": null
         }
       ]

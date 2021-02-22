@@ -116,6 +116,7 @@ page{
 }
 
 .file_icon{
+  flex-shrink: 0;
   width: 150rpx;
   height: 150rpx;
   display: flex;

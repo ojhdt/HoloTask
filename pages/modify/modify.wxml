@@ -119,22 +119,57 @@
           <text>{{input[2].number}}/500</text>
         </view>
       </view>
-      <view class="component">
+      <view class="upload" wx:if="{{tempImgs.length != 0}}">
+        <text class="subtitle">已上传图片</text>
+        <view class="imgs">
+          <view wx:for="{{tempImgs}}" wx:key="index">
+            <image data-index="{{index}}" class="img" src="{{item}}" mode="aspectFill" bindtap="clearImage">
+            </image>
+          </view>
+        </view>
+      </view>
+      <view class="upload" wx:if="{{tempFiles.length != 0}}">
+        <text class="subtitle">已上传附件</text>
+        <view wx:for="{{tempFiles}}" wx:key="index" bindtap="clearFile">
+          <view class="file">
+            <view class="file_icon">
+              <image class="icon" src="/source/icon/add/insert_drive_file-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
+            </view>
+            <text>{{item.name}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="component" bindtap="chooseImage" hover-class="hover">
         <view class="image">
           <image class="icon" src="/source/icon/add/insert_photo-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
         </view>
         <view class="text">
           <text class="title">添加图片</text>
-          <text class="subtitle">可添加两张图片，仅支持格式。传输过程会进行压缩</text>
+          <text class="subtitle">可添加两张图片，传输过程会进行压缩且转换为.JPG格式</text>
         </view>
       </view>
-      <view class="component">
+      <view class="component" bindtap="chooseFile" hover-class="hover">
         <view class="image">
-          <image class="icon" src="/source/icon/add/insert_drive_file-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
+          <image class="icon" src="/source/icon/add/insert_drive_file-{{theme=='light'?'gray':'white'}}-24dp.svg">
+          </image>
         </view>
         <view class="text">
           <text class="title">添加附件</text>
-          <text class="subtitle">可添加一个大小不超过的附件，仅支持格式</text>
+          <text class="subtitle" style="{{file_style}}">{{file_helptext}}</text>
+        </view>
+      </view>
+      <view class="component" data-name="markdown" bindtap="switch">
+        <view class="image">
+          <image class="icon" src="/source/icon/add/markdown-{{theme=='light'?'gray':'white'}}-24dp.svg">
+          </image>
+        </view>
+        <view class="text">
+          <text class="title">Markdown 支持</text>
+          <text class="subtitle">对任务内容进行Markdown渲染。若不了解Markdown语法请勿开启</text>
+        </view>
+        <view class="switch">
+          <view class="bar" style="{{markdownbar}}"></view>
+          <view class="dot" style="{{markdowndot}}"></view>
         </view>
       </view>
     </view>
