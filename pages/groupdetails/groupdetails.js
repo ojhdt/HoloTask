@@ -215,14 +215,14 @@ Page({
             is_admin: true
           })
         }
-      })
-    wx.cloud.database().collection('user').where({
-        _openid: admin_openid
-      }).get()
-      .then(res => {
-        // console.log(res)
-        this.setData({
-          admin: res.data[0].nickname,
+        wx.cloud.database().collection('user').where({
+          _openid: admin_openid
+        }).get()
+        .then(res => {
+          console.log(res)
+          that.setData({
+            admin: res.data[0].nickname
+          })
         })
       })
     //获取openid

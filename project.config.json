@@ -121,7 +121,7 @@
         {
           "name": "pages/groupdetails/groupdetails",
           "pathName": "pages/groupdetails/groupdetails",
-          "query": "",
+          "query": "id=79550af26033ca92067c21385a2c6726",
           "scene": null
         },
         {
