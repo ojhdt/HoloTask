@@ -1,75 +1,169 @@
 /*正常模式*/
 page{
-  background: #EEEEEE;
+  background: #f1f1f1;
 }
-.frist_title{
-  padding: 10rpx;
-  margin: 10rpx;
+
+.container{
+  margin: 0 50rpx;
 }
-.title{
-  font-size: x-large;
-} 
-.historynumber{
-  font-size: small;
-  color: darkgrey;
-}
-.main_body{
-  width: 97%;
-  height: 180rpx;    /*给它定死一个宽度*/
-  border-style: solid;
-  border-width: 1rpx;
-  border-color:#E0E0E0;
-  background-color: #ddd;
-  border-radius: 15rpx;
-  box-shadow: 5px 5px 5px #888888;
-}
-.k{
-  height: 20rpx;
-}
-.jiange2{
-  width: 40rpx;
-}
-.jiange{
-  width: 5%;
-}
-.title_time{
-  width: 90%;
+
+/* 欢迎页样式 */
+#login{
+  min-height: 100vh;
   display: flex;
-  flex-direction: row;
-  align-items: baseline;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.mian_title{
-  width: 60%;
-  font-size: x-large;
-  color: #424242;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+
+#login image{
+  width: 300rpx;
 }
-.mian_time{
-  display: flex;
-  justify-content: end;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-size: small;
+
+#login_bold{
+  font-size: 1.5rem;
+  margin: 50rpx;
+}
+
+#login_text{
+  width:500rpx;
+  font-size: 0.9rem;
   color: #666;
- 
 }
-.time_teacher_{
-  padding-top: 30rpx;
-  font-size: x-small;
+
+.login_btn{
+  font-size: 0.9rem;
+  background-color: #bcddb0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1.2rem;
+  margin: 100rpx;
+  box-shadow: 5rpx 5rpx 20rpx #ddd;
+  transition: transform 0.1s ease-in-out;
 }
-.kong{
-  padding: 20rpx;
+
+.h_login_btn{
+  transform: scale(0.9,0.9);
 }
-.total2{
+
+.login_err{
+  margin: 100rpx;
+  font-weight: bold;
+}
+
+#blank{
+  width: 100%;
+  height: 50rpx;
+}
+
+.first_title > text{
+  font-size: .8rem;
+  color: #666;
+}
+
+.title{
+  font-size: 1.4rem;
+}
+
+.group{
+  margin: 50rpx 0 0 0;
+}
+
+.card{
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  box-shadow: 5rpx 5rpx 20rpx #ddd;
+  border-radius: 0.5rem;
+  margin: 30rpx 0 0 0 ;
+  padding: 0 30rpx;
+}
+
+.text{
+  height: 200rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: .8rem;
+  color: #666;
+}
+
+.card_time{
+  font-size: .8rem;
+  color: #666;  
+  white-space: nowrap;
+}
+
+.btns{
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 30rpx 0 0 0;
 }
-.total{
-  height: 170rpx;
-  margin: 10rpx;
-  padding:  20rpx;
+
+.btn{
+  width: 240rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  background: #fff;
+  box-shadow: 5rpx 5rpx 20rpx #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: .8rem;
+}
+
+.hover{
+  opacity: .7;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* DarkMode 下的样式 start */
+  page{
+    background: #1f2535;
+  }
+
+  .bold{
+    color: white;
+  }
+
+  #login_text{
+    color: #f1f1f1;
+  }
+
+  .login_btn{
+    background-color:#56a36c;
+    color: white;
+    box-shadow: 0 0 0 #ddd;
+  }
+
+  .login_err{
+    color: white;
+  }
+
+  .first_title > text{
+    color: #ccc;
+  }
+
+  .card{
+    background: #444;
+    box-shadow: 0 0 0 #ddd;
+  }
+
+  .card_time{
+    color: #ccc;
+  }
+
+  .text{
+    color: #ccc;
+  }
+
+  .btn{
+    background: #444;
+    box-shadow: 0 0 0 #ddd;
+  }
 }

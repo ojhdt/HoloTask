@@ -33,7 +33,7 @@ Page({
   },
 
   random: function () {
-    var random = Math.floor((Math.random() + Math.floor(Math.random() * 9 + 1)) * Math.pow(10, 8 - 1));
+    var random = (Math.floor((Math.random() + Math.floor(Math.random() * 9 + 1)) * Math.pow(10, 8 - 1))).toString();
     wx.cloud.database().collection('group').where({
         groupid: random
       }).get()
@@ -269,6 +269,9 @@ Page({
           content: "是否要新建该群组",
           success(res) {
             if (res.confirm) {
+              wx.showLoading({
+                title: '正在新建群组',
+              })
               console.log("success")
               let groupid = e.detail.value.groupid
               let description = (e.detail.value.description) ? (e.detail.value.description) : "无"
@@ -281,11 +284,19 @@ Page({
                   }
                 })
                 .then(res => {
+                  that.reset()
+                  wx.hideLoading({
+                    success: (res) => {},
+                  })
                   wx.showToast({
                     title: "群组已创建",
                     duration: 1000
                   })
-                  that.reset()
+                  setTimeout(() => {
+                    wx.navigateBack({
+                      delta: 1,
+                    })
+                  }, 1000)
                 })
                 .catch(res => {
                   wx.showToast({

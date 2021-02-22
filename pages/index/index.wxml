@@ -39,7 +39,7 @@
       <view>
         <text class="heading">任务</text>
         <view class="notask" wx:if="{{db.length == 0}}">
-          <text>目前暂无任务。请前往“账户”页加入新群组，或点击右下角加号按钮为个人发布任务。</text>
+          <text>目前暂无任务。请前往“账户”页加入新群组，或点击右下角加号按钮为个人发布任务。下拉以获取新数据。</text>
         </view>
         <view wx:for="{{db}}" wx:key="index">
           <view class="rw" style="{{item.color}}" data-id="{{item._id}}" hover-class="hover" bindtap="details">

@@ -97,7 +97,7 @@
         {
           "name": "pages/modify/modify",
           "pathName": "pages/modify/modify",
-          "query": "id=b00064a7602b432e05367dd96f354c44",
+          "query": "id=79550af260333626065769ec29e361ca",
           "scene": null
         },
         {
@@ -110,6 +110,30 @@
           "name": "pages/settings/settings",
           "pathName": "pages/settings/settings",
           "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/history/history",
+          "pathName": "pages/history/history",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/groupdetails/groupdetails",
+          "pathName": "pages/groupdetails/groupdetails",
+          "query": "id=79550af26033ca92067c21385a2c6726",
+          "scene": null
+        },
+        {
+          "name": "pages/statistics/statistics",
+          "pathName": "pages/statistics/statistics",
+          "query": "id=79550af260335afc0661a1ed218f6050",
+          "scene": null
+        },
+        {
+          "name": "pages/statisticsdetails/statisticsdetails",
+          "pathName": "pages/statisticsdetails/statisticsdetails",
+          "query": "id=79550af260335afc0661a1ed218f6050",
           "scene": null
         }
       ]

@@ -24,6 +24,12 @@ Page({
     })
   },
 
+  statistics: function () {
+    wx.navigateTo({
+      url: '/pages/statistics/statistics',
+    })
+  },
+
   settings: function () {
     wx.navigateTo({
       url: '/pages/settings/settings',
@@ -36,6 +42,11 @@ Page({
     })
   },
 
+  share: function() {
+    console.log("a")
+    
+  },
+
   joinGroup: function () {
     var that = this
     wx.showModal({
@@ -45,14 +56,21 @@ Page({
       confirmColor: "#07c160",
       success: (res => {
         if (res.confirm) {
+          wx.showLoading({
+            title: '处理中',
+          })
           var inputcontent = res.content
-          console.log(res.content.length)
-          if (res.content.length == 8) {
+          console.log(inputcontent)
+          if (inputcontent.length == 8) {
             wx.cloud.database().collection('group').where({
-                groupid: res.content
+                groupid: inputcontent
               }).get()
               .then(res => {
+                console.log(res)
                 if (res.data.length == 0) {
+                  wx.hideLoading({
+                    success: (res) => {},
+                  })
                   wx.showModal({
                     title: "错误",
                     content: "未检索到群组信息，请检查群组ID",
@@ -65,22 +83,32 @@ Page({
                     })
                   })
                 } else {
-                  var _groupid = res.data._id
+                  var _groupid = res.data[0]._id
                   wx.cloud.database().collection('group').where({
                     groupid: inputcontent,
-                    member: that.openid
+                    member: that.data.openid
                   }).get()
                   .then(res => {
                     if(res.data.length != 0){
+                      wx.hideLoading({
+                        success: (res) => {},
+                      })
                       wx.showToast({
                         title: '请勿重复加入群组',
                         icon: "none"
                       })
                     } else {
                       const _ = wx.cloud.database().command
-                      wx.cloud.database().collection('group').doc(_groupid).update({
+                      // wx.cloud.database().collection('group').doc(_groupid).update({
+                      //   data: {
+                      //     'member': _.push(that.data.openid),
+                      //   }
+                      // })
+                      wx.cloud.callFunction({
+                        name: 'addGroupMember',
                         data: {
-                          'member': _.push(that.openid),
+                          groupid: _groupid,
+                          openid: that.data.openid
                         }
                       })
                       wx.cloud.database().collection('user').where({
@@ -91,11 +119,22 @@ Page({
                           'joined': _.push(inputcontent),
                         }
                       })
+                      .then(res => {
+                        wx.hideLoading({
+                          success: (res) => {},
+                        })
+                        wx.showToast({
+                          title: '成功加入群组',
+                        })
+                      })
                     }
                   })
                 }
               })
           } else {
+            wx.hideLoading({
+              success: (res) => {},
+            })
             wx.showModal({
               title: "错误",
               content: "输入格式有误",
@@ -320,6 +359,11 @@ Page({
     this.refreshUserInfo();
     this.animation();
     this.refreshData();
+    //分享
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline']
+    })
   },
 
   /**
@@ -369,6 +413,15 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    return{
+      title: "HoloTask：简洁，轻量化的任务管理工具",
+      path: '/pages/index/index'
+    }
+  },
 
+  onShareTimeline(){
+    return{
+      title: "HoloTask：简洁，轻量化的任务管理工具",
+    }
   }
 })

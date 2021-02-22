@@ -3,6 +3,11 @@ page{
   background: #f1f1f1;
 }
 
+.icon {
+  width: 50rpx;
+  height: 50rpx;
+}
+
 .container{
   margin: 0 50rpx;
 }
@@ -16,10 +21,12 @@ page{
 }
 
 .divide{
+  width: 100%;
   display:flex;
   flex-direction:row;
   justify-content:space-between;
   align-items: center;
+  flex-wrap: nowrap;
 }
 
 .btns{
@@ -43,12 +50,12 @@ page{
 }
 
 .title{
-  font-size: 1.5rem;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.title > text{
-  width: 100%;
+.title_text{
+  font-size: 1.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -69,16 +76,56 @@ page{
 }
 
 .sub{
+  font-size: .8rem;
   color: #666;
 }
 
 .content{
+  z-index: -1;
   position: relative;
+}
+
+.content_main{
+  margin: 0 0 50rpx 0;
 }
 
 .k{
   font-size:1.2rem;
   padding: 50rpx 0;
+}
+
+.upload{
+  margin: 0 0 40rpx 0;
+}
+
+.img{
+  width: 150rpx;
+  height: 150rpx;
+  margin: 0 10rpx 0 0;
+}
+
+.imgs{
+  display: flex;
+  flex-direction: row;
+  margin: 10rpx 0 0 0;
+}
+
+.file{
+  margin: 10rpx 0 0 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.file_icon{
+  flex-shrink: 0;
+  width: 150rpx;
+  height: 150rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  margin: 0 20rpx 0 0;
 }
 
 .hover{
@@ -105,5 +152,9 @@ page{
 
   .sub{
     color: #ccc;
+  }
+
+  .file_icon{
+    background: #444;
   }
 }

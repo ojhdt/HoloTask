@@ -1,31 +1,39 @@
-<view class="frist_title">
-  <view class="title">历史</view>
-  <view class="historynumber">总计：{{historynumber}}</view>
-</view>
-
-<view wx:for="{{historylist}}" wx:key="id" wx:for-item="item">
-  <view class="total">   
-    <navigator url="/pages/details/details" class="main_body" >  
-      <view class="k"></view>
-      <view class="total2">
-
-        <view class="jiange2"></view>
-        <view class="title_time">  <!--这里放标题和到期时间-->       
-            <view class="mian_title">{{item.title}}</view>
-            <view class="mian_time">截止：{{item.time}}</view>
-        </view>  
-        <view class="jiange2"></view>
+<view class="container">
+  <!-- 未登录 -->
+  <block wx:if="{{!login}}">
+    <view id="login">
+      <image src="/source/main.png" mode="widthFix"></image>
+      <text id="login_bold">欢迎</text>
+      <text id="login_text">HoloTask 是一款简洁的任务管理工具，支持云端同步，群组管理，任务提醒等功能，可应用于班级管理，自我约束等多种场合。\n\n授权 HoloTask 使用您的个人信息以开始使用。</text>
+      <button wx:if="{{canIUse}}" class="login_btn" hover-class="h_login_btn" open-type="getUserInfo"
+        bindgetuserinfo="getUserInfo">开始使用</button>
+      <text wx:if="{{!canIUse}}" class="login_err">请更新微信版本</text>
+    </view>
+  </block>
+  <!-- 已登录 -->
+  <block wx:if="{{login}}">
+    <view id="blank"></view>
+    <view class="first_title">
+      <view class="title">历史</view>
+      <text>成功获取 {{groups.length - 1}} 群组数据</text>
+    </view>
+    <view class="group" wx:for="{{groups}}" wx:key="index">
+      <view class="groupname">
+        <text>{{item.name}}</text>
       </view>
-               
-      <view class="total2"><!--下面是发布者和发布时间-->
-        <view class="jiange2"></view>
-        <view class="time_teacher_  title_time">         
-            <view class="time">发布时间：{{item.testtime}}</view>   <!--这里放历史数据的时间-->
-            <view class="teacher">{{item.teacher}}</view>     
-        </view>  
-        <view class="jiange2"></view>
+      <view wx:if="{{item.data.length == 0}}" class="text">
+        <text>该群组暂未发布任何任务</text>
       </view>
-
-    </navigator>
-  </view>
+      <view wx:for="{{item.data}}" wx:key="index">
+        <view class="card" data-id="{{item._id}}" hover-class="hover" bindtap="details">
+          <text>{{item.title}}</text>
+          <text class="card_time">{{item.time}}</text>
+        </view>
+      </view>
+      <view class="btns">
+        <view class="btn" wx:if="{{item.last}}" bindtap="last" data-index="{{index}}">上一页</view>
+        <view class="btn" wx:if="{{item.next}}" bindtap="next" data-index="{{index}}">下一页</view>
+      </view>
+    </view>
+  </block>
 </view>

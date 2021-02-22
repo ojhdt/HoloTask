@@ -1,0 +1,55 @@
+<!--pages/statisticsdetails/statisticsdetails.wxml-->
+<view class="head">
+  <view class="container">
+    <view class="divide">
+      <view class="title">
+        <text>{{title}}</text>
+      </view>
+    </view>
+    <view class="box">
+      <view class="element">
+        <text>发布者</text>
+        <text class="sub">{{admin}}</text>
+      </view>
+      <view class="element">
+        <text>隶属群组</text>
+        <text class="sub">{{group}}</text>
+      </view>
+    </view>
+    <view class="box">
+      <view class="element">
+        <text>结束时间</text>
+        <text class="sub">{{time}}</text>
+      </view>
+      <view class="element">
+        <text>剩余时间</text>
+        <text class="sub">{{timelast}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="content" style="top:{{height + 100}}rpx">
+  <view class="container">
+    <view class="block">
+      <text class="sub">已完成({{finishedname.length}})</text>
+      <view wx:for="{{finishedname}}" wx:key="index" class="scroll_item">
+        <image class="icon" src="/source/icon/groupdetails/account_circle-{{theme=='light'?'gray':'white'}}-24dp.svg">
+        </image>
+        <view class="name">
+          <text>{{item}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="block">
+      <text class="sub">未完成({{unfinishedname.length}})</text>
+      <view wx:for="{{unfinishedname}}" wx:key="index" class="scroll_item">
+        <image class="icon" src="/source/icon/groupdetails/account_circle-{{theme=='light'?'gray':'white'}}-24dp.svg">
+        </image>
+        <view class="name">
+          <text>{{item}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
