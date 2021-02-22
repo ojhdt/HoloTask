@@ -7,6 +7,51 @@ page{
   margin: 0 50rpx;
 }
 
+/* 欢迎页样式 */
+#login{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#login image{
+  width: 300rpx;
+}
+
+#login_bold{
+  font-size: 1.5rem;
+  margin: 50rpx;
+}
+
+#login_text{
+  width:500rpx;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.login_btn{
+  font-size: 0.9rem;
+  background-color: #bcddb0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1.2rem;
+  margin: 100rpx;
+  box-shadow: 5rpx 5rpx 20rpx #ddd;
+  transition: transform 0.1s ease-in-out;
+}
+
+.h_login_btn{
+  transform: scale(0.9,0.9);
+}
+
+.login_err{
+  margin: 100rpx;
+  font-weight: bold;
+}
+
 #blank{
   width: 100%;
   height: 50rpx;
@@ -79,6 +124,24 @@ page{
   /* DarkMode 下的样式 start */
   page{
     background: #1f2535;
+  }
+
+  .bold{
+    color: white;
+  }
+
+  #login_text{
+    color: #f1f1f1;
+  }
+
+  .login_btn{
+    background-color:#56a36c;
+    color: white;
+    box-shadow: 0 0 0 #ddd;
+  }
+
+  .login_err{
+    color: white;
   }
 
   .first_title > text{

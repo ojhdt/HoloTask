@@ -7,6 +7,118 @@ Page({
    */
   data: {
     groups: [],
+    login: true
+  },
+
+  getUserInfo: function (e) {
+    app.globalData.userInfo = e.detail.userInfo;
+    console.log(e)
+    var nickname = e.detail.userInfo.nickName
+    console.log(nickname)
+    var openid;
+    if (app.globalData.openid) {
+      openid = app.globalData.openid
+    } else {
+      if (this.data.openid) {
+        openid = this.data.openid
+      } else {
+        console.log("index.js-getuserinfo从数据库拉取")
+        wx.cloud.callFunction({
+          name: 'getOpenid',
+          complete: res => {
+            app.globalData.openid = res.result.openid
+            app.globalData.appid = res.result.appid
+            openid = res.result.openid
+          }
+        })
+      }
+    }
+    // wx.getSetting({
+    //   success: (res) => {
+    //     //检查是否有访问相册的权限，如果没有则通过wx.authorize方法授权
+    //     if (!res.authSetting['scope.writePhotosAlbum']) {
+    //       console.log('没有获取授权');
+    //       wx.authorize({
+    //         scope: 'scope.writePhotosAlbum',
+    //         success: (res) => {
+    //           //用户点击允许获取相册信息后进入下载保存逻辑
+    //           console.log('已获取授权');
+    //         }
+    //       })
+    //     } else {
+    //       console.log('已获取授权');
+    //     }
+    //   }
+    // });
+    wx.cloud.database().collection('user').where({
+        _openid: openid
+      }).get()
+      .then(res => {
+        console.log(res)
+        if (res.data.length == 0) {
+          wx.cloud.database().collection('user').add({
+            data: {
+              group: [openid],
+              joined: [],
+              manage: [],
+              nickname: nickname,
+              timestamp: new Date().getTime(),
+              settings: {
+                bing: true,
+                hitokoto: false,
+                archive: "5"
+              }
+            }
+          })
+          wx.cloud.database().collection('group').add({
+            data: {
+              groupid: openid,
+              name: "个人",
+              description: "个人",
+              member: [openid]
+            }
+          })
+          wx.showToast({
+            title: "新用户已注册",
+            duration: 1000
+          })
+        } else {
+          wx.showToast({
+            title: "已获取用户数据",
+            duration: 1000
+          })
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    //首次登陆后刷新一次又何妨
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        login: true,
+      })
+    } else if (this.data.canIUse) {
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = res => {
+        this.setData({
+          userInfo: res.userInfo,
+          login: true
+        })
+      }
+    } else {
+      // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
+          this.setData({
+            userInfo: res.userInfo,
+            login: true
+          })
+        }
+      })
+    }
   },
 
   details: function (e) {
@@ -122,6 +234,46 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          this.setData({
+            login: true
+          })
+        } else {
+          this.setData({
+            login: false
+          })
+        }
+      }
+    })
+    //拉取userinfo
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        login: true
+      })
+    } else if (this.data.canIUse) {
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = res => {
+        this.setData({
+          userInfo: res.userInfo,
+          login: true
+        })
+      }
+    } else {
+      // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
+          this.setData({
+            userInfo: res.userInfo,
+            login: true
+          })
+        }
+      })
+    }
     //获取openid
     if (app.globalData.openid) {
       this.setData({
