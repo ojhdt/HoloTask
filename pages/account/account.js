@@ -43,7 +43,8 @@ Page({
   },
 
   share: function() {
-
+    console.log("a")
+    
   },
 
   joinGroup: function () {
@@ -358,6 +359,11 @@ Page({
     this.refreshUserInfo();
     this.animation();
     this.refreshData();
+    //分享
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline']
+    })
   },
 
   /**
@@ -407,6 +413,15 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    return{
+      title: "HoloTask：简洁，轻量化的任务管理工具",
+      path: '/pages/index/index'
+    }
+  },
 
+  onShareTimeline(){
+    return{
+      title: "HoloTask：简洁，轻量化的任务管理工具",
+    }
   }
 })
