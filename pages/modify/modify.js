@@ -508,7 +508,8 @@ Page({
               if(that.data.reuploadfile == true){
                 wx.cloud.database().collection('data').doc(that.data.id).update({
                   data: {
-                    fileid: fileid
+                    fileid: fileid,
+                    filename: that.data.tempFiles.length == 0 ? "" : that.data.tempFiles[0].name
                   }
                 })
               }
@@ -518,7 +519,7 @@ Page({
                     admin: admin,
                     timestamp: Date.parse(time.replace(/-/g, '/')),
                     content: e.detail.value.content,
-                    markdown: that.data.markdown
+                    markdown: that.data.markdown,
                   }
                 })
                 .then(res => {
@@ -677,11 +678,13 @@ Page({
           // handle error
         })
         //获取文件
-        that.setData({
-          tempFiles: [{
-            name: res.data.filename
-          }]
-        })
+        if(res.data.fileid.length != 0){
+          that.setData({
+            tempFiles: [{
+              name: res.data.filename
+            }]
+          })
+        }
       })
   },
 

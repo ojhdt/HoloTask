@@ -475,7 +475,7 @@ Page({
                     content: e.detail.value.content,
                     fileid: fileid,
                     imgid: imgid,
-                    filename: that.data.tempFiles[0].name,
+                    filename: that.data.tempFiles.length == 0 ? "" : that.data.tempFiles[0].name,
                     finished: {
                       [that.data.openid]: false
                     }
