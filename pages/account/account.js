@@ -24,6 +24,12 @@ Page({
     })
   },
 
+  statistics: function () {
+    wx.navigateTo({
+      url: '/pages/statistics/statistics',
+    })
+  },
+
   settings: function () {
     wx.navigateTo({
       url: '/pages/settings/settings',
@@ -45,6 +51,9 @@ Page({
       confirmColor: "#07c160",
       success: (res => {
         if (res.confirm) {
+          wx.showLoading({
+            title: '处理中',
+          })
           var inputcontent = res.content
           console.log(res.content.length)
           if (res.content.length == 8) {
@@ -53,6 +62,9 @@ Page({
               }).get()
               .then(res => {
                 if (res.data.length == 0) {
+                  wx.hideLoading({
+                    success: (res) => {},
+                  })
                   wx.showModal({
                     title: "错误",
                     content: "未检索到群组信息，请检查群组ID",
@@ -72,6 +84,9 @@ Page({
                   }).get()
                   .then(res => {
                     if(res.data.length != 0){
+                      wx.hideLoading({
+                        success: (res) => {},
+                      })
                       wx.showToast({
                         title: '请勿重复加入群组',
                         icon: "none"
@@ -90,6 +105,14 @@ Page({
                           'group': _.push(inputcontent),
                           'joined': _.push(inputcontent),
                         }
+                      })
+                      .then(res => {
+                        wx.hideLoading({
+                          success: (res) => {},
+                        })
+                        wx.showToast({
+                          title: '成功加入群组',
+                        })
                       })
                     }
                   })

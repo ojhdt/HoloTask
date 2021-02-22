@@ -170,14 +170,19 @@ Page({
       content: "是否要删除该任务",
       success(res) {
         if (res.confirm) {
+          wx.showLoading({
+            title: '正在删除任务',
+          })
           wx.cloud.database().collection('data').doc(that.data.id).remove()
             .then(res => {
               wx.showToast({
                 title: '已删除',
               })
-              wx.navigateBack({
-                delta: 2,
-              })
+              setTimeout(() => {
+                wx.navigateBack({
+                  delta: 2,
+                })
+              }, 1000)
             })
         }
       }
@@ -490,7 +495,7 @@ Page({
               let time = e.detail.value.date + " " + e.detail.value.time
               let admin = (e.detail.value.admin) ? (e.detail.value.admin) : (that.data.nickname)
               // let groupid = that.data.array[e.detail.value.groupid].groupid
-              if(that.data.reuploadimg == false){
+              if (that.data.reuploadimg == false) {
                 console.log("rewrite old")
                 wx.cloud.database().collection('data').doc(that.data.id).update({
                   data: {
@@ -505,7 +510,7 @@ Page({
                   }
                 })
               }
-              if(that.data.reuploadfile == true){
+              if (that.data.reuploadfile == true) {
                 wx.cloud.database().collection('data').doc(that.data.id).update({
                   data: {
                     fileid: fileid,
@@ -678,7 +683,7 @@ Page({
           // handle error
         })
         //获取文件
-        if(res.data.fileid.length != 0){
+        if (res.data.fileid.length != 0) {
           that.setData({
             tempFiles: [{
               name: res.data.filename

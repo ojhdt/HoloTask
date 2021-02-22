@@ -43,7 +43,7 @@
           </view>
         </view>
         <view class="scroll_item">
-          <view class="scroll_card" hover-class="h_scroll_card">
+          <view class="scroll_card" bindtap="statistics" hover-class="h_scroll_card">
             <image class="icon" src="/source/icon/account/poll-{{theme=='light'?'gray':'white'}}-24dp.svg"></image>
             <text>统计数据</text>
           </view>

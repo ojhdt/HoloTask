@@ -1,0 +1,29 @@
+<!--pages/statistics/statistics.wxml-->
+<view class="container">
+  <view id="blank"></view>
+  <view class="first_title">
+    <view class="title">完成情况统计</view>
+    <text>仅显示管理的群组。成功获取 {{groups.length}} 群组数据</text>
+  </view>
+  <view class="group" wx:for="{{groups}}" wx:key="index">
+    <view class="groupname">
+      <text>{{item.name}}</text>
+    </view>
+    <view wx:if="{{item.data.length == 0}}" class="text">
+      <text>该群组暂未发布任何任务</text>
+    </view>
+    <view wx:for="{{item.data}}" wx:key="index" wx:for-item="nitem">
+      <view class="card" data-id="{{nitem._id}}" hover-class="hover" bindtap="details">
+        <text>{{nitem.title}}</text>
+        <view class="card_time">
+          <text>已完成 {{nitem.finishednum}} </text>
+          <text>/ 总人数 {{item.member.length}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="btns">
+      <view class="btn" wx:if="{{item.last}}" bindtap="last" data-index="{{index}}">上一页</view>
+      <view class="btn" wx:if="{{item.next}}" bindtap="next" data-index="{{index}}">下一页</view>
+    </view>
+  </view>
+</view>

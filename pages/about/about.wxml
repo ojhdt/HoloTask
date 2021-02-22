@@ -4,7 +4,7 @@
     <image src="/source/main.png" mode="widthFix"></image>
     <view class="head_text">
       <text>简洁，轻量化的任务管理工具</text>
-      <text class="version">HoloTask 1.5.1.210222_beta</text>
+      <text class="version">HoloTask 1.6.0.210222_beta</text>
     </view>
   </view>
   <view class="content">

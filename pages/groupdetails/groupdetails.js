@@ -109,6 +109,9 @@ Page({
         content: "您目前管理该群组，继续操作将解散该群组，是否确认",
         success(res) {
           if (res.confirm) {
+            wx.showLoading({
+              title: '正在删除群组',
+            })
             wx.cloud.database().collection('user').doc(e.currentTarget.dataset.id).update({
               data: {
                 manage: _.pull(that.data.groupid)
@@ -137,13 +140,21 @@ Page({
                 groupid: that.data.groupid
               }
             }).then(res => {
+              wx.hideLoading({
+                success: (res) => {},
+              })
               wx.showToast({
                 title: '删除成功',
               })
-              wx.navigateBack({
-                delta: 1,
-              })
+              setTimeout(() => {
+                wx.navigateBack({
+                  delta: 1,
+                })
+              }, 1000)
             }).catch(err => {
+              wx.hideLoading({
+                success: (res) => {},
+              })
               wx.showToast({
                 title: '删除失败',
                 icon: "none"

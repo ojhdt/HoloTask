@@ -119,6 +119,9 @@ Page({
         content: "是否要撤销完成状态",
         success(res) {
           if (res.confirm) {
+            wx.showLoading({
+              title: '正在提交更改',
+            })
             wx.cloud.callFunction({
               name: 'updateFinished',
               data: {
@@ -132,6 +135,9 @@ Page({
                 finished: false
               })
               that.process()
+              wx.hideLoading({
+                success: (res) => {},
+              })
               wx.showToast({
                 title: '状态已撤销',
               })
@@ -147,6 +153,9 @@ Page({
           content: "是否要修改完成状态",
           success(res) {
             if (res.confirm) {
+              wx.showLoading({
+                title: '正在提交更改',
+              })
               wx.cloud.callFunction({
                 name: 'updateFinished',
                 data: {
@@ -160,6 +169,9 @@ Page({
                   finished: true
                 })
                 that.process()
+                wx.hideLoading({
+                  success: (res) => {},
+                })
                 wx.showToast({
                   title: '状态已修改',
                 })

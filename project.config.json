@@ -123,6 +123,18 @@
           "pathName": "pages/groupdetails/groupdetails",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/statistics/statistics",
+          "pathName": "pages/statistics/statistics",
+          "query": "id=79550af260335afc0661a1ed218f6050",
+          "scene": null
+        },
+        {
+          "name": "pages/statisticsdetails/statisticsdetails",
+          "pathName": "pages/statisticsdetails/statisticsdetails",
+          "query": "id=79550af260335afc0661a1ed218f6050",
+          "scene": null
         }
       ]
     }
