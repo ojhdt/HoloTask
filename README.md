@@ -1,148 +1,140 @@
-# miniprogram
-微信小程序协作开发项目
+# HoloTask
 
-## 当前阶段： 基础知识学习 & 软件设计
-
-
-预计开发周期：
-
-|周期|预期时间|
-|-|-|
-|**基础知识学习**| 12月|
-|**开发目标讨论**|12.1-12.3|
-|**需求分析**|12.3-12.5|
-|**软件设计**|12.5-12.15|
-|**程序编码**|12.15-2月中|
-|**程序测试**|2月中-3月|
-|**提交**|3月|
+<img src="source/main.png" width="300" height="300">
 
 
-页面分工：
+A simple, lightweight tasks management tool.
 
-## 待办
+![contributor](https://img.shields.io/github/contributors/ojhdt/holotask)
+![version-support](https://img.shields.io/badge/Base%20Library-%3E%3D2.15.0-blue)
+![last-commit](https://img.shields.io/github/last-commit/ojhdt/holotask)
+[![license](https://img.shields.io/github/license/ojhdt/holotask)](LICENSE)
 
-**如何进行版本回退（重要）**
-即把项目退回到上一次提交的状态，舍弃上一次提交之后自己进行的所有操作。
+HoloTask is a WeChat Mini Program that allows users to manage their daily tasks (not yet released). The main functions of the application are data cloud synchronization, group management, task reminder and statistics. It can be applied to various occasions such as class management and self-discipline.
 
-**如果未提交更改**
+HoloTask has redesigned a large number of component used in the app, following the Material Design specifications for mobile development advocated by Google. HoloTask also abandons redundant configuration, simplifies operation, and pursues a refreshing and smooth user experience.
 
-1. 忽略当前所有改动。全选，`Discard changes`。
+This project is used for communication and learning ONLY.
 
-![忽略改动](/README/10.png)
+[中文文档](README_zh-CN.md)
 
-**如果已提交更改**
+## Table of Contents
 
-1. 进入`History`选项页。
+- [Feature](#Feature)
+- [Screenshot](#Screenshot)
+- [Dependencies](#Dependencies)
+- [Install](#install)
+- [Maintainers](#Maintainers)
+- [Change log](#Change-log)
+- [Get help](#Get-help)
+- [Contributing](#contributing)
+- [License](#license)
 
-![进入history](/README/8.png)
+## Feature
 
-2. 从最新版本开始，依次点击`Revert this commit`撤销更改，直到返回希望回到的版本。
+### Released
 
-![回退](/README/9.png)
+- Task release, editing, status change and deletion
+- Preview and transmission of pictures and files
+- Group creation, member addition and management
+- Markdown support
+- Statistics
+- Archive
+- Full dark mode support
 
->尽量避免跨版本回退，即只回退到上一次提交状态，以避免不必要的错误。因此，请尽量确保代码无问题后再提交更改。
+### Upcoming
 
-**为本文档添加图片方法**
+- Notification
+- Search
 
-1. 将图片文件(.png/.jpg/.gif)放到 `/README` 目录下。
+## Screenshot
 
-2. 编辑本文档，在需要添加图片的位置使用
+![light](screenshot/light.png)
 
+![dark](screenshot/dark.png)
+
+## Dependencies
+
+- Base Library version >= 2.15.0
+
+## Install
+
+This project relies on Tencent Cloud Base, which may incur a small amount of fees.
+
+1. Visit [Mini Program Registration page](https://mp.weixin.qq.com/), and submit the required information as instructed to get your Mini Program account. Then go to `Settings > Development Management > Development Settings` to find the AppID of the Mini Program.
+
+2. Go to `Settings > Cloud Base` and enable Cloud Base and creat an Environment, get your unique environment ID.
+
+3. Edit `project.config.json`
 ```
-![图片说明](图片相对路径)
+"appid": "", //Your APPID here
 ```
 
-其中说明可随意填写，**相对路径**为 `/README/图片名.png` 。具体实现可参考本文其他图片。
+4. Import this project in Weixin DevTools. Edit `App.js`
+```
+wx.cloud.init({
+  env: "" //Your environment ID here
+})
+```
 
+5. Create 3 empty collections named `data`，`user` and `group` in the Cloud Base Console, which will be necessary to store tasks, users imformations and groups imformations. And change the permissions to **all users can read, only creator can read and write**
 
-## 开发目标 班级作业管理系统
+6. Deploy all cloud functions included in the `cloud` folder.
 
-添加预期功能（具体到特性）并给出可行设计。请编辑本页面给出想法。
+7. Enjoy it~。
 
-### 界面
+## Maintainers
 
->此处添加设计图。
+[@ojhdt](https://github.com/ojhdt/)
 
-![]()
+[@habc706](https://github.com/habc706)
 
-初定页面包括（可随意编辑）
+[@liusenjun](https://github.com/liusenjun)
 
-- 主页 - 个人账户信息展示，通知提示，任务概览等
+## Change log
 
-- 任务列表 - 信息流形式展示的任务概览
+### 1.6.5.210223_beta
 
-    - 任务详情 - 更详细的任务信息页
-    - 任务添加（特定用户）- 发布任务
-    - 通知发布（特定任务）- 发布通知
-- 功能 - 其他小功能（如表格导出入口，偏好设置开关）
-- 关于 开发团队信息，推广等
+- Add sharing
+- Fix display error of group manager's name
 
-### 功能（具体项中添加细节）
+### 1.6.4.210222_beta
 
-#### 作业布置
+- Add completion statistics
+- Fix bugs that cause group searching fail
+- Add login status detection in history page 
 
-#### DDL设置
+### 1.6.0.210220_beta
 
-#### 表格导出
+- Pictures preview support 
+- Files transmission support
+- Markdown support
 
-#### 高亮显示
+### 1.5.2.210219_beta
 
-#### 提醒
+- Improve group management
+- Add interface settings of account page 
 
-#### 公告
+## Get help
 
+Try to submit GitHub issues to explain your questions and find solutions: [Issues](https://github.com/ojhdt/HoloTask/issues)
 
->### 未采用方案
->
->#### 公交信息查询
->
->- 公交信息查询
->
->#### 英语单词本
->
->- 语音录入
->- 乱序
->- 读音播放，翻译，例句展示
->
->#### 问卷
->
->- 无广告
+You can contact the developers by the following ways:
 
-## 参考材料
+📧 E-mail mailto:ojhdtmail@gmail.com
 
-- [Markdown语法](https://www.runoob.com/markdown/md-tutorial.html)
-- [HTML](https://www.runoob.com/html/html-tutorial.html)
-- [CSS](https://www.runoob.com/css/css-tutorial.html)
+💬 Telegram https://telegram.me/ojhdt
 
+🗨️ Wechat ojhdtwechat
 
-## 过期代办
+## Contributing
 
-安装 Github Destop，clone **develop** 分支到本地；熟悉拉取与提交操作。
+PRs accepted.
 
-操作：
+## Credits
 
-1. 点击 File -> Clone repository
+- [wemark](https://github.com/TooBug/wemark) - 微信小程序Markdown渲染库
 
-![Clone仓库](/README/2.png)
+## License
 
-2. 选择正确的仓库，选择恰当的本地路径
-
-![配置](/README/3.png)
-
-3. 更改默认分支为**develop**
-
-![确保在develop分支上操作](/README/1.png)
-
-4. 仓库成功克隆到本地，可做出更改
-
-![本地](/README/4.png)
-
-5. 做出更改后，在视窗可进行确认。首先左下角填写注释（必填），点击**commit to develop**，再点击右上角的Git Push。
-
-![commit](/README/5.png)
-
-![Push](/README/6.png)
-
-6. 在每次尝试提交更改前，优先点击 **Fetch origin** 拉取其他协作者的更改到本地，再 commit 自己所做的新更改。
-
-![Fetch](/README/7.png)
+[MIT](LICENSE)
